@@ -4,7 +4,7 @@
 <section id="hero" class="fade-in">
     <div class="carousel-container">
         <div class="carousel-track">
-            {% for item in gallery_items %}
+            {% for item in carousel_items %}
             <div class="carousel-slide">
                 <img src="{{ item.filename }}" alt="{{ item.title }}">
                 <div class="carousel-overlay">
@@ -48,7 +48,7 @@
         <h2 class="reveal">Gallery</h2>
         <div id="gallery-grid" class="gallery-grid stagger-reveal">
             <!-- Dynamically loaded -->
-            {% for item in gallery_items %}
+            {% for item in pagination.items %}
             <div class="gallery-item" data-id="{{ item.id }}" data-title="{{ item.title }}"
                 data-description="{{ item.description }}">
                 <img src="{{ item.filename }}" alt="{{ item.title }}" loading="lazy">
@@ -58,6 +58,28 @@
             </div>
             {% endfor %}
         </div>
+
+        {% if pagination.pages > 1 %}
+        <div class="pagination-controls reveal">
+            {% if pagination.has_prev %}
+            <a href="{{ url_for('main.index', page=pagination.prev_num) }}#gallery" class="pagination-btn">&larr;
+                Previous</a>
+            {% else %}
+            <span class="pagination-btn disabled">&larr; Previous</span>
+            {% endif %}
+
+            <div class="page-numbers">
+                Page {{ pagination.page }} of {{ pagination.pages }}
+            </div>
+
+            {% if pagination.has_next %}
+            <a href="{{ url_for('main.index', page=pagination.next_num) }}#gallery" class="pagination-btn">Next
+                &rarr;</a>
+            {% else %}
+            <span class="pagination-btn disabled">Next &rarr;</span>
+            {% endif %}
+        </div>
+        {% endif %}
     </div>
 </section>
 

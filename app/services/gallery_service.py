@@ -10,6 +10,12 @@ class GalleryService:
         return GalleryItem.query.order_by(GalleryItem.order.asc()).all()
 
     @staticmethod
+    def get_paginated_items(page, per_page=12):
+        return GalleryItem.query.order_by(GalleryItem.order.asc()).paginate(
+            page=page, per_page=per_page, error_out=False
+        )
+
+    @staticmethod
     def allowed_file(filename):
         extensions = current_app.config.get('ALLOWED_EXTENSIONS', 'png,jpg,jpeg,gif').split(',')
         return '.' in filename and filename.rsplit('.', 1)[1].lower() in extensions
