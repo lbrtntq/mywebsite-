@@ -53,8 +53,7 @@
                     {% for item in items %}
                     <div class="management-card">
                         <div class="card-image">
-                            <img src="{{ url_for('static', filename='uploads/' + item.filename) }}"
-                                alt="{{ item.title }}">
+                            <img src="{{ item.filename }}" alt="{{ item.title }}">
                         </div>
                         <div class="card-content">
                             <h4>{{ item.title }}</h4>

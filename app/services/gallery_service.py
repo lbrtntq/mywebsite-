@@ -1,7 +1,5 @@
 import os
-import uuid
-from werkzeug.utils import secure_filename
-from PIL import Image, ImageOps
+import cloudinary.uploader
 from app import db
 from app.models.gallery import GalleryItem
 from flask import current_app
@@ -19,22 +17,18 @@ class GalleryService:
     @staticmethod
     def save_item(file, title, description):
         if file and GalleryService.allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            # Use unique filename to avoid collisions
-            unique_filename = f"{uuid.uuid4().hex}_{filename}"
-            filepath = os.path.join(current_app.config['UPLOAD_FOLDER'], unique_filename)
+            # Upload to Cloudinary
+            upload_result = cloudinary.uploader.upload(
+                file,
+                folder="portfolio",
+                resource_type="image"
+            )
             
-            # Save and optimize image
-            img = Image.open(file)
-            img = ImageOps.exif_transpose(img) # Fix orientation
-            # Optional: resize or optimize here
-            img.save(filepath, optimize=True, quality=85)
-
-            # Create DB entry
+            # Create DB entry using Cloudinary's secure URL
             item = GalleryItem(
                 title=title,
                 description=description,
-                filename=unique_filename,
+                filename=upload_result['secure_url'], # Store full URL
                 order=GalleryItem.query.count()
             )
             db.session.add(item)
@@ -46,10 +40,13 @@ class GalleryService:
     def delete_item(item_id):
         item = GalleryItem.query.get(item_id)
         if item:
-            # Delete file
-            filepath = os.path.join(current_app.config['UPLOAD_FOLDER'], item.filename)
-            if os.path.exists(filepath):
-                os.remove(filepath)
+            # Delete from Cloudinary
+            # Extract public_id from URL: e.g., https://res.cloudinary.com/.../portfolio/xyz.jpg -> portfolio/xyz
+            try:
+                public_id = item.filename.split('/')[-2] + '/' + item.filename.split('/')[-1].split('.')[0]
+                cloudinary.uploader.destroy(public_id)
+            except Exception as e:
+                print(f"Error deleting from Cloudinary: {e}")
             
             # Delete DB entry
             db.session.delete(item)
@@ -67,20 +64,20 @@ class GalleryService:
         item.description = description
         
         if file and GalleryService.allowed_file(file.filename):
-            # Delete old file
-            old_filepath = os.path.join(current_app.config['UPLOAD_FOLDER'], item.filename)
-            if os.path.exists(old_filepath):
-                os.remove(old_filepath)
+            # Delete old image from Cloudinary
+            try:
+                public_id = item.filename.split('/')[-2] + '/' + item.filename.split('/')[-1].split('.')[0]
+                cloudinary.uploader.destroy(public_id)
+            except Exception:
+                pass
                 
-            # Save new file
-            filename = secure_filename(file.filename)
-            unique_filename = f"{uuid.uuid4().hex}_{filename}"
-            filepath = os.path.join(current_app.config['UPLOAD_FOLDER'], unique_filename)
-            
-            img = Image.open(file)
-            img = ImageOps.exif_transpose(img) # Fix orientation
-            img.save(filepath, optimize=True, quality=85)
-            item.filename = unique_filename
+            # Upload new to Cloudinary
+            upload_result = cloudinary.uploader.upload(
+                file,
+                folder="portfolio",
+                resource_type="image"
+            )
+            item.filename = upload_result['secure_url']
             
         db.session.commit()
         return item

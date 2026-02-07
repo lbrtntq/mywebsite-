@@ -6,7 +6,7 @@
         <div class="carousel-track">
             {% for item in gallery_items %}
             <div class="carousel-slide">
-                <img src="{{ url_for('static', filename='uploads/' + item.filename) }}" alt="{{ item.title }}">
+                <img src="{{ item.filename }}" alt="{{ item.title }}">
                 <div class="carousel-overlay">
                     <div class="hero-text">
                         <h1>{{ item.title }}</h1>
@@ -51,8 +51,7 @@
             {% for item in gallery_items %}
             <div class="gallery-item" data-id="{{ item.id }}" data-title="{{ item.title }}"
                 data-description="{{ item.description }}">
-                <img src="{{ url_for('static', filename='uploads/' + item.filename) }}" alt="{{ item.title }}"
-                    loading="lazy">
+                <img src="{{ item.filename }}" alt="{{ item.title }}" loading="lazy">
                 <div class="item-overlay">
                     <h3>{{ item.title }}</h3>
                 </div>
