@@ -28,22 +28,41 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 2. Carousel with Parallax & Smooth Transitions
+    // 2. Carousel with Parallax & Seamless Infinite Loop
     const track = document.querySelector('.carousel-track');
-    const slides = Array.from(document.querySelectorAll('.carousel-slide'));
+    let slides = Array.from(document.querySelectorAll('.carousel-slide'));
     const nextBtn = document.querySelector('.next-btn');
     const prevBtn = document.querySelector('.prev-btn');
 
-    let currentSlideIndex = 0;
-
     if (slides.length > 1) {
-        const updateCarousel = () => {
-            track.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
+        // Clone first and last slides for infinite loop
+        const firstClone = slides[0].cloneNode(true);
+        const lastClone = slides[slides.length - 1].cloneNode(true);
 
-            // Add scale effect to current image
+        firstClone.id = 'first-clone';
+        lastClone.id = 'last-clone';
+
+        track.appendChild(firstClone);
+        track.insertBefore(lastClone, slides[0]);
+
+        // Re-query slides to include clones
+        slides = Array.from(document.querySelectorAll('.carousel-slide'));
+
+        let currentSlideIndex = 1; // Start at 1 because of prepended clone
+        let isTransitioning = false;
+
+        // Initial setup
+        const slideWidth = 100; // Percentage
+        track.style.transform = `translateX(-${slideWidth * currentSlideIndex}%)`;
+
+        const updateVisuals = () => {
+            // Update scale/opacity effects
             slides.forEach((slide, idx) => {
                 const img = slide.querySelector('img');
                 const text = slide.querySelector('.hero-text');
+
+                // Check if this slide is "active" (accounting for loop)
+                // If we are at clone (idx=0 or last), we want to highlight it too
                 if (idx === currentSlideIndex) {
                     img.style.transform = 'scale(1.1)';
                     text.style.opacity = '1';
@@ -56,23 +75,48 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         };
 
-        // Initialize first slide
-        updateCarousel();
+        updateVisuals();
+
+        const moveToSlide = (index) => {
+            if (isTransitioning) return;
+            isTransitioning = true;
+            currentSlideIndex = index;
+            track.style.transition = 'transform 0.8s cubic-bezier(0.2, 1, 0.3, 1)';
+            track.style.transform = `translateX(-${slideWidth * currentSlideIndex}%)`;
+            updateVisuals();
+        };
 
         nextBtn.addEventListener('click', () => {
-            currentSlideIndex = (currentSlideIndex + 1) % slides.length;
-            updateCarousel();
+            if (currentSlideIndex >= slides.length - 1) return;
+            moveToSlide(currentSlideIndex + 1);
         });
 
         prevBtn.addEventListener('click', () => {
-            currentSlideIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
-            updateCarousel();
+            if (currentSlideIndex <= 0) return;
+            moveToSlide(currentSlideIndex - 1);
+        });
+
+        track.addEventListener('transitionend', () => {
+            isTransitioning = false;
+            if (slides[currentSlideIndex].id === 'last-clone') {
+                track.style.transition = 'none';
+                currentSlideIndex = slides.length - 2;
+                track.style.transform = `translateX(-${slideWidth * currentSlideIndex}%)`;
+                updateVisuals();
+            }
+            if (slides[currentSlideIndex].id === 'first-clone') {
+                track.style.transition = 'none';
+                currentSlideIndex = 1;
+                track.style.transform = `translateX(-${slideWidth * currentSlideIndex}%)`;
+                updateVisuals();
+            }
         });
 
         // Auto-play
         setInterval(() => {
-            currentSlideIndex = (currentSlideIndex + 1) % slides.length;
-            updateCarousel();
+            if (!isTransitioning && currentSlideIndex < slides.length - 1) {
+                moveToSlide(currentSlideIndex + 1);
+            }
         }, 8000);
     } else {
         if (nextBtn) nextBtn.style.display = 'none';
