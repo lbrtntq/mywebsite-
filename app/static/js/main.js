@@ -121,6 +121,27 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 400);
     };
 
+    // 4. Dynamic Tab Title
+    const baseTitle = 'albertantioquia |';
+    const sections = document.querySelectorAll('section[id]');
+
+    const titleObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.getAttribute('id');
+                let subTitle = '';
+
+                if (id === 'about') subTitle = ' About Me';
+                else if (id === 'gallery') subTitle = ' Photography';
+                else if (id === 'hero') subTitle = ''; // Just base title for home
+
+                document.title = `${baseTitle}${subTitle}`;
+            }
+        });
+    }, { threshold: 0.3 });
+
+    sections.forEach(section => titleObserver.observe(section));
+
     closeBtn.addEventListener('click', closeLightbox);
     lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
 });

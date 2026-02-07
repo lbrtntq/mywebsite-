@@ -42,5 +42,10 @@ def create_app(test_config=None):
     app.register_blueprint(main.bp)
     app.register_blueprint(auth.bp)
     app.register_blueprint(gallery.bp)
+    
+    @app.context_processor
+    def inject_year():
+        import datetime
+        return {'current_year': datetime.datetime.now().year}
 
     return app

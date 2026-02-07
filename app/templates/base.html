@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>albertantioquia |</title>
-    <!-- Professional AAA Monogram SVG Favicon -->
+    <!-- Professional 'A' Monogram SVG Favicon -->
     <link rel="icon" type="image/svg+xml"
-        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22black%22/><text y=%22.9em%22 x=%2250%25%22 font-size=%2260%22 font-family=%22Assistant, sans-serif%22 font-weight=%22800%22 text-anchor=%22middle%22 fill=%22white%22>AAA</text></svg>">
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%2250%25%22 x=%2250%25%22 font-size=%2280%22 font-family=%22Assistant, sans-serif%22 font-weight=%22800%22 text-anchor=%22middle%22 dominant-baseline=%22central%22 fill=%22rgb(68, 82, 99)%22>A</text></svg>">
 
     <meta name="description" content="A minimalist, professional portfolio showcasing creative work and skills.">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
@@ -23,10 +23,8 @@
 <body>
     <nav id="navbar">
         <div class="nav-content">
-            <a href="/" class="logo">
-                <span class="logo-icon"></span>
-                albertantioquia
-            </a>
+            <a href="/" class="logo"><span class="logo-icon">A</span><span class="logo-text-wrapper">albert<span
+                        class="logo-surname">antioquia</span></span></a>
             <div class="nav-links">
                 <a href="#about">About Me</a>
                 <a href="#gallery">Photography</a>
@@ -43,7 +41,7 @@
 
     <footer>
         <div class="footer-content">
-            <p>&copy; 2026 Albert Antioquia</p>
+            <p>&copy; {{ current_year }} Albert Antioquia</p>
             <div class="footer-icons">
                 <a href="https://github.com/lbrtntq" target="_blank" title="GitHub"><i
                         class="fa-brands fa-github"></i></a>

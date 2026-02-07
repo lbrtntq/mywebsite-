@@ -86,6 +86,20 @@ body {
     transition: all var(--transition-fast);
 }
 
+.logo-text-wrapper {
+    display: inline;
+    /* Keep as standard text flow */
+}
+
+.logo-surname {
+    transition: color var(--transition-fast);
+}
+
+.logo:hover .logo-surname {
+    color: #d93d3d;
+    /* Deep Red to match nav hover */
+}
+
 #navbar.nav-scrolled .logo {
     color: rgb(68, 82, 99);
     /* Muted Slate Blue */
@@ -93,29 +107,38 @@ body {
 }
 
 .logo-icon {
-    width: 8px;
-    height: 8px;
-    border: 1.5px solid white;
-    /* Initial state */
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1.25rem;
+    text-transform: uppercase;
+    color: white;
+    /* Match logo text color on hero */
     opacity: 0.8;
-    display: inline-block;
-    animation: rotate-logo 6s linear infinite;
+    animation: flip-logo 4s ease-in-out infinite;
+    transform-style: preserve-3d;
     transition: all var(--transition-fast);
 }
 
 #navbar.nav-scrolled .logo-icon {
-    border-color: rgb(68, 82, 99);
-    /* Muted Slate Blue */
+    color: rgb(68, 82, 99);
+    /* Match brand blue on scroll */
     opacity: 1;
 }
 
-@keyframes rotate-logo {
-    from {
-        transform: rotate(0deg);
+@keyframes flip-logo {
+
+    0%,
+    100% {
+        transform: rotateY(0deg);
     }
 
-    to {
-        transform: rotate(360deg);
+    50% {
+        transform: rotateY(180deg);
     }
 }
 
@@ -139,14 +162,14 @@ body {
 
 .nav-links a:hover {
     opacity: 1;
-    color: rgb(68, 82, 99);
-    /* Brand Slate Blue */
+    color: #d93d3d;
+    /* Deeper Red */
 }
 
 #navbar.nav-scrolled .nav-links a:hover {
     opacity: 1;
-    color: rgb(68, 82, 99);
-    /* Brand Slate Blue */
+    color: #d93d3d;
+    /* Deeper Red */
 }
 
 /* Hero & Carousel */
