@@ -17,23 +17,31 @@ class GalleryService:
     @staticmethod
     def save_item(file, title, description):
         if file and GalleryService.allowed_file(file.filename):
-            # Upload to Cloudinary
-            upload_result = cloudinary.uploader.upload(
-                file,
-                folder="portfolio",
-                resource_type="image"
-            )
-            
-            # Create DB entry using Cloudinary's secure URL
-            item = GalleryItem(
-                title=title,
-                description=description,
-                filename=upload_result['secure_url'], # Store full URL
-                order=GalleryItem.query.count()
-            )
-            db.session.add(item)
-            db.session.commit()
-            return item
+            try:
+                print(f"Attempting to upload to Cloudinary: {file.filename}")
+                # Upload to Cloudinary
+                upload_result = cloudinary.uploader.upload(
+                    file,
+                    folder="portfolio",
+                    resource_type="image"
+                )
+                print(f"Cloudinary upload successful: {upload_result.get('secure_url')}")
+                
+                # Create DB entry using Cloudinary's secure URL
+                item = GalleryItem(
+                    title=title,
+                    description=description,
+                    filename=upload_result['secure_url'], # Store full URL
+                    order=GalleryItem.query.count()
+                )
+                db.session.add(item)
+                db.session.commit()
+                print("Database entry created successfully.")
+                return item
+            except Exception as e:
+                print(f"CLOUDINARY UPLOAD ERROR: {str(e)}")
+                db.session.rollback()
+                return None
         return None
 
     @staticmethod
