@@ -1,7 +1,7 @@
 import os
 import uuid
 from werkzeug.utils import secure_filename
-from PIL import Image
+from PIL import Image, ImageOps
 from app import db
 from app.models.gallery import GalleryItem
 from flask import current_app
@@ -26,6 +26,7 @@ class GalleryService:
             
             # Save and optimize image
             img = Image.open(file)
+            img = ImageOps.exif_transpose(img) # Fix orientation
             # Optional: resize or optimize here
             img.save(filepath, optimize=True, quality=85)
 
@@ -77,6 +78,7 @@ class GalleryService:
             filepath = os.path.join(current_app.config['UPLOAD_FOLDER'], unique_filename)
             
             img = Image.open(file)
+            img = ImageOps.exif_transpose(img) # Fix orientation
             img.save(filepath, optimize=True, quality=85)
             item.filename = unique_filename
             
