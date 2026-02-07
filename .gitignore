@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+vwen/
+env/
+.env
+
+# Database
+*.db
+instance/
+
+# Uploads (Images should be persistent/hosted separately)
+app/static/uploads/*
+!app/static/uploads/.gitkeep
+
+# IDEs
+.vscode/
+.idea/
+.gemini/
+
+# Misc
+.DS_Store
+*.log

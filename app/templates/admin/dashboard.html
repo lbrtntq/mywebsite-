@@ -1,0 +1,385 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="section admin-dashboard">
+    <div class="container">
+        <header class="dashboard-header">
+            <div>
+                <h1>Management</h1>
+                <p>Welcome back, Albert. Manage your photography portfolio.</p>
+            </div>
+            <a href="{{ url_for('auth.logout') }}" class="logout-btn">Logout</a>
+        </header>
+
+        <div class="dashboard-grid">
+            <!-- Left: Upload Panel -->
+            <aside class="panel upload-panel">
+                <div class="panel-header">
+                    <h3>New Entry</h3>
+                </div>
+                <form action="{{ url_for('gallery.upload') }}" method="POST" enctype="multipart/form-data"
+                    class="modern-form">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" name="title" required placeholder="Project Name">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea name="description" placeholder="About this photography..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Image File</label>
+                        <div class="file-drop-zone">
+                            <input type="file" name="file" required accept="image/*" id="fileInput">
+                            <p>Click to upload or drag and drop</p>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="action-button primary-button">Add to Gallery</button>
+                </form>
+            </aside>
+
+            <!-- Right: Gallery List -->
+            <main class="panel gallery-panel">
+                <div class="panel-header">
+                    <h3>Your Gallery</h3>
+                </div>
+
+                <div class="management-grid">
+                    {% for item in items %}
+                    <div class="management-card">
+                        <div class="card-image">
+                            <img src="{{ url_for('static', filename='uploads/' + item.filename) }}"
+                                alt="{{ item.title }}">
+                        </div>
+                        <div class="card-content">
+                            <h4>{{ item.title }}</h4>
+                            <p>{{ item.description[:60] }}{% if item.description|length > 60 %}...{% endif %}</p>
+
+                            <div class="card-actions">
+                                <button
+                                    onclick="openEditModal({{ item.id }}, '{{ item.title|e }}', '{{ item.description|e }}')"
+                                    class="action-link edit-link">Edit</button>
+                                <form action="{{ url_for('gallery.delete', item_id=item.id) }}" method="POST"
+                                    onsubmit="return confirm('Delete this image?');" style="display:inline;">
+                                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                                    <button type="submit" class="action-link delete-link">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="empty-state">
+                        <p>No images found. Start by uploading one!</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </main>
+        </div>
+    </div>
+</section>
+
+<!-- Edit Modal -->
+<div id="editModal" class="dashboard-modal">
+    <div class="modal-body panel">
+        <div class="panel-header">
+            <h3>Edit Item</h3>
+            <button onclick="closeEditModal()" class="close-modal">&times;</button>
+        </div>
+        <form id="editForm" method="POST" enctype="multipart/form-data" class="modern-form">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+            <div class="form-group">
+                <label>Title</label>
+                <input type="text" name="title" id="editTitle" required>
+            </div>
+
+            <div class="form-group">
+                <label>Description</label>
+                <textarea name="description" id="editDescription"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Replace Image (Optional)</label>
+                <input type="file" name="file" accept="image/*">
+            </div>
+
+            <button type="submit" class="action-button primary-button">Update Item</button>
+        </form>
+    </div>
+</div>
+
+<style>
+    /* Admin Specific Styles */
+    .admin-dashboard {
+        background-color: #fafafa;
+        min-height: 100vh;
+        padding-top: 120px;
+    }
+
+    .dashboard-header {
+        margin-bottom: 4rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+    }
+
+    .dashboard-header h1 {
+        font-size: 2.5rem;
+        letter-spacing: -1px;
+        margin-bottom: 0.5rem;
+    }
+
+    .dashboard-header p {
+        color: #666;
+        font-size: 0.95rem;
+    }
+
+    .logout-btn {
+        color: #ff5252;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+        border: 1px solid transparent;
+        transition: 0.2s;
+    }
+
+    .logout-btn:hover {
+        border-color: #ff5252;
+    }
+
+    .dashboard-grid {
+        display: grid;
+        grid-template-columns: 350px 1fr;
+        gap: 3rem;
+        align-items: start;
+    }
+
+    .panel {
+        background: white;
+        border: 1px solid #eee;
+        padding: 2.5rem;
+    }
+
+    .panel-header {
+        margin-bottom: 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .panel-header h3 {
+        font-size: 1.2rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 700;
+    }
+
+    /* Modern Form Styles */
+    .modern-form .form-group {
+        margin-bottom: 2rem;
+    }
+
+    .modern-form label {
+        display: block;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 700;
+        margin-bottom: 0.8rem;
+        color: #999;
+    }
+
+    .modern-form input[type="text"],
+    .modern-form textarea {
+        width: 100%;
+        padding: 1rem;
+        border: 1px solid #eee;
+        background: #fdfdfd;
+        font-family: inherit;
+        font-size: 1rem;
+        transition: 0.2s;
+    }
+
+    .modern-form input:focus,
+    .modern-form textarea:focus {
+        outline: none;
+        border-color: #000;
+        background: white;
+    }
+
+    .modern-form textarea {
+        min-height: 120px;
+        resize: vertical;
+    }
+
+    .file-drop-zone {
+        border: 2px dashed #eee;
+        padding: 2rem;
+        text-align: center;
+        position: relative;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    .file-drop-zone:hover {
+        border-color: #000;
+    }
+
+    .file-drop-zone input {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    .action-button {
+        width: 100%;
+        padding: 1.2rem;
+        border: none;
+        font-family: inherit;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    .primary-button {
+        background: #000;
+        color: #fff;
+    }
+
+    .primary-button:hover {
+        background: #222;
+    }
+
+    /* Management Grid */
+    .management-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 2rem;
+    }
+
+    .management-card {
+        border: 1px solid #eee;
+        background: #fff;
+        transition: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .management-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    }
+
+    .card-image img {
+        width: 100%;
+        aspect-ratio: 16/10;
+        object-fit: cover;
+    }
+
+    .card-content {
+        padding: 1.5rem;
+    }
+
+    .card-content h4 {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .card-content p {
+        font-size: 0.85rem;
+        color: #666;
+        margin-bottom: 1.5rem;
+        line-height: 1.4;
+    }
+
+    .card-actions {
+        display: flex;
+        gap: 1.5rem;
+    }
+
+    .action-link {
+        background: none;
+        border: none;
+        font-family: inherit;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        cursor: pointer;
+        padding: 0;
+    }
+
+    .edit-link {
+        color: #000;
+        border-bottom: 1px solid #000;
+    }
+
+    .delete-link {
+        color: #ff5252;
+        border-bottom: 1px solid #ff5252;
+    }
+
+    /* Modal */
+    .dashboard-modal {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 3000;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        align-items: center;
+        justify-content: center;
+    }
+
+    .modal-body {
+        width: 100%;
+        max-width: 500px;
+        border-radius: 0;
+    }
+
+    .close-modal {
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+
+    @media (max-width: 1100px) {
+        .dashboard-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<script>
+    function openEditModal(id, title, description) {
+        const modal = document.getElementById('editModal');
+        const form = document.getElementById('editForm');
+        const titleInput = document.getElementById('editTitle');
+        const descInput = document.getElementById('editDescription');
+
+        form.action = `/admin/gallery/edit/${id}`;
+        titleInput.value = title;
+        descInput.value = description;
+
+        modal.style.display = 'flex';
+    }
+
+    function closeEditModal() {
+        document.getElementById('editModal').style.display = 'none';
+    }
+
+    // Close on background click
+    window.onclick = function (event) {
+        const modal = document.getElementById('editModal');
+        if (event.target == modal) closeEditModal();
+    }
+</script>
+{% endblock %}

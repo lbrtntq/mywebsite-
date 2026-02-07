@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section id="hero" class="fade-in">
+    <div class="carousel-container">
+        <div class="carousel-track">
+            {% for item in gallery_items %}
+            <div class="carousel-slide">
+                <img src="{{ url_for('static', filename='uploads/' + item.filename) }}" alt="{{ item.title }}">
+                <div class="carousel-overlay">
+                    <div class="hero-text">
+                        <h1>{{ item.title }}</h1>
+                        <p class="tagline">{{ item.description[:100] }}{% if item.description|length > 100 %}...{% endif
+                            %}</p>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <div class="carousel-slide">
+                <div class="hero-text">
+                    <h1>Nas Villanueva</h1>
+                    <p class="tagline">Creative Software Engineer & Visual Storyteller.</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="carousel-nav">
+            <button class="prev-btn">&larr;</button>
+            <button class="next-btn">&rarr;</button>
+        </div>
+        <a href="#gallery" class="cta-button-hero">View Work</a>
+    </div>
+</section>
+
+<section id="about" class="section reveal">
+    <div class="container">
+        <div class="about-content">
+            <span class="about-tag">About Me</span>
+            <h2 class="about-title">Hey! I’m Albert</h2>
+            <p class="about-text">A <strong>data engineer</strong> from the Philippines who enjoys mobile photography
+                and vlogging in my spare time. Check out my work!</p>
+        </div>
+    </div>
+</section>
+
+<section id="gallery" class="section">
+    <div class="container">
+        <h2 class="reveal">Gallery</h2>
+        <div id="gallery-grid" class="gallery-grid stagger-reveal">
+            <!-- Dynamically loaded -->
+            {% for item in gallery_items %}
+            <div class="gallery-item" data-id="{{ item.id }}" data-title="{{ item.title }}"
+                data-description="{{ item.description }}">
+                <img src="{{ url_for('static', filename='uploads/' + item.filename) }}" alt="{{ item.title }}"
+                    loading="lazy">
+                <div class="item-overlay">
+                    <h3>{{ item.title }}</h3>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+<!-- Lightbox Modal -->
+<div id="lightbox" class="modal">
+    <span class="close-btn">&times;</span>
+    <div class="modal-content">
+        <img id="lightbox-img" src="" alt="">
+        <div id="lightbox-caption" class="caption"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+{% endblock %}

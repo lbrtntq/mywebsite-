@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Creative Designer</title>
+    <meta name="description" content="A minimalist, professional portfolio showcasing creative work and skills.">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+    <nav id="navbar">
+        <div class="nav-content">
+            <a href="/" class="logo">
+                <span class="logo-icon"></span>
+                albertantioquia
+            </a>
+            <div class="nav-links">
+                <a href="#about">About Me</a>
+                <a href="#gallery">Photography</a>
+                {% if session.admin_logged_in %}
+                <a href="{{ url_for('gallery.dashboard') }}" class="admin-link">Dashboard</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 Albert Antioquia</p>
+            <div class="footer-icons">
+                <a href="https://github.com/lbrtntq" target="_blank" title="GitHub"><i
+                        class="fa-brands fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/albert-antioquia-ph/" target="_blank" title="LinkedIn"><i
+                        class="fa-brands fa-linkedin-in"></i></a>
+                <a href="https://www.youtube.com/@LBRTNTQ" target="_blank" title="YouTube"><i
+                        class="fa-brands fa-youtube"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    {% block scripts %}{% endblock %}
+</body>
+
+</html>
