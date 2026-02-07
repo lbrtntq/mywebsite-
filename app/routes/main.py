@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request
 from app.services.gallery_service import GalleryService
+from app.models.gallery import GalleryItem
 
 bp = Blueprint('main', __name__)
 
