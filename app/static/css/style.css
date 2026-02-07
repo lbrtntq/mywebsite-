@@ -139,14 +139,14 @@ body {
 
 .nav-links a:hover {
     opacity: 1;
+    color: rgb(68, 82, 99);
+    /* Brand Slate Blue */
 }
 
 #navbar.nav-scrolled .nav-links a:hover {
     opacity: 1;
-}
-
-.nav-links a:hover {
-    opacity: 1;
+    color: rgb(68, 82, 99);
+    /* Brand Slate Blue */
 }
 
 /* Hero & Carousel */
