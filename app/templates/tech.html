@@ -1,0 +1,309 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section id="tech-hero" class="section fade-in">
+    <div class="container">
+        <div class="tech-header">
+            <span class="about-tag">Tech & Apps</span>
+            <h1 class="tech-title">Projects I've Built</h1>
+            <p class="tech-subtitle">Mobile apps and side projects</p>
+        </div>
+    </div>
+</section>
+
+<section id="apps" class="section">
+    <div class="container">
+        <div class="apps-grid">
+            <!-- PaQueueKa App -->
+            <div class="app-card reveal">
+                <div class="app-icon">
+                    <i class="fa-solid fa-table-tennis-paddle-ball"></i>
+                </div>
+                <div class="app-content">
+                    <h3 class="app-title">PaQueueKa? 🏸</h3>
+                    <p class="app-description">
+                        A smart queue management app for badminton and pickleball nights. Hosts create sessions, 
+                        players join via a code, and the app automatically queues matches and tracks rankings.
+                    </p>
+                    <div class="app-features">
+                        <span class="feature-tag"><i class="fa-solid fa-users"></i> Multiplayer</span>
+                        <span class="feature-tag"><i class="fa-solid fa-ranking-star"></i> Auto Rankings</span>
+                        <span class="feature-tag"><i class="fa-solid fa-wifi"></i> Offline Support</span>
+                    </div>
+                    <div class="app-tech">
+                        <span class="tech-badge">React Native</span>
+                        <span class="tech-badge">Expo</span>
+                        <span class="tech-badge">Supabase</span>
+                    </div>
+                    <div class="app-actions">
+                        <a href="#" class="download-btn" id="paqueueka-download">
+                            <i class="fa-brands fa-android"></i> Download APK
+                        </a>
+                        <a href="https://github.com/lbrtntq/paqueueka" target="_blank" class="github-btn">
+                            <i class="fa-brands fa-github"></i> View Source
+                        </a>
+                    </div>
+                    <p class="app-note">
+                        <i class="fa-solid fa-info-circle"></i> Currently in beta. Android only. iOS coming soon.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Placeholder for future apps -->
+            <div class="app-card-placeholder reveal">
+                <div class="placeholder-content">
+                    <i class="fa-solid fa-code"></i>
+                    <p>More apps coming soon...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    #tech-hero {
+        padding-top: 120px;
+        padding-bottom: 40px;
+        text-align: center;
+    }
+
+    .tech-header {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .tech-title {
+        font-family: 'Syne', sans-serif;
+        font-size: 3rem;
+        font-weight: 700;
+        margin: 1rem 0;
+        color: var(--dark-blue, #2c3e50);
+    }
+
+    .tech-subtitle {
+        font-size: 1.2rem;
+        color: var(--text-secondary, #666);
+        margin-bottom: 2rem;
+    }
+
+    .apps-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+    }
+
+    .app-card {
+        background: white;
+        border-radius: 12px;
+        padding: 2rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .app-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    .app-icon {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+        font-size: 1.8rem;
+        color: white;
+    }
+
+    .app-title {
+        font-family: 'Syne', sans-serif;
+        font-size: 1.8rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: var(--dark-blue, #2c3e50);
+    }
+
+    .app-description {
+        color: var(--text-secondary, #666);
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+    }
+
+    .app-features {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .feature-tag {
+        background: #f0f4f8;
+        padding: 0.4rem 0.8rem;
+        border-radius: 6px;
+        font-size: 0.85rem;
+        color: #555;
+    }
+
+    .feature-tag i {
+        margin-right: 0.3rem;
+        color: #667eea;
+    }
+
+    .app-tech {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .tech-badge {
+        background: #e0e7ff;
+        color: #4338ca;
+        padding: 0.4rem 0.8rem;
+        border-radius: 6px;
+        font-size: 0.85rem;
+        font-weight: 500;
+    }
+
+    .app-actions {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .download-btn, .github-btn {
+        flex: 1;
+        padding: 0.8rem 1.2rem;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 500;
+        text-align: center;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .download-btn {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+    }
+
+    .download-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+    }
+
+    .github-btn {
+        background: #24292e;
+        color: white;
+    }
+
+    .github-btn:hover {
+        background: #1b1f23;
+        transform: translateY(-2px);
+    }
+
+    .app-note {
+        font-size: 0.85rem;
+        color: #666;
+        font-style: italic;
+        margin-top: 1rem;
+    }
+
+    .app-note i {
+        color: #667eea;
+        margin-right: 0.3rem;
+    }
+
+    .app-card-placeholder {
+        background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%);
+        border-radius: 12px;
+        padding: 3rem 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 300px;
+    }
+
+    .placeholder-content {
+        text-align: center;
+        color: #999;
+    }
+
+    .placeholder-content i {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        opacity: 0.5;
+    }
+
+    .placeholder-content p {
+        font-size: 1.1rem;
+    }
+
+    @media (max-width: 768px) {
+        .tech-title {
+            font-size: 2rem;
+        }
+
+        .apps-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .app-actions {
+            flex-direction: column;
+        }
+
+        .download-btn, .github-btn {
+            width: 100%;
+        }
+    }
+
+    /* Reveal animation */
+    .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+    }
+</style>
+
+<script>
+    // Reveal animation on scroll
+    const revealElements = document.querySelectorAll('.reveal');
+    
+    const revealOnScroll = () => {
+        revealElements.forEach(element => {
+            const elementTop = element.getBoundingClientRect().top;
+            const elementVisible = 150;
+            
+            if (elementTop < window.innerHeight - elementVisible) {
+                element.classList.add('active');
+            }
+        });
+    };
+    
+    window.addEventListener('scroll', revealOnScroll);
+    revealOnScroll(); // Check on load
+
+    // Download button
+    document.getElementById('paqueueka-download').addEventListener('click', function(e) {
+        e.preventDefault();
+        // Direct download link from Google Drive
+        const apkUrl = 'https://drive.google.com/uc?export=download&id=14yTuluNZCzzwEy0lQIgsV4m-eBVvCbCt';
+        window.open(apkUrl, '_blank');
+    });
+</script>
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}

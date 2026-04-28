@@ -26,8 +26,9 @@
             <a href="/" class="logo"><span class="logo-icon">A</span><span class="logo-text-wrapper">albert<span
                         class="logo-surname">antioquia</span></span></a>
             <div class="nav-links">
-                <a href="#about">About Me</a>
-                <a href="#gallery">Photography</a>
+                <a href="/#about">About Me</a>
+                <a href="/#gallery">Photography</a>
+                <a href="{{ url_for('main.tech') }}">Tech</a>
                 {% if session.admin_logged_in %}
                 <a href="{{ url_for('gallery.dashboard') }}" class="admin-link">Dashboard</a>
                 {% endif %}

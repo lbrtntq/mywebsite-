@@ -12,3 +12,7 @@ def index():
     # Get paginated items for the gallery grid
     pagination = GalleryService.get_paginated_items(page=page, per_page=12)
     return render_template('index.html', pagination=pagination, carousel_items=carousel_items)
+
+@bp.route('/tech')
+def tech():
+    return render_template('tech.html')
