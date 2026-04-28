@@ -278,6 +278,21 @@
 </style>
 
 <script>
+    // Navbar scroll effect (same as main page)
+    const navbar = document.getElementById('navbar');
+    
+    // Add scrolled state immediately since tech page has white background
+    navbar.classList.add('nav-scrolled');
+    
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            navbar.classList.add('nav-scrolled');
+        } else {
+            // Keep nav-scrolled on this page even at top to maintain visibility
+            navbar.classList.add('nav-scrolled');
+        }
+    });
+
     // Reveal animation on scroll
     const revealElements = document.querySelectorAll('.reveal');
     
