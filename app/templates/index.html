@@ -1,57 +1,58 @@
 {% extends 'base.html' %}
 
+{% block head %}
+{% if carousel_items %}
+<link rel="preload" as="image" href="{{ carousel_items[0].filename | cl('f_auto,q_auto,w_1920') }}">
+{% endif %}
+{% endblock %}
+
 {% block content %}
-<section id="hero" class="fade-in">
-    <div class="carousel-container">
-        <div class="carousel-track">
-            {% for item in carousel_items %}
-            <div class="carousel-slide">
-                <img src="{{ item.filename }}" alt="{{ item.title }}">
-                <div class="carousel-overlay">
-                    <div class="hero-text">
-                        <h1>{{ item.title }}</h1>
-                        <p class="tagline">{{ item.description[:100] }}{% if item.description|length > 100 %}...{% endif
-                            %}</p>
-                    </div>
-                </div>
-            </div>
-            {% else %}
-            <div class="carousel-slide">
-                <div class="hero-text">
-                    <h1>Albert Antioquia</h1>
-                    <p class="tagline">Data Engineer</p>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-        <div class="carousel-nav">
-            <button class="prev-btn">&larr;</button>
-            <button class="next-btn">&rarr;</button>
-        </div>
-        <a href="#gallery" class="cta-button-hero">View Work</a>
-    </div>
-</section>
 
-<section id="about" class="section reveal">
-    <div class="container">
-        <div class="about-content">
-            <span class="about-tag">About Me</span>
-            <h2 class="about-title">Hey! I’m Albert</h2>
-            <p class="about-text">A <strong>data engineer</strong> from the Philippines who enjoys mobile photography
-                and vlogging in my spare time. Check out my work!</p>
+<!-- ── Hero ──────────────────────────────────────────────────────────────── -->
+<section id="hero">
+    {% if carousel_items %}
+    <div class="hero-bg">
+        <img src="{{ carousel_items[0].filename | cl('f_auto,q_auto,w_1920') }}" alt="" fetchpriority="high">
+    </div>
+    {% endif %}
+
+    <div class="hero-content">
+        <span class="hero-eyebrow">Data Engineer &amp; Photographer</span>
+        <h1 class="hero-title">
+            <span class="line-reveal"><span>Albert</span></span>
+            <span class="line-reveal" style="--line-delay: 0.12s"><span>Antioquia</span></span>
+        </h1>
+        <div class="hero-scroll">
+            <a href="#gallery" class="scroll-pill" aria-label="Scroll to gallery">
+                <span></span>
+            </a>
+            <span class="scroll-label">Scroll</span>
         </div>
     </div>
 </section>
 
-<section id="gallery" class="section">
+<!-- ── Gallery ───────────────────────────────────────────────────────────── -->
+<section id="gallery">
     <div class="container">
+        <div class="section-header reveal">
+            <span class="section-counter">01</span>
+            <span class="section-label">Photography</span>
+        </div>
         <h2 class="reveal">Gallery</h2>
+
         <div id="gallery-grid" class="gallery-grid stagger-reveal">
-            <!-- Dynamically loaded -->
             {% for item in pagination.items %}
-            <div class="gallery-item" data-id="{{ item.id }}" data-title="{{ item.title }}"
-                data-description="{{ item.description }}">
-                <img src="{{ item.filename }}" alt="{{ item.title }}" loading="lazy">
+            <div class="gallery-item"
+                 data-id="{{ item.id }}"
+                 data-title="{{ item.title }}"
+                 data-description="{{ item.description }}"
+                 data-fullsrc="{{ item.filename | cl('f_auto,q_auto,w_1200') }}">
+                <img
+                    src="{{ item.filename | cl('w_30,q_10,e_blur:300') }}"
+                    data-src="{{ item.filename | cl('f_auto,q_auto,w_800') }}"
+                    alt="{{ item.title }}"
+                    class="blur-up"
+                    loading="lazy">
                 <div class="item-overlay">
                     <h3>{{ item.title }}</h3>
                 </div>
@@ -62,19 +63,13 @@
         {% if pagination.pages > 1 %}
         <div class="pagination-controls reveal">
             {% if pagination.has_prev %}
-            <a href="{{ url_for('main.index', page=pagination.prev_num) }}#gallery" class="pagination-btn">&larr;
-                Previous</a>
+            <a href="{{ url_for('main.index', page=pagination.prev_num) }}#gallery" class="pagination-btn">&larr; Previous</a>
             {% else %}
             <span class="pagination-btn disabled">&larr; Previous</span>
             {% endif %}
-
-            <div class="page-numbers">
-                Page {{ pagination.page }} of {{ pagination.pages }}
-            </div>
-
+            <div class="page-numbers">{{ pagination.page }} / {{ pagination.pages }}</div>
             {% if pagination.has_next %}
-            <a href="{{ url_for('main.index', page=pagination.next_num) }}#gallery" class="pagination-btn">Next
-                &rarr;</a>
+            <a href="{{ url_for('main.index', page=pagination.next_num) }}#gallery" class="pagination-btn">Next &rarr;</a>
             {% else %}
             <span class="pagination-btn disabled">Next &rarr;</span>
             {% endif %}
@@ -83,8 +78,41 @@
     </div>
 </section>
 
+<!-- ── About ─────────────────────────────────────────────────────────────── -->
+<section id="about">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-counter">02</span>
+            <span class="section-label">About</span>
+        </div>
+        <div class="about-grid">
+            <div class="reveal">
+                <h2 class="about-title">Hey,<br>I'm Albert</h2>
+            </div>
+            <div class="about-body reveal">
+                <p>A <strong>data engineer</strong> from the Philippines who enjoys
+                   mobile photography and vlogging in my spare time. I build apps,
+                   shoot on my phone, and occasionally make videos.</p>
+                <div class="about-stats">
+                    <div>
+                        <span class="stat-value">PH</span>
+                        <span class="stat-label">Philippines</span>
+                    </div>
+                    <div>
+                        <span class="stat-value">📷</span>
+                        <span class="stat-label">Mobile Photo</span>
+                    </div>
+                    <div>
+                        <span class="stat-value">⚙️</span>
+                        <span class="stat-label">Data Eng.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-<!-- Lightbox Modal -->
+<!-- ── Lightbox ───────────────────────────────────────────────────────────── -->
 <div id="lightbox" class="modal">
     <span class="close-btn">&times;</span>
     <div class="modal-content">
@@ -92,6 +120,7 @@
         <div id="lightbox-caption" class="caption"></div>
     </div>
 </div>
+
 {% endblock %}
 
 {% block scripts %}

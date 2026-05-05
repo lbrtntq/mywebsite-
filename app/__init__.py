@@ -62,4 +62,11 @@ def create_app(test_config=None):
         import datetime
         return {'current_year': datetime.datetime.now().year}
 
+    @app.template_filter('cl')
+    def cloudinary_transform(url, transforms='f_auto,q_auto,w_1200'):
+        """Insert Cloudinary transforms after /upload/. No-ops on non-Cloudinary URLs."""
+        if url and 'cloudinary.com' in url and '/upload/' in url:
+            return url.replace('/upload/', f'/upload/{transforms}/', 1)
+        return url
+
     return app
