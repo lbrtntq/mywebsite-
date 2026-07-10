@@ -162,20 +162,6 @@
                         </div>
                     </div>
 
-                    <div class="project-callouts">
-                        <div class="callout-item">
-                            <div class="callout-metric">1000+</div>
-                            <div class="callout-label">Active Players</div>
-                        </div>
-                        <div class="callout-item">
-                            <div class="callout-metric">50+</div>
-                            <div class="callout-label">Clubs</div>
-                        </div>
-                        <div class="callout-item">
-                            <div class="callout-metric">25k+</div>
-                            <div class="callout-label">Matches Tracked</div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -586,41 +572,6 @@
         border-radius: 2px;
     }
 
-    /* ── Callouts ──────────────────────────────────────────────────────── */
-    .project-callouts {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1rem;
-    }
-
-    .callout-item {
-        background: var(--bg-card);
-        border: 1px solid var(--border);
-        border-radius: 8px;
-        padding: 1.5rem;
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-        justify-content: center;
-    }
-
-    .callout-metric {
-        font-family: var(--font-heading);
-        font-size: 1.8rem;
-        font-weight: 700;
-        color: var(--accent);
-        letter-spacing: -0.02em;
-    }
-
-    .callout-label {
-        font-size: 0.75rem;
-        font-weight: 600;
-        color: var(--text-light);
-        text-transform: uppercase;
-        letter-spacing: 0.06em;
-    }
-
     /* ── Responsive ────────────────────────────────────────────────────── */
     @media (max-width: 1024px) {
         .featured-content {
@@ -681,14 +632,6 @@
 
         .mockup-content {
             gap: 1rem;
-        }
-
-        .project-callouts {
-            gap: 0.75rem;
-        }
-
-        .callout-metric {
-            font-size: 1.4rem;
         }
     }
 </style>
