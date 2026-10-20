@@ -408,25 +408,29 @@ html.lenis, html.lenis body { height: auto; }
 .day-ticks li { transition: color 300ms ease; }
 .day-ticks li.is-now { color: var(--fg); font-weight: 600; }
 
-/* The light: a low warm sun by day, a small moon after dusk. */
-.day.is-live .day-sun, .day.is-live .day-moon { display: block; position: absolute; pointer-events: none; transform: translate(-50%, -50%); }
+/* The sun and moon: defined discs, not glows. The sun is a warm disc with a
+   soft rim of light; it climbs and sets with the clock. */
+.day.is-live .day-sun, .day.is-live .day-moon { display: block; position: absolute; pointer-events: none; transform: translate(-50%, -50%); border-radius: 50%; }
 .day-sun {
     left: var(--sun-x, 50%);
     top: var(--sun-y, 30%);
-    width: 60vmin; height: 60vmin;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(255, 206, 140, 0.55) 0%, rgba(255, 206, 140, 0.18) 38%, rgba(255, 206, 140, 0) 70%);
+    width: clamp(56px, 7vmin, 84px);
+    aspect-ratio: 1;
+    background: #f7c873;
+    box-shadow: 0 0 0 10px rgba(247, 200, 115, 0.16), 0 0 0 22px rgba(247, 200, 115, 0.08);
     opacity: var(--sun-o, 1);
 }
 .day-moon {
-    left: var(--moon-x, 47%);
-    top: var(--moon-y, 17%);
-    width: 6vmin; height: 6vmin;
-    border-radius: 50%;
+    left: 47%;
+    top: 17%;
+    width: clamp(36px, 4.5vmin, 54px);
+    aspect-ratio: 1;
     background: #f1ece2;
-    box-shadow: 0 0 40px 10px rgba(241, 236, 226, 0.18);
+    box-shadow: 0 0 0 8px rgba(241, 236, 226, 0.06);
     opacity: var(--moon-o, 0);
 }
+
+
 
 /* ── Photographs ──────────────────────────────────────────────────────── */
 
@@ -571,38 +575,116 @@ html.lenis, html.lenis body { height: auto; }
     .repo:hover .repo-arrow { transform: translate(3px, -3px); }
 }
 
-.flow { margin-top: clamp(96px, 16vh, 180px); }
-.flow-title { font-size: clamp(1.4rem, 2.2vw, 1.85rem); font-weight: 400; letter-spacing: -0.02em; }
-.flow-steps {
+.eng-sub { font-size: clamp(1.6rem, 2.8vw, 2.25rem); font-weight: 300; letter-spacing: -0.025em; line-height: 1.1; }
+.eng-sub--sm { font-size: 1.35rem; }
+
+/* A dbt project drawn as its lineage. */
+.lineage { margin-top: clamp(32px, 6vh, 64px); }
+.lineage-text {
     display: grid;
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-    gap: 20px;
-    margin-top: 32px;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: clamp(16px, 2.4vw, 40px);
+    row-gap: 14px;
+    color: var(--fg-2);
 }
-.flow-steps li {
+.lineage-text > * { grid-column: 7 / span 6; max-width: 56ch; }
+.lineage-text > .eng-sub { grid-column: 1 / span 5; grid-row: 1 / span 4; }
+.lineage-text .eng-sub { color: var(--fg); }
+.lineage-text code { font-size: 0.85em; color: var(--fg); }
+.lineage-hint { font-size: 0.875rem; color: var(--fg-3); }
+.hint-touch { display: none; }
+@media (hover: none) { .hint-hover { display: none; } .hint-touch { display: inline; } }
+.lineage-links { display: flex; flex-wrap: wrap; gap: 8px 24px; }
+
+.dag-scroll { overflow-x: auto; scrollbar-width: none; margin-top: clamp(40px, 7vh, 72px); }
+.dag-scroll::-webkit-scrollbar { display: none; }
+.dag {
     position: relative;
     display: grid;
-    align-content: start;
-    gap: 4px;
-    padding-top: 22px;
-    border-top: 1px solid var(--rule);
-    font-size: 0.9375rem;
-    color: var(--fg-2);
-    line-height: 1.45;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr) minmax(0, 1fr) minmax(0, 1.3fr);
+    column-gap: clamp(36px, 5vw, 88px);
+    min-width: 980px;
+    padding: 8px 0;
 }
-/* An arrowhead where each step hands over to the next. */
-.flow-steps li:not(:last-child)::after {
-    content: '';
-    position: absolute;
-    top: -4px;
-    right: -14px;
-    width: 7px; height: 7px;
-    border-top: 1px solid var(--fg-3);
-    border-right: 1px solid var(--fg-3);
-    transform: rotate(45deg);
+.dag-edges { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+.dag-edges path { fill: none; stroke: var(--fg-3); stroke-width: 1.25; opacity: 0.55; transition: opacity 250ms ease, stroke 250ms ease; }
+.dag-edges path.is-on { stroke: var(--accent); stroke-width: 1.75; opacity: 1; }
+.dag.is-tracing .dag-edges path:not(.is-on) { opacity: 0.12; }
+.dag-col { position: relative; display: grid; align-content: center; gap: 10px; }
+.dag-col ul { display: grid; gap: 12px; }
+.dag-col--fact ul { align-content: center; }
+.dag-layer { font-size: 0.75rem; color: var(--fg-3); margin-bottom: 4px; }
+.dag-node {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 6px;
+    background: var(--room, var(--bg));
+    box-shadow: inset 0 0 0 1px var(--rule);
+    text-align: left;
+    transition: box-shadow 200ms ease, color 200ms ease, opacity 250ms ease, background-color 200ms ease;
 }
-.flow-steps span { display: block; color: var(--fg); font-weight: 600; font-size: 1rem; }
-.flow-note { margin-top: 36px; max-width: 64ch; color: var(--fg-3); font-size: 0.9375rem; }
+.dag-node code { font-size: 0.82rem; white-space: nowrap; }
+.dag-col--fact .dag-node { box-shadow: inset 0 0 0 1.5px var(--fg); }
+.dag.is-tracing .dag-node { opacity: 0.35; }
+.dag.is-tracing .dag-node.is-on { opacity: 1; box-shadow: inset 0 0 0 1.5px var(--accent); }
+.dag.is-tracing .dag-node.is-focus { background: var(--accent); color: var(--bg); box-shadow: none; }
+
+/* One photo, followed through this site's pipeline. */
+.trace { margin-top: clamp(96px, 16vh, 180px); }
+.trace-head { display: grid; gap: 14px; max-width: 56ch; color: var(--fg-2); }
+.trace-head .eng-sub { color: var(--fg); }
+.trace-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    column-gap: clamp(24px, 5vw, 96px);
+    margin-top: clamp(16px, 3vh, 32px);
+}
+.trace-step { min-height: 62svh; display: grid; align-content: center; gap: 10px; max-width: 42ch; }
+.trace-n { font-size: 0.875rem; font-weight: 600; color: var(--accent); }
+.trace-step h4 { margin: 0; font-size: clamp(1.4rem, 2.4vw, 1.9rem); font-weight: 300; letter-spacing: -0.02em; line-height: 1.15; transition: opacity 400ms ease; }
+.trace-step p { margin: 0; color: var(--fg-2); }
+.trace-step code { font-size: 0.85em; }
+@media (prefers-reduced-motion: no-preference) and (min-width: 960px) {
+    .js .trace-step:not(.is-active) h4 { opacity: 0.4; }
+}
+
+/* The inspector: a data panel, so monospace earns its place here. */
+.inspector {
+    position: sticky;
+    top: calc(var(--nav-h) + 8svh);
+    align-self: start;
+    margin-top: 12svh;
+    min-height: 360px;
+    padding: 22px;
+    border-radius: 10px;
+    background: #0e141a;
+    color: #d6dde3;
+    box-shadow: 0 30px 60px -34px rgba(14, 20, 26, 0.55);
+}
+.inspector-photo { display: flex; align-items: center; gap: 14px; padding-bottom: 18px; border-bottom: 1px solid rgba(214, 221, 227, 0.12); }
+.inspector-photo img { width: 48px; height: 48px; border-radius: 4px; object-fit: cover; }
+.inspector-photo figcaption { display: grid; font-size: 0.875rem; line-height: 1.35; }
+.inspector-photo figcaption span:first-child { color: #fff; font-weight: 500; }
+.inspector-photo figcaption span + span { color: #8a949e; }
+.inspector-panel { display: none; padding-top: 18px; }
+.inspector-panel.is-on { display: block; animation: fade-up 450ms var(--ease); }
+.inspector-label { font-family: var(--mono); font-size: 0.75rem; color: #6fd3c9; margin-bottom: 14px; overflow-wrap: anywhere; }
+.kv { display: grid; gap: 0; font-family: var(--mono); font-size: 0.8125rem; }
+.kv div { display: grid; grid-template-columns: minmax(0, 11rem) minmax(0, 1fr); gap: 16px; padding: 9px 0; border-top: 1px solid rgba(214, 221, 227, 0.08); }
+.kv dt { color: #8a949e; }
+.kv dd { color: #eceff2; overflow-wrap: anywhere; }
+.kv-hit { color: #6fd3c9 !important; font-weight: 600; }
+.code { margin: 0; font-family: var(--mono); font-size: 0.78rem; line-height: 1.6; color: #d6dde3; white-space: pre-wrap; overflow-wrap: anywhere; }
+.c-key { color: #8a949e; }
+.widths { display: flex; flex-wrap: wrap; gap: 8px; font-family: var(--mono); font-size: 0.8125rem; }
+.widths li { padding: 6px 10px; border-radius: 999px; box-shadow: inset 0 0 0 1px rgba(214, 221, 227, 0.2); color: #8a949e; transition: background-color 300ms ease, color 300ms ease; }
+.widths li.is-picked { background: #6fd3c9; color: #0e141a; box-shadow: none; font-weight: 600; }
+.inspector-note { margin-top: 14px; font-size: 0.875rem; color: #aeb7c0; }
+
+.repos-block { margin-top: clamp(96px, 16vh, 180px); }
+.repos-block .repos { margin-top: 20px; }
 
 /* ── Footer ───────────────────────────────────────────────────────────── */
 
@@ -635,16 +717,6 @@ html.lenis, html.lenis body { height: auto; }
 @media (hover: hover) {
     .footer-links a:hover .fl-name { font-weight: 500; letter-spacing: -0.035em; }
     .footer-links a:hover .fl-arrow { color: var(--accent); transform: translate(4px, -4px); }
-}
-.footer-mark {
-    margin: clamp(64px, 10vh, 120px) 0 0 -0.05em;
-    height: 0.74em;
-    overflow: hidden;
-    font-size: 21.5vw;
-    font-weight: 600;
-    line-height: 0.92;
-    letter-spacing: -0.055em;
-    white-space: nowrap;
 }
 .footer-base {
     display: flex;
@@ -888,8 +960,14 @@ html.lenis, html.lenis body { height: auto; }
     .app-text, .app-visual { grid-column: 1; }
     .app-visual--single { width: min(72%, 300px); }
 
-    .flow-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 28px; }
-    .flow-steps li::after { display: none; }
+    .lineage-text > *, .lineage-text > .eng-sub { grid-column: 1 / -1; grid-row: auto; }
+    .dag-scroll { margin-inline: calc(-1 * var(--gutter)); padding-inline: var(--gutter); }
+    .trace-grid { grid-template-columns: minmax(0, 1fr); }
+    .trace-step { min-height: 46svh; }
+    .inspector { top: calc(var(--nav-h) + 8px); z-index: 2; order: -1; margin-top: 20px; min-height: 0; padding: 16px; }
+    .inspector-photo { padding-bottom: 12px; }
+    .kv div { grid-template-columns: minmax(0, 8.5rem) minmax(0, 1fr); padding: 7px 0; }
+    .code { font-size: 0.72rem; max-height: 34svh; overflow: auto; }
 
     .chapter-body { margin-left: 0; }
     .ride-grid { grid-template-columns: minmax(0, 1fr); }
@@ -905,7 +983,6 @@ html.lenis, html.lenis body { height: auto; }
     .nav-links { display: none; }
     .nav-menu { display: inline-flex; align-items: center; }
 
-    .footer-mark { font-size: 23vw; }
 
     .index-row { grid-template-columns: 2.6rem minmax(0, 1fr); row-gap: 2px; }
     .index-place { grid-column: 2; font-size: 0.875rem; }
@@ -916,7 +993,6 @@ html.lenis, html.lenis body { height: auto; }
     .repo-desc { grid-column: 1; grid-row: 2; font-size: 0.9375rem; }
     .repo-arrow { grid-column: 2; grid-row: 1 / span 2; }
 
-    .flow-steps { grid-template-columns: minmax(0, 1fr); }
 
     .footer-links a { grid-template-columns: minmax(0, 1fr) auto; row-gap: 6px; }
     .fl-desc { grid-column: 1; grid-row: 2; font-size: 0.9375rem; }

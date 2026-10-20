@@ -295,11 +295,16 @@
                     setWall(tone, `rgb(${rgb.join(' ')})`);
                 }
 
+                // The sun crosses an arc from 6 AM to 6 PM and sets; the moon comes up after dusk.
                 const daylight = clamp((m - 360) / 720, 0, 1);
-                scene.style.setProperty('--sun-x', `${10 + 80 * daylight}%`);
-                scene.style.setProperty('--sun-y', `${78 - 52 * Math.sin(Math.PI * daylight)}%`);
-                scene.style.setProperty('--sun-o', String(clamp(1 - (m - 1050) / 60, 0, 1)));
+                // A high arc that keeps clear of the clock (top left) and the prints.
+                const narrow = window.innerWidth < 720;
+                const arc = Math.sin(Math.PI * daylight);
+                scene.style.setProperty('--sun-x', `${narrow ? 66 + 26 * daylight : 28 + 64 * daylight}%`);
+                scene.style.setProperty('--sun-y', `${narrow ? 22 - 9 * arc : 21 - 13 * arc}%`);
+                scene.style.setProperty('--sun-o', String(clamp(1 - (m - 1060) / 50, 0, 1)));
                 scene.style.setProperty('--moon-o', String(clamp((m - 1110) / 60, 0, 1)));
+
             }
             fill.style.setProperty('--p', p.toFixed(4));
 
@@ -316,6 +321,133 @@
         window.addEventListener('resize', () => { place(Math.max(0, stage), true); update(); });
         place(0, true);
         update();
+    }
+
+    /* ── Lineage: the dbt graph, drawn from its own refs ──────────────── */
+    // Magic UI's Animated Beam idea: measure node centres, draw a curve
+    // between each pair, and let the lines draw in when the graph arrives.
+
+    function initLineage() {
+        const dag = $('[data-dag]');
+        const dataEl = $('[data-dag-data]');
+        if (!dag || !dataEl) return;
+        let edges = [];
+        try { edges = JSON.parse(dataEl.textContent); } catch (e) { return; }
+        const svg = $('[data-dag-svg]', dag);
+        const nodes = new Map($$('[data-model]', dag).map((n) => [n.dataset.model, n]));
+        const ns = 'http://www.w3.org/2000/svg';
+        let paths = [];
+        let drawn = false;
+
+        const draw = () => {
+            svg.replaceChildren();
+            const box = dag.getBoundingClientRect();
+            svg.setAttribute('viewBox', `0 0 ${box.width} ${box.height}`);
+            paths = edges.map(([from, to]) => {
+                const a = nodes.get(from).getBoundingClientRect();
+                const b = nodes.get(to).getBoundingClientRect();
+                const x1 = a.right - box.left, y1 = a.top + a.height / 2 - box.top;
+                const x2 = b.left - box.left, y2 = b.top + b.height / 2 - box.top;
+                const mid = (x1 + x2) / 2;
+                const path = document.createElementNS(ns, 'path');
+                path.setAttribute('d', `M${x1},${y1} C${mid},${y1} ${mid},${y2} ${x2},${y2}`);
+                path.dataset.from = from;
+                path.dataset.to = to;
+                svg.appendChild(path);
+                return path;
+            });
+        };
+
+        const reveal = () => {
+            if (drawn || reduceMotion.matches) { drawn = true; return; }
+            drawn = true;
+            paths.forEach((p) => {
+                const len = p.getTotalLength();
+                const layer = [...nodes.keys()].indexOf(p.dataset.from) < 5 ? 0 : p.dataset.from.startsWith('staging') ? 1 : 2;
+                p.animate(
+                    [{ strokeDasharray: len, strokeDashoffset: len }, { strokeDasharray: len, strokeDashoffset: 0 }],
+                    { duration: 700, delay: layer * 380, easing: 'cubic-bezier(0.16, 1, 0.3, 1)', fill: 'backwards' },
+                );
+            });
+        };
+
+        // Trace: everything upstream and downstream of the focused model.
+        const walk = (start, dir) => {
+            const seen = new Set([start]);
+            const queue = [start];
+            while (queue.length) {
+                const m = queue.shift();
+                edges.forEach(([a, b]) => {
+                    const next = dir === 'up' ? (b === m ? a : null) : (a === m ? b : null);
+                    if (next && !seen.has(next)) { seen.add(next); queue.push(next); }
+                });
+            }
+            return seen;
+        };
+        const trace = (model) => {
+            if (!model) {
+                dag.classList.remove('is-tracing');
+                nodes.forEach((n) => n.classList.remove('is-on', 'is-focus'));
+                paths.forEach((p) => p.classList.remove('is-on'));
+                return;
+            }
+            const linked = new Set([...walk(model, 'up'), ...walk(model, 'down')]);
+            dag.classList.add('is-tracing');
+            nodes.forEach((n, key) => {
+                n.classList.toggle('is-on', linked.has(key));
+                n.classList.toggle('is-focus', key === model);
+            });
+            paths.forEach((p) => p.classList.toggle('is-on', linked.has(p.dataset.from) && linked.has(p.dataset.to)));
+        };
+        nodes.forEach((n, key) => {
+            n.addEventListener('pointerenter', () => trace(key));
+            n.addEventListener('focus', () => trace(key));
+            n.addEventListener('click', () => trace(key));
+        });
+        dag.addEventListener('pointerleave', () => trace(null));
+        dag.addEventListener('focusout', (e) => { if (!dag.contains(e.relatedTarget)) trace(null); });
+
+        draw();
+        if ('ResizeObserver' in window) new ResizeObserver(() => requestAnimationFrame(draw)).observe(dag);
+        document.fonts?.ready.then(draw);
+        if ('IntersectionObserver' in window) {
+            const io = new IntersectionObserver((entries) => {
+                if (entries.some((e) => e.isIntersecting)) { reveal(); io.disconnect(); }
+            }, { threshold: 0.35 });
+            io.observe(dag);
+        }
+    }
+
+    /* ── Follow one photo: steps switch the inspector ─────────────────── */
+
+    function initTrace() {
+        const trace = $('[data-trace]');
+        if (!trace || !('IntersectionObserver' in window)) return;
+        const steps = $$('[data-trace-step]', trace);
+        const panels = $$('[data-trace-panel]', trace);
+        const widths = $('[data-widths]', trace);
+        const picked = $('[data-picked]', trace);
+
+        // Which width did this browser actually load for the photo?
+        const showPicked = () => {
+            if (!widths) return;
+            const imgs = $$(`[data-open-photo="${widths.dataset.photoId}"] img`).filter((i) => i.currentSrc);
+            const w = imgs.map((i) => Number((i.currentSrc.match(/w_(\d+)/) || [])[1])).filter(Boolean).sort((a, b) => b - a)[0];
+            if (!w) return;
+            $$('li', widths).forEach((li) => li.classList.toggle('is-picked', Number(li.dataset.w) === w));
+            picked.textContent = `Your browser loaded the ${w}px file for a ${Math.round(window.innerWidth)}px-wide window at ${window.devicePixelRatio}× pixel density.`;
+        };
+
+        const activate = (step) => {
+            steps.forEach((s) => s.classList.toggle('is-active', s === step));
+            panels.forEach((p) => p.classList.toggle('is-on', p.dataset.tracePanel === step.dataset.traceStep));
+            if (step.dataset.traceStep === 'browser') showPicked();
+        };
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach((e) => { if (e.isIntersecting) activate(e.target); });
+        }, { rootMargin: '-45% 0px -45% 0px' });
+        steps.forEach((s) => io.observe(s));
+        activate(steps[0]);
     }
 
     /* ── A small tilt on the PaQueueKa phone ──────────────────────────── */
@@ -561,6 +693,8 @@
     initDeck();
     initDay();
     initTilt();
+    initLineage();
+    initTrace();
     initIndex();
     initViewer();
     initRide();

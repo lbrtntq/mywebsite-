@@ -175,38 +175,143 @@
 <section class="eng" id="engineering" data-room="#f2f3f1" data-tone="light" aria-labelledby="eng-title">
     <div class="eng-head">
         <h2 class="section-title" id="eng-title">Engineering</h2>
-        <p class="eng-intro">Pipelines by day. On the side I try tools out in public before I trust them at work.</p>
+        <p class="eng-intro">Pipelines by day. Here are two I can show you, drawn from their own code and data.</p>
     </div>
 
-    <ul class="repos">
-        {% for repo, label, desc in [
-            ('dbt_demo_university', 'dbt_demo_university', 'A small star schema for university teaching data: staging models feeding course, department, faculty and time dimensions and a teaching-assignments fact.'),
-            ('dbt_demo_astro_cosmos_airflow', 'dbt_demo_astro_cosmos_airflow', 'The same models scheduled as an Airflow DAG through Astronomer Cosmos.'),
-            ('dbt_tutorial_project', 'dbt_tutorial_project', 'Bronze, silver and gold layers over retail sales: customers, products, stores and returns.'),
-            ('mywebsite-', 'mywebsite', 'This site: Flask, Postgres and Cloudinary, no build step.'),
-            ('react-practice', 'react-practice', 'React with Firebase and TypeScript.'),
-        ] %}
-        <li>
-            <a class="repo" href="https://github.com/lbrtntq/{{ repo }}" target="_blank" rel="noopener">
-                <code class="repo-name">{{ label }}</code>
-                <span class="repo-desc">{{ desc }}</span>
-                <svg class="repo-arrow" width="22" height="22" aria-hidden="true"><use href="#i-out"/></svg>
-            </a>
-        </li>
-        {% endfor %}
-    </ul>
+    {# A dbt project as its lineage graph #}
+    <div class="lineage" data-lineage>
+        <div class="lineage-text">
+            <h3 class="eng-sub">A star schema, by lineage</h3>
+            <p>My <code>dbt_demo_university</code> project turns five raw tables in a <code>PLV</code> database into one fact table of who teaches what, when. Staging cleans each source; marts shape four dimensions and join them into the fact.</p>
+            <p>The same models run on a schedule as an Airflow DAG through Astronomer Cosmos.</p>
+            <p class="lineage-hint" aria-hidden="true"><span class="hint-hover">Hover or tab to a model to trace it.</span><span class="hint-touch">Tap a model to trace it; swipe the graph to see all of it.</span></p>
+            <div class="lineage-links">
+                <a class="text-link" href="https://github.com/lbrtntq/dbt_demo_university" target="_blank" rel="noopener">The dbt project <svg width="18" height="18" aria-hidden="true"><use href="#i-out"/></svg></a>
+                <a class="text-link" href="https://github.com/lbrtntq/dbt_demo_astro_cosmos_airflow" target="_blank" rel="noopener">The Airflow version <svg width="18" height="18" aria-hidden="true"><use href="#i-out"/></svg></a>
+            </div>
+        </div>
 
-    <div class="flow">
-        <h3 class="flow-title">How a photo gets to this page</h3>
-        <ol class="flow-steps">
-            <li><span>Phone</span>shot in the street</li>
-            <li><span>/admin</span>title and caption</li>
-            <li><span>Cloudinary</span>stores it, resizes on request</li>
-            <li><span>Postgres</span>one row in <code>gallery_items</code></li>
-            <li><span>Flask</span>reads rows and the photo’s own clock</li>
-            <li><span>Your browser</span>picks the width it needs</li>
-        </ol>
-        <p class="flow-note">Right now that’s {{ total_photos }} row{{ 's' if total_photos != 1 }}{% if latest_upload %}, the newest added {{ latest_upload.strftime('%B %Y') }}{% endif %}. The times in “One long day” are read from each photo’s own EXIF data, a few kilobytes from the top of the file.</p>
+        <div class="dag-scroll">
+            <div class="dag" data-dag>
+                <svg class="dag-edges" data-dag-svg aria-hidden="true"></svg>
+                {% for key, schema, models in lineage.layers %}
+                <div class="dag-col dag-col--{{ key }}">
+                    <p class="dag-layer">{{ schema }}</p>
+                    <ul>
+                        {% for m in models %}
+                        <li><button class="dag-node" type="button" data-model="{{ m }}"><code>{{ m }}</code></button></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <script type="application/json" data-dag-data>{{ lineage.edges | tojson }}</script>
+    </div>
+
+    {# One photo through this site's own pipeline #}
+    {% if trace %}
+    {% set tp = trace.photo %}
+    <div class="trace" data-trace>
+        <div class="trace-head">
+            <h3 class="eng-sub">Follow one photo</h3>
+            <p>This site is a small pipeline too. Here is “{{ tp.title }}” at each stage, with the real data each stage sees.</p>
+        </div>
+
+        <div class="trace-grid">
+            <ol class="trace-steps">
+                <li class="trace-step" data-trace-step="phone">
+                    <span class="trace-n">01</span>
+                    <h4>Taken on my phone</h4>
+                    <p>The camera writes the moment into the file’s EXIF data, in local time.</p>
+                </li>
+                <li class="trace-step" data-trace-step="upload">
+                    <span class="trace-n">02</span>
+                    <h4>Uploaded through /admin</h4>
+                    <p>A small Flask form sends the file to Cloudinary, which keeps the original and hands back a permanent URL.</p>
+                </li>
+                <li class="trace-step" data-trace-step="row">
+                    <span class="trace-n">03</span>
+                    <h4>One row in Postgres</h4>
+                    <p>The title, caption and display order live in a single <code>gallery_items</code> row on Supabase.</p>
+                </li>
+                <li class="trace-step" data-trace-step="clock">
+                    <span class="trace-n">04</span>
+                    <h4>Flask reads its clock</h4>
+                    <p>Instead of downloading megabytes, the server asks Cloudinary for the first 64 KB of the original and parses the EXIF block itself. That time orders “One long day”.</p>
+                </li>
+                <li class="trace-step" data-trace-step="browser">
+                    <span class="trace-n">05</span>
+                    <h4>Your browser picks a size</h4>
+                    <p>The page offers five widths. Your browser chose one for your screen; it is highlighted on the right, live.</p>
+                </li>
+            </ol>
+
+            <div class="inspector" aria-live="polite">
+                <figure class="inspector-photo">
+                    <img src="{{ tp.url | cl('f_auto,q_auto,c_fill,g_auto,w_160,h_160') }}" width="80" height="80" alt="" loading="lazy" decoding="async">
+                    <figcaption><span>{{ tp.title }}</span><span>{{ tp.place or '' }}</span></figcaption>
+                </figure>
+
+                <div class="inspector-panel is-on" data-trace-panel="phone">
+                    <p class="inspector-label">EXIF</p>
+                    <dl class="kv">
+                        <div><dt>DateTimeOriginal</dt><dd>{{ tp.taken.strftime('%Y:%m:%d %H:%M:%S') if tp.taken else 'not recorded' }}</dd></div>
+                        <div><dt>pixels</dt><dd>{{ tp.width }} × {{ tp.height }}</dd></div>
+                        <div><dt>orientation</dt><dd>{{ 'portrait' if tp.shape == 'tall' else ('landscape' if tp.shape == 'wide' else 'square') }}</dd></div>
+                    </dl>
+                </div>
+
+                <div class="inspector-panel" data-trace-panel="upload">
+                    <p class="inspector-label">POST /admin/gallery/upload → Cloudinary</p>
+                    <pre class="code"><span class="c-key">secure_url</span>
+{{ tp.url }}</pre>
+                </div>
+
+                <div class="inspector-panel" data-trace-panel="row">
+                    <p class="inspector-label">SELECT * FROM gallery_items WHERE id = {{ trace.row.id }}</p>
+                    <pre class="code">{{ trace.row | tojson(indent=2) }}</pre>
+                </div>
+
+                <div class="inspector-panel" data-trace-panel="clock">
+                    <p class="inspector-label">GET original · Range: bytes=0-65535</p>
+                    <dl class="kv">
+                        <div><dt>status</dt><dd>206 Partial Content</dd></div>
+                        <div><dt>read</dt><dd>65,536 bytes of the original</dd></div>
+                        <div><dt>DateTimeOriginal</dt><dd>{{ tp.taken.strftime('%Y:%m:%d %H:%M:%S') if tp.taken else 'none' }}</dd></div>
+                        <div><dt>on the clock</dt><dd class="kv-hit">{{ tp.taken | clock if tp.taken else '—' }}</dd></div>
+                    </dl>
+                </div>
+
+                <div class="inspector-panel" data-trace-panel="browser">
+                    <p class="inspector-label">srcset · f_auto, q_auto</p>
+                    <ul class="widths" data-widths data-photo-id="{{ tp.id }}">
+                        {% for w in [480, 800, 1200, 1600, 2200] %}<li data-w="{{ w }}">{{ w }}w</li>{% endfor %}
+                    </ul>
+                    <p class="inspector-note" data-picked>Your browser hasn’t needed this photo yet.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="repos-block">
+        <h3 class="eng-sub eng-sub--sm">More on GitHub</h3>
+        <ul class="repos">
+            {% for repo, label, desc in [
+                ('dbt_tutorial_project', 'dbt_tutorial_project', 'Bronze, silver and gold layers over retail sales: customers, products, stores and returns.'),
+                ('mywebsite-', 'mywebsite', 'This site: Flask, Postgres and Cloudinary, no build step.'),
+                ('react-practice', 'react-practice', 'React with Firebase and TypeScript.'),
+            ] %}
+            <li>
+                <a class="repo" href="https://github.com/lbrtntq/{{ repo }}" target="_blank" rel="noopener">
+                    <code class="repo-name">{{ label }}</code>
+                    <span class="repo-desc">{{ desc }}</span>
+                    <svg class="repo-arrow" width="22" height="22" aria-hidden="true"><use href="#i-out"/></svg>
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
     </div>
 </section>
 

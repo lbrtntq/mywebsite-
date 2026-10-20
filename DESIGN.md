@@ -239,13 +239,16 @@ Photographs are square-cornered rectangles at their own proportions. Interactive
 Name left at display scale, a one-line lede and a drawn-underline link into the day. Right: a deck of up to five prints (4:5 crops with a white border, thicker at the bottom) fanned with small tilts. Tap or "Next print" throws the top print off and tucks it under the pile; dragging it follows the hand and a fast or long flick throws it. Springs: snap k190/d21, throw k120/d15. Entrance: the name rises in two lines, lede and deck fade up.
 
 ### One Long Day
-The pinned scene described under Layout. Scroll progress picks the photograph; the clock holds on its capture time for 60% of the stage, then ticks to the next. A soft warm sun crosses an arc by daylight and fades at dusk; a small moon appears after 18:30. The current print is thrown in from the top right (throw spring) onto the pile of earlier prints, each kept at its own small tilt. Clicking a print opens the viewer. Without JS the stages render as a simple sequence; with reduced motion the scene still follows the scroll but places prints instantly.
+The pinned scene described under Layout. Scroll progress picks the photograph; the clock holds on its capture time for 60% of the stage, then ticks to the next. A sun (a defined warm disc with two faint rings, never a blurred glow) crosses a high arc above the prints and sets at dusk; a small moon disc appears after 18:30. The current print is thrown in from the top right (throw spring) onto the pile of earlier prints, each kept at its own small tilt. Clicking a print opens the viewer. Without JS the stages render as a simple sequence; with reduced motion the scene still follows the scroll but places prints instantly.
 
 ### Index
 A numbered list of every photograph by title between hairlines: numeral (ink-3), title (light, title scale), place (ink-2). On hover the other rows dim to 38%, the hovered title slides 14px, and a 260px preview follows the cursor with a lerp and a slight lean from horizontal velocity.
 
-### Footer Wordmark
-"Antioquia" at 21.5vw, weight 600, clipped at 0.74em so the descender is cut by the page edge, under the "Kumusta?" links.
+### Lineage Graph
+The dbt_demo_university models in four columns (PLV.raw, staging, marts dims, the fact) as code-named nodes on 6px-radius hairline boxes, joined by curves measured from the nodes and drawn in layer by layer when the graph arrives. Hover, focus or tap traces everything upstream and downstream in the accent; the rest dims. Edges come from the repo's own ref() and source() calls; never invent models or tests.
+
+### Follow One Photo
+A sticky dark inspector beside five steps (phone, upload, Postgres row, EXIF clock read, browser width). Each panel shows the real artifact for the first photo of the day: EXIF time and pixels, the Cloudinary URL, the actual row as JSON, the 64 KB range read, and the srcset with the width this browser actually loaded, highlighted live. Monospace is allowed here because it is data.
 
 ### Viewer
 A full-screen dialog on viewer black: count, title and close along the top; the photograph contained in the stage; meta and description beneath. It grows out of the clicked thumbnail (560ms), swipes on touch, and steps with arrow buttons.
