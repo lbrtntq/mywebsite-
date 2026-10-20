@@ -61,6 +61,19 @@ def create_app(test_config=None):
     app.register_blueprint(auth.bp)
     app.register_blueprint(gallery.bp)
     
+    def closing_photo():
+        """The latest-in-the-day photo (by EXIF time) to sit behind the closing."""
+        from app.models.gallery import GalleryItem
+        from app.services.photo_service import as_stations
+        try:
+            photos = as_stations(GalleryItem.query.order_by(GalleryItem.order.asc()).limit(24).all())
+        except Exception:
+            return None
+        timed = [p for p in photos if p['minute'] is not None]
+        if timed:
+            return max(timed, key=lambda p: p['minute'])
+        return photos[-1] if photos else None
+
     @app.context_processor
     def inject_site():
         import datetime
@@ -68,6 +81,7 @@ def create_app(test_config=None):
         from app.services.github_service import github_stats
         manila = datetime.datetime.now(ZoneInfo('Asia/Manila'))
         return {
+            'closing_photo': closing_photo(),
             'github': github_stats(),
             'manila_time': f"{manila.hour % 12 or 12}:{manila.minute:02d} {'AM' if manila.hour < 12 else 'PM'}",
             'current_year': datetime.datetime.now().year,

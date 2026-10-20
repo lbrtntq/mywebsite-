@@ -698,7 +698,24 @@
         setInterval(tick, 20000);
     }
 
+    /* ── Footer sky: a slow parallax under the close ───────────────────── */
+
+    function initParallax() {
+        const img = $('[data-parallax]');
+        if (!img || reduceMotion.matches) return;
+        const host = img.closest('.footer');
+        const update = () => {
+            const r = host.getBoundingClientRect();
+            if (r.bottom < 0 || r.top > window.innerHeight) return;
+            const p = clamp(1 - r.top / window.innerHeight, 0, 2);
+            img.style.transform = `translate3d(0, ${(-p * 6).toFixed(2)}%, 0)`;
+        };
+        window.addEventListener('scroll', () => requestAnimationFrame(update), { passive: true });
+        update();
+    }
+
     initLenis();
+    initParallax();
     initManila();
     initRooms();
     initNav();

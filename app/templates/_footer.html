@@ -1,4 +1,11 @@
 <footer class="footer" id="contact" data-room="#0b111a" data-tone="dark" aria-labelledby="contact-title">
+    {% if closing_photo %}
+    <div class="footer-sky" aria-hidden="true">
+        <img src="{{ closing_photo.url | cl('f_auto,q_auto,c_limit,w_1600') }}"
+             srcset="{{ closing_photo.url | srcset }}"
+             sizes="100vw" alt="" loading="lazy" decoding="async" data-parallax>
+    </div>
+    {% endif %}
     <div class="footer-inner">
         <div class="footer-top">
             <h2 class="footer-title" id="contact-title">Kumusta?</h2>

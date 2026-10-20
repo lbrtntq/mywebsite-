@@ -688,7 +688,34 @@ html.lenis, html.lenis body { height: auto; }
 
 /* ── Footer: Kumusta? ────────────────────────────────────────────────── */
 
-.footer { padding: clamp(120px, 22vh, 240px) var(--gutter) 32px; padding-bottom: max(32px, env(safe-area-inset-bottom)); }
+.footer {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding: clamp(160px, 30vh, 320px) var(--gutter) 32px;
+    padding-bottom: max(32px, env(safe-area-inset-bottom));
+}
+/* After the last photo of the day: the night it was taken, behind the close.
+   Dimmed and faded into the navy so every word stays readable. */
+.footer-sky {
+    position: absolute;
+    top: 0; right: 0;
+    width: 68%;
+    height: clamp(560px, 86svh, 860px);
+    z-index: -1;
+    pointer-events: none;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 42%), linear-gradient(180deg, transparent 0%, #000 16%, #000 58%, transparent 96%);
+    -webkit-mask-composite: source-in;
+    mask-image: linear-gradient(90deg, transparent 0%, #000 42%), linear-gradient(180deg, transparent 0%, #000 16%, #000 58%, transparent 96%);
+    mask-composite: intersect;
+}
+.footer-sky img {
+    width: 100%; height: 116%;
+    object-fit: cover;
+    object-position: 46% 40%;
+    opacity: 0.62;
+    will-change: transform;
+}
 .footer-top {
     display: grid;
     grid-template-columns: repeat(12, minmax(0, 1fr));
@@ -696,13 +723,13 @@ html.lenis, html.lenis body { height: auto; }
     align-items: end;
 }
 .footer-title {
-    grid-column: 1 / span 7;
+    grid-column: 1 / span 6;
     font-size: clamp(4rem, 13vw, 11rem);
     font-weight: 250;
     line-height: 0.88;
     letter-spacing: -0.055em;
 }
-.footer-aside { grid-column: 8 / span 5; display: grid; gap: 18px; padding-bottom: 0.6em; }
+.footer-aside { grid-column: 1 / span 5; display: grid; gap: 18px; margin-top: 28px; }
 .footer-lede { max-width: 36ch; color: var(--fg-2); font-size: 1.125rem; }
 .footer-time { display: inline-flex; align-items: center; gap: 10px; font-size: 0.9375rem; color: var(--fg-2); }
 .ft-clock { color: var(--fg); font-weight: 600; font-variant-numeric: tabular-nums; }
@@ -1021,7 +1048,10 @@ html.lenis, html.lenis body { height: auto; }
 
     .chapter-body { margin-left: 0; }
     .footer-title, .footer-aside { grid-column: 1 / -1; }
-    .footer-aside { margin-top: 24px; padding-bottom: 0; }
+    .footer-aside { margin-top: 24px; }
+    .footer { padding-top: clamp(300px, 52svh, 460px); }
+    .footer-sky { width: 100%; height: 62svh; -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 14%, #000 55%, transparent 100%); mask-image: linear-gradient(180deg, transparent 0%, #000 14%, #000 55%, transparent 100%); }
+    .footer-sky img { object-position: 50% 40%; }
     .ride-grid { grid-template-columns: minmax(0, 1fr); }
     .ride-phone { display: none; }
     .ride-step { min-height: 0; padding-bottom: 64px; }
