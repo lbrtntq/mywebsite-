@@ -208,8 +208,7 @@ html.lenis, html.lenis body { height: auto; }
 .nav.is-over-cover { color: #fff; }
 
 .nav-name { display: inline-flex; align-items: center; gap: 10px; font-weight: 600; letter-spacing: -0.01em; }
-.nav-mark { flex: none; width: 26px; height: 26px; --mark-ink: var(--room, var(--bg)); transition: transform 500ms var(--ease); }
-.nav.is-over-cover .nav-mark { --mark-ink: #0b111a; }
+.nav-mark { flex: none; width: 36px; height: 36px; border-radius: 9px; box-shadow: 0 0 0 1px rgba(236, 239, 242, 0.14); transition: transform 500ms var(--ease); }
 .nav-name:hover .nav-mark { transform: rotate(-6deg); }
 .nav-links { display: flex; gap: clamp(20px, 3vw, 40px); }
 .nav-links a {

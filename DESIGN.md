@@ -191,7 +191,7 @@ A night-to-day palette with one fenced-off green: neutrals carry the page, a tea
 
 **The One Face Rule.** Albert Sans for everything; system monospace only for repository and code names. No second display face, no system display fallback by design.
 
-**The Mark.** A lowercase a from Albert Sans (600), outlined to a path, white on a night-navy tile (rx 22 of 100). In the nav it inverts with the room: a tile in the current ink with the a cut out in the wall colour. Nothing else: no sun, no flourish.
+**The Mark.** "aaa": three lowercase a's from Bodoni Moda (OFL, 800, optical size 96), outlined to paths and overlapped like a ligature, the middle one in teal (#6fd3c9), white on a night-navy tile (rx 22 of 100). A callback to the old site's AAA favicon. Used as the favicon, the 32px fallback, the home-screen icon and, at 28px, beside the name in the nav. It is a drawing: never set text in Bodoni.
 
 ## Layout
 
