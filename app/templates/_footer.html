@@ -26,7 +26,7 @@
                         <span class="social-name">GitHub</span>
                         <span class="social-handle">github.com/lbrtntq</span>
                     </span>
-                    <span class="social-meta">
+                    <span class="social-meta"{% if not github %} data-github="lbrtntq"{% endif %}>
                         {% if github %}{{ github.repos }} public repos · since {{ github.since }}{% if github.pushed %} · last push {{ github.pushed }}{% endif %}{% else %}Code, dbt experiments and this site{% endif %}
                     </span>
                     <svg class="social-arrow" width="30" height="30" aria-hidden="true"><use href="#i-out"/></svg>

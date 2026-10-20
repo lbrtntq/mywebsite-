@@ -714,7 +714,38 @@
         update();
     }
 
+    /* ── Footer: GitHub numbers, fetched by the browser if the server couldn't ── */
+    // Render's shared IPs can hit GitHub's anonymous rate limit; a visitor's
+    // own browser has its own allowance, and GitHub's API allows CORS.
+
+    function initGithub() {
+        const el = $('[data-github]');
+        if (!el || !window.fetch) return;
+        const user = el.dataset.github;
+        const ago = (iso) => {
+            const days = Math.floor((Date.now() - new Date(iso)) / 86400000);
+            if (days < 1) return 'today';
+            if (days === 1) return 'yesterday';
+            if (days < 30) return `${days} days ago`;
+            return new Date(iso).toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+        };
+        const render = (d) => { el.textContent = `${d.repos} public repos · since ${d.since}${d.pushed ? ` · last push ${ago(d.pushed)}` : ''}`; };
+        try {
+            const cached = JSON.parse(sessionStorage.getItem('gh') || 'null');
+            if (cached) { render(cached); return; }
+        } catch (e) { /* storage blocked: just fetch */ }
+        Promise.all([
+            fetch(`https://api.github.com/users/${user}`).then((r) => (r.ok ? r.json() : Promise.reject())),
+            fetch(`https://api.github.com/users/${user}/repos?sort=pushed&per_page=1`).then((r) => (r.ok ? r.json() : Promise.reject())),
+        ]).then(([u, repos]) => {
+            const d = { repos: u.public_repos, since: String(u.created_at || '').slice(0, 4), pushed: repos[0]?.pushed_at };
+            render(d);
+            try { sessionStorage.setItem('gh', JSON.stringify(d)); } catch (e) { /* fine */ }
+        }).catch(() => { /* keep the written description */ });
+    }
+
     initLenis();
+    initGithub();
     initParallax();
     initManila();
     initRooms();

@@ -5,6 +5,7 @@ from datetime import datetime, timezone
 
 USER = 'lbrtntq'
 _TTL = 3600
+_FAIL_TTL = 300
 _cache = {'at': 0, 'data': None}
 
 
@@ -33,7 +34,8 @@ def github_stats():
     the line out. Failures are cached too so a slow API never slows a page.
     """
     now = time.time()
-    if now - _cache['at'] < _TTL:
+    ttl = _TTL if _cache['data'] else _FAIL_TTL
+    if now - _cache['at'] < ttl:
         return _cache['data']
     data = None
     try:
