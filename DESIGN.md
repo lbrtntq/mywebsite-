@@ -191,6 +191,8 @@ A night-to-day palette with one fenced-off green: neutrals carry the page, a tea
 
 **The One Face Rule.** Albert Sans for everything; system monospace only for repository and code names. No second display face, no system display fallback by design.
 
+**The Mark.** The logo is the one exception: the italic capital A from DM Serif Display (OFL), outlined to a path with its hairlines thickened slightly so it survives 16px, crossing in front of the day scene's warm sun (#f7c873) on a night-navy tile (rx 22 of 100). It appears as the favicon, the home-screen icon and, without the tile and in the current ink, beside the name in the nav. It is a drawing, not a typeface in use: never set text in DM Serif Display.
+
 ## Layout
 
 A 12-column grid (column gap clamp(16px, 2.4vw, 40px)) inside a fluid gutter (clamp(20px, 4.5vw, 72px)). Section heads put the headline on columns 1–6 and the intro on 8–12, bottom-aligned. Sections breathe: top padding runs clamp(96px, 18vh, 200px) to clamp(120px, 22vh, 240px).

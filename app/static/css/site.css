@@ -207,7 +207,9 @@ html.lenis, html.lenis body { height: auto; }
 /* Over the cover photograph the nav is always light. */
 .nav.is-over-cover { color: #fff; }
 
-.nav-name { font-weight: 600; letter-spacing: -0.01em; }
+.nav-name { display: inline-flex; align-items: center; gap: 10px; font-weight: 600; letter-spacing: -0.01em; }
+.nav-mark { flex: none; transition: transform 600ms var(--ease); }
+.nav-name:hover .nav-mark { transform: rotate(-10deg); }
 .nav-links { display: flex; gap: clamp(20px, 3vw, 40px); }
 .nav-links a {
     font-size: 0.9375rem;
