@@ -1,41 +1,69 @@
 <footer class="footer" id="contact" data-room="#0b111a" data-tone="dark" aria-labelledby="contact-title">
     <div class="footer-inner">
-        <h2 class="footer-title" id="contact-title"><span>Kumusta?</span></h2>
-        <p class="footer-lede">That’s Filipino for “how are you?”. Say hi wherever you like.</p>
-        <ul class="footer-links">
+        <div class="footer-top">
+            <h2 class="footer-title" id="contact-title">Kumusta?</h2>
+            <div class="footer-aside">
+                <p class="footer-lede">That’s how we say hi back home. Pick a door and say hello; I answer from the Philippines.</p>
+                <p class="footer-time">
+                    <span class="ft-dot" aria-hidden="true"></span>
+                    In Manila it’s <time class="ft-clock" data-manila>{{ manila_time }}</time>
+                </p>
+            </div>
+        </div>
+
+        <ul class="socials">
             <li>
-                <a href="{{ links.github }}" target="_blank" rel="noopener me">
-                    <span class="fl-name">GitHub</span>
-                    <span class="fl-desc">Code, dbt experiments and this site</span>
-                    <svg class="fl-arrow" width="28" height="28" aria-hidden="true"><use href="#i-out"/></svg>
+                <a class="social" href="{{ links.github }}" target="_blank" rel="noopener me" style="--brand: #f0f3f6; --on-brand: #0d1117">
+                    <span class="social-mark" aria-hidden="true"><svg width="26" height="26"><use href="#b-github"/></svg></span>
+                    <span class="social-id">
+                        <span class="social-name">GitHub</span>
+                        <span class="social-handle">github.com/lbrtntq</span>
+                    </span>
+                    <span class="social-meta">
+                        {% if github %}{{ github.repos }} public repos · since {{ github.since }}{% if github.pushed %} · last push {{ github.pushed }}{% endif %}{% else %}Code, dbt experiments and this site{% endif %}
+                    </span>
+                    <svg class="social-arrow" width="30" height="30" aria-hidden="true"><use href="#i-out"/></svg>
                 </a>
             </li>
             <li>
-                <a href="{{ links.linkedin }}" target="_blank" rel="noopener me">
-                    <span class="fl-name">LinkedIn</span>
-                    <span class="fl-desc">The data engineering side</span>
-                    <svg class="fl-arrow" width="28" height="28" aria-hidden="true"><use href="#i-out"/></svg>
+                <a class="social" href="{{ links.linkedin }}" target="_blank" rel="noopener me" style="--brand: #0a66c2; --on-brand: #ffffff">
+                    <span class="social-mark" aria-hidden="true"><svg width="24" height="24"><use href="#b-linkedin"/></svg></span>
+                    <span class="social-id">
+                        <span class="social-name">LinkedIn</span>
+                        <span class="social-handle">in/albert-antioquia-ph</span>
+                    </span>
+                    <span class="social-meta">The data engineering side</span>
+                    <svg class="social-arrow" width="30" height="30" aria-hidden="true"><use href="#i-out"/></svg>
                 </a>
             </li>
             <li>
-                <a href="{{ links.youtube }}" target="_blank" rel="noopener me">
-                    <span class="fl-name">YouTube</span>
-                    <span class="fl-desc">Vlogs and the occasional video</span>
-                    <svg class="fl-arrow" width="28" height="28" aria-hidden="true"><use href="#i-out"/></svg>
+                <a class="social" href="{{ links.youtube }}" target="_blank" rel="noopener me" style="--brand: #ff0033; --on-brand: #ffffff">
+                    <span class="social-mark" aria-hidden="true"><svg width="26" height="26"><use href="#b-youtube"/></svg></span>
+                    <span class="social-id">
+                        <span class="social-name">YouTube</span>
+                        <span class="social-handle">@LBRTNTQ</span>
+                    </span>
+                    <span class="social-meta">Vlogs and the occasional video</span>
+                    <svg class="social-arrow" width="30" height="30" aria-hidden="true"><use href="#i-out"/></svg>
                 </a>
             </li>
             <li>
-                <a href="{{ links.paqueueka }}" target="_blank" rel="noopener">
-                    <span class="fl-name">PaQueueKa</span>
-                    <span class="fl-desc">paqueueka.info, for players and hosts</span>
-                    <svg class="fl-arrow" width="28" height="28" aria-hidden="true"><use href="#i-out"/></svg>
+                <a class="social" href="{{ links.paqueueka }}" target="_blank" rel="noopener" style="--brand: #c6f24e; --on-brand: #0f2318">
+                    <span class="social-mark social-mark--app" aria-hidden="true"><img src="{{ url_for('static', filename='img/paqueueka/app-icon.png') }}" width="40" height="40" alt=""></span>
+                    <span class="social-id">
+                        <span class="social-name">PaQueueKa</span>
+                        <span class="social-handle">paqueueka.info</span>
+                    </span>
+                    <span class="social-meta">Free on the App Store and Google Play</span>
+                    <svg class="social-arrow" width="30" height="30" aria-hidden="true"><use href="#i-out"/></svg>
                 </a>
             </li>
         </ul>
+
         <div class="footer-base">
             <p>&copy; {{ current_year }} Albert Antioquia</p>
             <p>Every photograph here was taken on a phone.</p>
-            <a class="footer-top" href="#main">Back to top</a>
+            <a class="footer-top-link" href="#main">Back to top</a>
         </div>
     </div>
 </footer>

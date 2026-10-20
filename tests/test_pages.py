@@ -16,6 +16,9 @@ def client(monkeypatch):
     # Capture times: the fireworks at night, the others by day, one with no EXIF.
     taken = {'a': datetime(2024, 11, 6, 20, 19), 'b': datetime(2024, 11, 5, 19, 14), 'c': datetime(2024, 11, 4, 11, 5)}
     monkeypatch.setattr(photo_service, '_read_taken', lambda url: taken.get(url.rsplit('/', 1)[-1][:-4]))
+    from app.services import github_service
+    monkeypatch.setattr(github_service, '_cache', {'at': 0, 'data': None})
+    monkeypatch.setattr(github_service, '_get', lambda url: (_ for _ in ()).throw(OSError('offline')))
     photo_service._sizes.clear()
     photo_service._taken.clear()
     app = create_app({
@@ -71,3 +74,12 @@ def test_empty_gallery_still_renders(client):
     res = client.get('/')
     assert res.status_code == 200
     assert 'No photographs here yet.' in res.get_data(as_text=True)
+
+
+def test_footer_has_every_door_and_survives_github_being_down(client):
+    html = client.get('/').get_data(as_text=True)
+    footer = html[html.index('id="contact"'):]
+    for handle in ('github.com/lbrtntq', 'in/albert-antioquia-ph', '@LBRTNTQ', 'paqueueka.info'):
+        assert handle in footer
+    assert 'Code, dbt experiments and this site' in footer  # fallback when the API is unreachable
+    assert 'data-manila' in footer

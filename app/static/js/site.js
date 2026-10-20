@@ -687,7 +687,19 @@
         });
     }
 
+    /* ── Footer: the time in Manila, kept current ──────────────────────── */
+
+    function initManila() {
+        const el = $('[data-manila]');
+        if (!el || !window.Intl) return;
+        const fmt = new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Manila', hour: 'numeric', minute: '2-digit' });
+        const tick = () => { el.textContent = fmt.format(new Date()); };
+        tick();
+        setInterval(tick, 20000);
+    }
+
     initLenis();
+    initManila();
     initRooms();
     initNav();
     initDeck();

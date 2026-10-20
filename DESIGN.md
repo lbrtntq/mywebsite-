@@ -257,7 +257,10 @@ A full-screen dialog on viewer black: count, title and close along the top; the 
 A device at 433:882 with a bezel in the tone's bezel colour, used for real PaQueueKa screens only. On /tech a sticky phone crossfades between screens (450ms opacity, 700ms scale) as the session steps pass the middle of the screen; inactive step headings dim to 42% on wide screens.
 
 ### Hairline Rows
-Repo rows (mono name, description, outbound arrow that turns accent and shifts up-right on hover), spec rows (600 term, ink-2 definition), flow steps (six columns, each a top rule with a thin chevron where one step hands to the next), and footer links: a large light name whose weight animates from 300 to 500 on hover while the arrow turns accent.
+Repo rows (mono name, description, outbound arrow that turns accent and shifts up-right on hover), spec rows (600 term, ink-2 definition), flow steps (six columns, each a top rule with a thin chevron where one step hands to the next).
+
+### Kumusta (closing)
+"Kumusta?" at clock scale (250 weight), a one-line gloss and a live "In Manila it's 4:48 PM" readout with a slow blinking accent dot. Below, one row per door: the platform's real mark (Simple Icons, CC0) in a 64px ring, the name at title scale, the real handle in mono, and a live detail where one exists (GitHub's public repo count, joined year and last push, from the public API, cached an hour; omitted if GitHub is unreachable). On hover a band in the platform's own colour wipes up across the full width, text inverts, the mark flips to a filled disc with a small turn and the arrow rotates 45°. On touch screens the marks rest in their platform colours. Brand colours live only on these rows.
 
 ### Rotation Diagram
 Six players on a hairline track with a bracket marking the next court. Played players are solid ink, a winner who stays on is the accent, waiting players are hollow rings. On arrival or hover the queue replays its shuffle (700ms); with reduced motion it rests in the played state.

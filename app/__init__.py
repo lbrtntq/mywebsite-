@@ -64,7 +64,12 @@ def create_app(test_config=None):
     @app.context_processor
     def inject_site():
         import datetime
+        from zoneinfo import ZoneInfo
+        from app.services.github_service import github_stats
+        manila = datetime.datetime.now(ZoneInfo('Asia/Manila'))
         return {
+            'github': github_stats(),
+            'manila_time': f"{manila.hour % 12 or 12}:{manila.minute:02d} {'AM' if manila.hour < 12 else 'PM'}",
             'current_year': datetime.datetime.now().year,
             'links': {
                 'github': 'https://github.com/lbrtntq',

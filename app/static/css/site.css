@@ -686,48 +686,98 @@ html.lenis, html.lenis body { height: auto; }
 .repos-block { margin-top: clamp(96px, 16vh, 180px); }
 .repos-block .repos { margin-top: 20px; }
 
-/* ── Footer ───────────────────────────────────────────────────────────── */
+/* ── Footer: Kumusta? ────────────────────────────────────────────────── */
 
 .footer { padding: clamp(120px, 22vh, 240px) var(--gutter) 32px; padding-bottom: max(32px, env(safe-area-inset-bottom)); }
-.footer-title {
-    font-size: clamp(3rem, 9vw, 6rem);
-    font-weight: 300;
-    line-height: 0.95;
-    letter-spacing: -0.04em;
-}
-.footer-lede { margin-top: 20px; max-width: 40ch; color: var(--fg-2); font-size: 1.125rem; }
-.footer-links { margin-top: clamp(56px, 10vh, 112px); border-bottom: 1px solid var(--rule); }
-.footer-links a {
+.footer-top {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: clamp(16px, 2.4vw, 40px);
+    align-items: end;
+}
+.footer-title {
+    grid-column: 1 / span 7;
+    font-size: clamp(4rem, 13vw, 11rem);
+    font-weight: 250;
+    line-height: 0.88;
+    letter-spacing: -0.055em;
+}
+.footer-aside { grid-column: 8 / span 5; display: grid; gap: 18px; padding-bottom: 0.6em; }
+.footer-lede { max-width: 36ch; color: var(--fg-2); font-size: 1.125rem; }
+.footer-time { display: inline-flex; align-items: center; gap: 10px; font-size: 0.9375rem; color: var(--fg-2); }
+.ft-clock { color: var(--fg); font-weight: 600; font-variant-numeric: tabular-nums; }
+.ft-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+@media (prefers-reduced-motion: no-preference) {
+    .ft-dot { animation: tick 2s steps(1, end) infinite; }
+}
+@keyframes tick { 50% { opacity: 0.25; } }
+
+/* Each door: brand mark, name, the real handle, a live detail. Hover wipes
+   the row in the platform's own colour. */
+.socials { margin-top: clamp(56px, 10vh, 112px); border-bottom: 1px solid var(--rule); }
+.social {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    grid-template-columns: 64px minmax(0, 1.1fr) minmax(0, 1fr) 40px;
     align-items: center;
-    gap: 24px;
-    padding: 26px 0;
+    gap: clamp(16px, 2.4vw, 40px);
+    padding: clamp(22px, 3.4vh, 34px) 0;
     border-top: 1px solid var(--rule);
+    transition: color 350ms ease, padding 600ms var(--ease);
 }
-.fl-name {
-    font-size: clamp(1.9rem, 4.4vw, 3.25rem);
+.social::before {
+    content: '';
+    position: absolute;
+    inset: 0 calc(-1 * var(--gutter));
+    z-index: -1;
+    background: var(--brand);
+    transform: scaleY(0);
+    transform-origin: 50% 100%;
+    transition: transform 550ms var(--ease);
+}
+.social-mark {
+    display: grid;
+    place-items: center;
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 1px var(--rule);
+    color: var(--brand);
+    transition: transform 600ms var(--ease), background-color 350ms ease, color 350ms ease, box-shadow 350ms ease;
+}
+.social-mark--app img { width: 40px; height: 40px; border-radius: 10px; }
+.social-id { display: grid; gap: 6px; min-width: 0; }
+.social-name {
+    font-size: clamp(2rem, 4.6vw, 3.75rem);
     font-weight: 300;
-    letter-spacing: -0.03em;
-    line-height: 1;
-    transition: font-weight 500ms var(--ease), letter-spacing 500ms var(--ease);
+    letter-spacing: -0.035em;
+    line-height: 0.95;
+    transition: font-weight 500ms var(--ease);
 }
-.fl-desc { color: var(--fg-2); }
-.fl-arrow { color: var(--fg-3); transition: transform 500ms var(--ease), color 200ms ease; }
+.social-handle { font-family: var(--mono); font-size: 0.8125rem; color: var(--fg-3); overflow-wrap: anywhere; transition: color 350ms ease; }
+.social-meta { color: var(--fg-2); transition: color 350ms ease; }
+.social-arrow { justify-self: end; color: var(--fg-3); transition: transform 600ms var(--ease), color 350ms ease; }
+
 @media (hover: hover) {
-    .footer-links a:hover .fl-name { font-weight: 500; letter-spacing: -0.035em; }
-    .footer-links a:hover .fl-arrow { color: var(--accent); transform: translate(4px, -4px); }
+    .social:hover { color: var(--on-brand); padding-left: 20px; padding-right: 20px; }
+    .social:hover::before { transform: scaleY(1); }
+    .social:hover .social-name { font-weight: 500; }
+    .social:hover .social-handle, .social:hover .social-meta { color: color-mix(in srgb, var(--on-brand) 78%, transparent); }
+    .social:hover .social-mark { background: var(--on-brand); color: var(--brand); box-shadow: none; transform: rotate(-8deg) scale(1.06); }
+    .social:hover .social-arrow { color: var(--on-brand); transform: rotate(45deg); }
 }
+.social:focus-visible { outline-offset: -2px; }
+
 .footer-base {
     display: flex;
     flex-wrap: wrap;
     gap: 8px 32px;
-    margin-top: 28px;
+    margin-top: clamp(48px, 8vh, 96px);
     font-size: 0.875rem;
     color: var(--fg-3);
 }
-.footer-top { margin-left: auto; color: var(--fg-2); }
-.footer-top:hover { color: var(--fg); }
+.footer-top-link { margin-left: auto; color: var(--fg-2); }
+.footer-top-link:hover { color: var(--fg); }
 
 /* ── /tech ────────────────────────────────────────────────────────────── */
 
@@ -970,6 +1020,8 @@ html.lenis, html.lenis body { height: auto; }
     .code { font-size: 0.72rem; max-height: 34svh; overflow: auto; }
 
     .chapter-body { margin-left: 0; }
+    .footer-title, .footer-aside { grid-column: 1 / -1; }
+    .footer-aside { margin-top: 24px; padding-bottom: 0; }
     .ride-grid { grid-template-columns: minmax(0, 1fr); }
     .ride-phone { display: none; }
     .ride-step { min-height: 0; padding-bottom: 64px; }
@@ -994,10 +1046,14 @@ html.lenis, html.lenis body { height: auto; }
     .repo-arrow { grid-column: 2; grid-row: 1 / span 2; }
 
 
-    .footer-links a { grid-template-columns: minmax(0, 1fr) auto; row-gap: 6px; }
-    .fl-desc { grid-column: 1; grid-row: 2; font-size: 0.9375rem; }
-    .fl-arrow { grid-column: 2; grid-row: 1 / span 2; }
-    .footer-top { margin-left: 0; }
+    .social { grid-template-columns: 48px minmax(0, 1fr) 28px; row-gap: 8px; column-gap: 16px; }
+    .social-mark { width: 48px; height: 48px; background: var(--brand); color: var(--on-brand); box-shadow: none; }
+    .social-mark--app { background: transparent; }
+    .social-mark svg { width: 22px; height: 22px; }
+    .social-mark--app img { width: 32px; height: 32px; border-radius: 8px; }
+    .social-meta { grid-column: 2 / -1; font-size: 0.9375rem; }
+    .social-arrow { grid-column: 3; grid-row: 1; }
+    .footer-top-link { margin-left: 0; }
 
     .spec div { grid-template-columns: minmax(0, 1fr); gap: 4px; }
     .viewer-stage { padding: 0; }
