@@ -3,157 +3,111 @@
 {% set page_title = 'PaQueueKa, built by Albert Antioquia — a queue app for badminton and pickleball' %}
 {% set page_description = 'How PaQueueKa runs an open-play session: join with a code, skill-balanced matches, Next Up planning, score-and-rotate, and fee splitting. Why I built it and what it runs on.' %}
 {% set og_image = url_for('static', filename='img/og-paqueueka.jpg', _external=True) %}
+{% set initial_tone = 'court' %}
 {% macro shot(name) %}{{ url_for('static', filename='img/paqueueka/' ~ name) }}{% endmacro %}
 
 {% block content %}
 
-{# ── Q · top ────────────────────────────────────────────────────────────── #}
-<section class="q-hero wall" id="q-top" data-station="q-top" data-line="q" aria-labelledby="q-title">
-    <div class="q-hero-grid">
-        <div class="q-hero-text">
-            <div class="q-brand">
-                <span class="line-plate line-plate--lg" data-line="q" aria-hidden="true">Q</span>
-                <img class="app-icon" src="{{ url_for('static', filename='img/paqueueka/app-icon.png') }}" width="56" height="56" alt="PaQueueKa app icon">
-            </div>
-            <h1 class="station-name station-name--q" id="q-title">
-                <span class="name-line"><span>PaQueueKa</span></span>
-            </h1>
-            <p class="sign-lede">A queue app for badminton and pickleball open play, on iOS and Android.</p>
-            <p class="sign-thread">I designed it, built it and ship it myself. It takes the whiteboard, the clipboard and the “who’s next?” arguments out of open play.</p>
-            <div class="q-actions">
-                <a class="button button--q" href="{{ links.app_store }}" target="_blank" rel="noopener">App Store <svg width="18" height="18" aria-hidden="true"><use href="#i-out"/></svg></a>
-                <a class="button button--q" href="{{ links.play_store }}" target="_blank" rel="noopener">Google Play <svg width="18" height="18" aria-hidden="true"><use href="#i-out"/></svg></a>
-                <a class="button button--ghost" href="{{ links.paqueueka }}" target="_blank" rel="noopener">paqueueka.info <svg width="18" height="18" aria-hidden="true"><use href="#i-out"/></svg></a>
+<section class="app app--hero" data-room="#0f2318" data-tone="court" aria-labelledby="q-title">
+    <div class="app-grid">
+        <div class="app-text">
+            <img class="app-icon" src="{{ shot('app-icon.png') }}" width="64" height="64" alt="PaQueueKa app icon">
+            <h1 class="name name--app" id="q-title">PaQueueKa</h1>
+            <p class="app-lede">A queue app for badminton and pickleball open play, on iOS and Android.</p>
+            <p class="app-body">I designed it, built it and ship it myself. It takes the whiteboard, the clipboard and the “who’s next?” arguments out of open play.</p>
+            <div class="app-actions">
+                <a class="button button--lime" href="{{ links.app_store }}" target="_blank" rel="noopener">App Store</a>
+                <a class="button button--line" href="{{ links.play_store }}" target="_blank" rel="noopener">Google Play</a>
+                <a class="button button--line" href="{{ links.paqueueka }}" target="_blank" rel="noopener">paqueueka.info</a>
             </div>
         </div>
-        <figure class="q-hero-phone">
-            <div class="phone phone--lg">
-                <img src="{{ shot('board-800.webp') }}" srcset="{{ shot('board-400.webp') }} 400w, {{ shot('board-800.webp') }} 800w" sizes="(min-width: 960px) 24vw, 62vw" width="400" height="870" fetchpriority="high" decoding="async" alt="PaQueueKa session screen for Friday Open Play: 11 players, 2 courts, a join code, both courts free and two sets planned in Next Up.">
-            </div>
+        <figure class="app-visual app-visual--single">
+            <div class="phone"><img src="{{ shot('board-800.webp') }}" srcset="{{ shot('board-400.webp') }} 400w, {{ shot('board-800.webp') }} 800w" sizes="(min-width: 960px) 24vw, 70vw" width="400" height="870" fetchpriority="high" decoding="async" alt="PaQueueKa session screen for Friday Open Play: 11 players, 2 courts, a join code, both courts free and two sets planned in Next Up."></div>
         </figure>
     </div>
-    <div class="line-band line-band--hero line-band--solo" aria-hidden="true"><i data-line="q"></i></div>
 </section>
 
-{# ── Q1 · Why ───────────────────────────────────────────────────────────── #}
-<section class="line-section line-section--q q-route" id="q-why" data-station="q-why" data-line="q" aria-labelledby="q-why-title">
-    <div class="why">
-        <span class="station-stop roundel" data-line="q" aria-hidden="true">Q1</span>
-        <h2 class="d-title" id="q-why-title">Why I built it</h2>
-        <div class="why-body">
-            <p class="about-lede">I play badminton. Open play is the best part of the week and the most chaotic: twenty people, three courts, and a host trying to remember who has waited longest.</p>
-            <p>Every group solves it with a whiteboard or a paddle stack, and every group argues about it. I wanted a phone to do the fair part, so the host can play too. PaQueueKa started as a fix for my own sessions. It now runs badminton and pickleball, with fees, clubs and rankings on top.</p>
-        </div>
+<section class="chapter" id="why" data-room="#f2f3f1" data-tone="light" aria-labelledby="why-title">
+    <h2 class="section-title" id="why-title">Why I built it</h2>
+    <div class="chapter-body">
+        <p class="statement statement--sm">I play badminton. Open play is the best part of the week and the most chaotic: twenty people, three courts, and a host trying to remember who has waited longest.</p>
+        <p>Every group solves it with a whiteboard or a paddle stack, and every group argues about it. I wanted a phone to do the fair part, so the host gets to play too. PaQueueKa started as a fix for my own sessions. It now runs badminton and pickleball, with fees, clubs and rankings on top.</p>
     </div>
 </section>
 
-{# ── Q2 · One session ───────────────────────────────────────────────────── #}
-<section class="line-section line-section--q q-route ride" id="q-ride" data-station="q-ride" data-line="q" aria-labelledby="q-ride-title">
-    <div class="ride-head">
-        <span class="station-stop roundel" data-line="q" aria-hidden="true">Q2</span>
-        <h2 class="d-title" id="q-ride-title">One session, start to finish</h2>
-    </div>
-
+<section class="chapter ride" id="session" data-room="#f2f3f1" data-tone="light" aria-labelledby="ride-title">
+    <h2 class="section-title" id="ride-title">One session, start to finish</h2>
     <div class="ride-grid" data-ride>
         <ol class="ride-steps">
-            <li class="ride-step" data-shot="rotation">
-                <h3><span class="roundel" data-line="q">Q2·1</span>Set up the session</h3>
-                <p>Pick the sport, singles or doubles, how many courts and how scoring works. Then choose how the queue rotates.</p>
-                <div class="ride-inline phone"><img src="{{ shot('rotation-400.webp') }}" width="400" height="870" loading="lazy" decoding="async" alt="New session form: Friday Open Play, pickleball, doubles, two courts, one set, with PaQueueKa Rotation selected."></div>
+            {% for key, title, body, alt in [
+                ('rotation', 'Set up the session', 'Pick the sport, singles or doubles, how many courts and how scoring works. Then choose how the queue rotates.', 'New session form: Friday Open Play, pickleball, doubles, two courts, one set, with PaQueueKa Rotation selected.'),
+                ('live', 'Run the courts', 'Players join from their own phones with a six-character code or a QR. Every court shows who is on, drawn on the court itself, with a running clock.', 'Court 1 live for seven seconds, four players placed on a pickleball court diagram.'),
+                ('nextup', 'Plan who’s next', 'Next Up projects the coming sets for every court, so nobody has to ask. Deploy a set to a free court in one tap, or add one by hand.', 'Next Up with two planned sets and a Deploy to Court 2 button, above a queue of eight waiting players.'),
+                ('score', 'Score, then rotate', 'Enter the score or just pick the winner. Saving it rotates the queue: players go to the back and the next match is ready.', 'Who won? screen with 11 to 9 entered and a Save and rotate queue button.'),
+                ('fees', 'Split the fees', 'Court fee and shuttles in, shares out: by matches played, equally, per match or a flat rate. Mark people paid as they settle.', 'Fees screen: a 2,000 peso court fee and 300 for balls, totalling 2,300 pesos, split by matches played.'),
+            ] %}
+            <li class="ride-step" data-shot="{{ key }}">
+                <h3><span class="ride-n">{{ '%02d' % loop.index }}</span>{{ title }}</h3>
+                <p>{{ body }}</p>
+                <div class="ride-inline phone"><img src="{{ shot(key ~ '-400.webp') }}" width="400" height="870" loading="lazy" decoding="async" alt="{{ alt }}"></div>
             </li>
-            <li class="ride-step" data-shot="live">
-                <h3><span class="roundel" data-line="q">Q2·2</span>Run the courts</h3>
-                <p>Players join from their own phones with a six-character code or a QR. Every court shows who is on, drawn on the court itself, with a running clock.</p>
-                <div class="ride-inline phone"><img src="{{ shot('live-400.webp') }}" width="400" height="870" loading="lazy" decoding="async" alt="Court 1 live for seven seconds, four players placed on a pickleball court diagram."></div>
-            </li>
-            <li class="ride-step" data-shot="nextup">
-                <h3><span class="roundel" data-line="q">Q2·3</span>Plan who’s next</h3>
-                <p>Next Up projects the coming sets for every court, so nobody has to ask. Deploy a set to a free court in one tap, or add one by hand.</p>
-                <div class="ride-inline phone"><img src="{{ shot('nextup-400.webp') }}" width="400" height="870" loading="lazy" decoding="async" alt="Next Up with two planned sets and a Deploy to Court 2 button, above a queue of eight waiting players."></div>
-            </li>
-            <li class="ride-step" data-shot="score">
-                <h3><span class="roundel" data-line="q">Q2·4</span>Score, then rotate</h3>
-                <p>Enter the score or just pick the winner. Saving it rotates the queue: players go to the back and the next match is ready.</p>
-                <div class="ride-inline phone"><img src="{{ shot('score-400.webp') }}" width="400" height="870" loading="lazy" decoding="async" alt="Who won? screen with 11 to 9 entered and a Save and rotate queue button."></div>
-            </li>
-            <li class="ride-step" data-shot="fees">
-                <h3><span class="roundel" data-line="q">Q2·5</span>Split the fees</h3>
-                <p>Court fee and shuttles in, shares out: by matches played, equally, per match or a flat rate. Mark people paid as they settle.</p>
-                <div class="ride-inline phone"><img src="{{ shot('fees-400.webp') }}" width="400" height="870" loading="lazy" decoding="async" alt="Fees screen: a 2,000 peso court fee and 300 for balls, totalling 2,300 pesos, split by matches played."></div>
-            </li>
+            {% endfor %}
         </ol>
-
         <figure class="ride-phone" aria-hidden="true">
-            <div class="phone phone--lg" data-ride-phone>
+            <div class="phone" data-ride-phone>
                 {% for name in ['rotation', 'live', 'nextup', 'score', 'fees'] %}
                 <img src="{{ shot(name ~ '-800.webp') }}" width="400" height="870" alt="" loading="lazy" decoding="async" data-shot-img="{{ name }}"{% if loop.first %} class="is-on"{% endif %}>
                 {% endfor %}
             </div>
-            <figcaption class="ride-caption">Real screens, demo session</figcaption>
+            <figcaption>Real screens, demo session</figcaption>
         </figure>
     </div>
 </section>
 
-{# ── Q3 · Rotation modes ────────────────────────────────────────────────── #}
-<section class="line-section line-section--q q-route" id="q-modes" data-station="q-modes" data-line="q" aria-labelledby="q-modes-title">
-    <div class="modes">
-        <span class="station-stop roundel" data-line="q" aria-hidden="true">Q3</span>
-        <h2 class="d-title" id="q-modes-title">Rotation modes</h2>
-        <p class="d-intro">Every group plays differently, so Pro Host sessions get three ways to fill a court.</p>
-        <p class="mode-legend" aria-hidden="true">
-            <span><i class="key key--played"></i>Just played</span>
-            <span><i class="key key--won"></i>Won, stays on</span>
-            <span><i class="key key--wait"></i>Waiting</span>
-        </p>
-        <ol class="mode-list">
-            <li class="mode is-played" data-mode="balanced">
-                <div class="mode-queue" aria-hidden="true"><span class="mode-court">Next on court</span><i></i><i></i><i></i><i></i><i></i><i></i></div>
-                <h3>PaQueueKa Rotation</h3>
-                <p>Balances skill, games played and who has partnered recently, so the same pairs don’t keep landing together.</p>
-            </li>
-            <li class="mode is-played" data-mode="fifo">
-                <div class="mode-queue" aria-hidden="true"><span class="mode-court">Next on court</span><i></i><i></i><i></i><i></i><i></i><i></i></div>
-                <h3>First in, first out</h3>
-                <p>Strict queue order. Whoever has waited longest plays next.</p>
-            </li>
-            <li class="mode is-played" data-mode="challenger">
-                <div class="mode-queue" aria-hidden="true"><span class="mode-court">Next on court</span><i></i><i></i><i></i><i></i><i></i><i></i></div>
-                <h3>Challenger’s Court</h3>
-                <p>Winners hold the court, and the host sets for how long.</p>
-            </li>
-        </ol>
-    </div>
+<section class="chapter" id="modes" data-room="#f2f3f1" data-tone="light" aria-labelledby="modes-title">
+    <h2 class="section-title" id="modes-title">Rotation modes</h2>
+    <p class="chapter-intro">Every group plays differently, so Pro Host sessions get three ways to fill a court.</p>
+    <p class="mode-legend" aria-hidden="true">
+        <span><i class="key key--played"></i>Just played</span>
+        <span><i class="key key--won"></i>Won, stays on</span>
+        <span><i class="key key--wait"></i>Waiting</span>
+    </p>
+    <ol class="mode-list">
+        {% for mode, title, body in [
+            ('balanced', 'PaQueueKa Rotation', 'Balances skill, games played and who has partnered recently, so the same pairs don’t keep landing together.'),
+            ('fifo', 'First in, first out', 'Strict queue order. Whoever has waited longest plays next.'),
+            ('challenger', 'Challenger’s Court', 'Winners hold the court, and the host sets for how long.'),
+        ] %}
+        <li class="mode is-played" data-mode="{{ mode }}">
+            <div class="mode-queue" aria-hidden="true"><span class="mode-court">Next on court</span><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <h3>{{ title }}</h3>
+            <p>{{ body }}</p>
+        </li>
+        {% endfor %}
+    </ol>
 </section>
 
-{# ── Q4 · Stack ─────────────────────────────────────────────────────────── #}
-<section class="line-section line-section--q q-route" id="q-stack" data-station="q-stack" data-line="q" aria-labelledby="q-stack-title">
-    <div class="stack">
-        <span class="station-stop roundel" data-line="q" aria-hidden="true">Q4</span>
-        <h2 class="d-title" id="q-stack-title">Under the hood</h2>
-        <p class="d-intro">One codebase for both stores, a Postgres backend, and a lot of tests, because a queue that’s wrong once loses the room.</p>
-        <dl class="spec">
-            <div><dt>App</dt><dd>React Native with Expo and Expo Router</dd></div>
-            <div><dt>Language</dt><dd>TypeScript</dd></div>
-            <div><dt>Backend</dt><dd>Supabase: Postgres, auth and edge functions</dd></div>
-            <div><dt>Live updates</dt><dd>Realtime Postgres changes, so every phone sees the same courts</dd></div>
-            <div><dt>State</dt><dd>Zustand</dd></div>
-            <div><dt>Tests</dt><dd>About 5,600 Jest tests in about 600 suites</dd></div>
-            <div><dt>Beyond sessions</dt><dd>Discover for finding clubs nearby; clubs, persistent rankings and a shared ledger with Pro Host</dd></div>
-        </dl>
-    </div>
+<section class="chapter" id="stack" data-room="#f2f3f1" data-tone="light" aria-labelledby="stack-title">
+    <h2 class="section-title" id="stack-title">Under the hood</h2>
+    <p class="chapter-intro">One codebase for both stores, a Postgres backend, and a lot of tests, because a queue that’s wrong once loses the room.</p>
+    <dl class="spec">
+        <div><dt>App</dt><dd>React Native with Expo and Expo Router</dd></div>
+        <div><dt>Language</dt><dd>TypeScript</dd></div>
+        <div><dt>Backend</dt><dd>Supabase: Postgres, auth and edge functions</dd></div>
+        <div><dt>Live updates</dt><dd>Realtime Postgres changes, so every phone sees the same courts</dd></div>
+        <div><dt>State</dt><dd>Zustand</dd></div>
+        <div><dt>Tests</dt><dd>About 5,600 Jest tests in about 600 suites</dd></div>
+        <div><dt>Beyond sessions</dt><dd>Discover for finding clubs nearby; clubs, persistent rankings and a shared ledger with Pro Host</dd></div>
+    </dl>
 </section>
 
-{# ── Q5 · Get it ────────────────────────────────────────────────────────── #}
-<section class="line-section line-section--q q-route get" id="q-get" data-station="q-get" data-line="q" aria-labelledby="q-get-title">
-    <div class="get-inner">
-        <span class="station-stop roundel" data-line="q" aria-hidden="true">Q5</span>
-        <h2 class="get-title" id="q-get-title">Sino next? The app knows.</h2>
-        <p>Free to download, no ads, and no account needed to play. Hosts who run a regular group can subscribe to Pro Host for clubs, rankings, templates, a saved roster and a shared ledger.</p>
-        <div class="q-actions">
-            <a class="button button--q" href="{{ links.app_store }}" target="_blank" rel="noopener">App Store <svg width="18" height="18" aria-hidden="true"><use href="#i-out"/></svg></a>
-            <a class="button button--q" href="{{ links.play_store }}" target="_blank" rel="noopener">Google Play <svg width="18" height="18" aria-hidden="true"><use href="#i-out"/></svg></a>
-            <a class="button button--ghost" href="{{ links.paqueueka }}" target="_blank" rel="noopener">paqueueka.info <svg width="18" height="18" aria-hidden="true"><use href="#i-out"/></svg></a>
-        </div>
+<section class="app app--close" data-room="#0f2318" data-tone="court" aria-labelledby="get-title">
+    <h2 class="statement" id="get-title">Sino next? The app knows.</h2>
+    <p class="app-body">Free to download, no ads, and no account needed to play. Hosts who run a regular group can subscribe to Pro Host for clubs, rankings, templates, a saved roster and a shared ledger.</p>
+    <div class="app-actions">
+        <a class="button button--lime" href="{{ links.app_store }}" target="_blank" rel="noopener">App Store</a>
+        <a class="button button--line" href="{{ links.play_store }}" target="_blank" rel="noopener">Google Play</a>
+        <a class="button button--line" href="{{ links.paqueueka }}" target="_blank" rel="noopener">paqueueka.info</a>
     </div>
 </section>
 

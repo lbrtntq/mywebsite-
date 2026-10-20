@@ -40,6 +40,8 @@ The site owner watches how things move and puts them in order. His own photo cap
 - Photos: Cloudinary URLs via the gallery DB (`/api/gallery`).
 - App screens: real 2.0 iOS captures with demo-session data in `app/static/img/paqueueka/` (extracted from the founder's own simulator recordings).
 - App icon: `app/static/img/paqueueka/app-icon.png`.
+- "About 5,600 Jest tests in about 600 suites": PaQueueKa repo CLAUDE.md ("~600 suites / ~5600 tests").
+- "No ads", "no account required to play", Pro Host features: PaQueueKa store listing (`store/listing.md`).
 - Links: github.com/lbrtntq, linkedin.com/in/albert-antioquia-ph, youtube.com/@LBRTNTQ, paqueueka.info, App Store id6770977347, Play com.paqueueka.app.
 - Absent and never to be invented: employer names, clients, awards, download counts, ratings, testimonials, user numbers, email address.
 

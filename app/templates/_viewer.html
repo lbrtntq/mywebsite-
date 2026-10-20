@@ -1,13 +1,9 @@
-{% set viewer_items = stations | list %}
-{% if poster and poster.id not in (stations | map(attribute='id') | list) %}{% set viewer_items = [poster] + viewer_items %}{% endif %}
-
 <dialog class="viewer" data-viewer aria-labelledby="viewer-title">
     <div class="viewer-top">
-        <span class="roundel roundel--dark" data-line="p" data-viewer-code></span>
-        <h2 class="viewer-title" id="viewer-title" data-viewer-title></h2>
         <span class="viewer-count" data-viewer-count></span>
-        <button class="icon-button icon-button--dark" type="button" data-viewer-close aria-label="Close photo">
-            <svg width="24" height="24"><use href="#i-close"/></svg>
+        <h2 class="viewer-title" id="viewer-title" data-viewer-title></h2>
+        <button class="icon-button" type="button" data-viewer-close aria-label="Close photo">
+            <svg width="26" height="26"><use href="#i-close"/></svg>
         </button>
     </div>
 

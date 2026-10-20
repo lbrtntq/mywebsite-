@@ -46,16 +46,17 @@ Flask portfolio website with a service layer pattern, Cloudinary image storage, 
 
 Pure HTML/CSS/JS with Jinja2 templates. No build step, no JS dependencies.
 
-The public site is designed as a transit system: three lines (P photography red, D data blue, Q PaQueueKa green) meet at an interchange (the home hero). Product truth lives in `PRODUCT.md`; the design direction lives in `.impeccable/surfaces/`.
+The public site is photo-first: each photograph gets its own screen, and the page background ("the wall") takes its colour from the photograph in view. Product truth lives in `PRODUCT.md`, the design system in `DESIGN.md`, the direction contract in `.impeccable/surfaces/`.
 
-- `app/templates/base.html` — public layout: SEO/OG/JSON-LD, icon sprite, the fixed **strip map** header and the **route map** dialog. Both are drawn from a `route` list of stops that each view builds (`_stop()` in `app/routes/main.py`); a stop's `id` must match a `data-station` element on the page.
-- `app/templates/index.html` — interchange hero, Photography line (timetable + one station per photo), Data line, Q line teaser. `_viewer.html` is the full-screen photo viewer; `_exits.html` is the footer.
+- `app/templates/base.html` — public layout: SEO/OG/JSON-LD, icon sprite, nav, full-screen phone menu.
+- `app/templates/index.html` — cover (first landscape photo full-bleed), photograph index, one "room" per photo, about, PaQueueKa chapter, engineering. `_viewer.html` is the full-screen photo viewer; `_footer.html` is the closing.
 - `app/templates/tech.html` — the full PaQueueKa case study (`/tech`).
 - `app/templates/admin/_layout.html` + `app/static/css/style.css` — the admin pages keep the old layout and stylesheet.
-- `app/static/css/site.css` — all public styles; tokens on `:root`. Self-hosted Archivo variable font in `app/static/fonts/`.
-- `app/static/js/site.js` — strip-map tracking, route map, reveals, timetable hover preview, viewer, pipeline diagram, `/tech` sticky phone. Every effect has a reduced-motion path.
+- `app/static/css/site.css` — all public styles. Tones (`dark`, `light`, `court`) are set only on `:root[data-tone]`; sections carry `data-tone`/`data-room` as data for the JS.
+- `app/static/js/site.js` — room colours (samples a 12×12 Cloudinary thumbnail per photo and picks the dominant hue), nav, index hover preview, viewer, `/tech` sticky phone and rotation modes. Every effect has a reduced-motion path.
+- Self-hosted Albert Sans in `app/static/fonts/`.
 
-`app/services/photo_service.py` turns gallery rows into stations: it asks Cloudinary (`fl_getinfo`) for each photo's size once and caches it in memory (uploads prime the cache), and derives a place name from the title/caption. App screenshots in `app/static/img/paqueueka/` are frames from real PaQueueKa 2.0 simulator recordings (demo session data).
+`app/services/photo_service.py` turns gallery rows into view data: it asks Cloudinary (`fl_getinfo`) for each photo's size once and caches it in memory (uploads prime the cache), and derives a place name from the title/caption. App screenshots in `app/static/img/paqueueka/` are frames from real PaQueueKa 2.0 simulator recordings (demo session data).
 
 ### Image Storage
 

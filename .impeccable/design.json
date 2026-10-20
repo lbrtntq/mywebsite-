@@ -4,486 +4,524 @@
   "title": "Design System: Albert Antioquia",
   "extensions": {
     "colorMeta": {
-      "wall": {
+      "night": {
         "role": "neutral",
-        "displayName": "Enamel Wall",
-        "canonical": "oklch(95.6% 0.004 236.5)",
+        "displayName": "Night Navy",
+        "canonical": "#0b111a",
         "tonalRamp": [
-          "#0a0b0d",
-          "#252728",
-          "#434547",
-          "#646668",
-          "#87898b",
-          "#abaeb0",
-          "#ced1d3",
-          "#eceff1"
-        ]
+          "#172336",
+          "#273d5d",
+          "#3a5988",
+          "#4a73b0",
+          "#7393c4",
+          "#9bb2d5",
+          "#c6d3e7",
+          "#edf1f7"
+        ],
+        "note": "Tone \"dark\". Photo rooms replace the wall with hsl(dominant hue, 24-48%, 13%) computed in the browser."
       },
-      "wall-deep": {
+      "day": {
         "role": "neutral",
-        "displayName": "Grout Wall",
-        "canonical": "oklch(92.2% 0.007 233.6)",
+        "displayName": "Daylight",
+        "canonical": "#f2f3f1",
         "tonalRamp": [
-          "#080c0e",
-          "#232729",
-          "#424648",
-          "#626769",
-          "#858a8d",
-          "#aaafb2",
-          "#cdd2d5",
-          "#eaeff2"
-        ]
+          "#262923",
+          "#42473d",
+          "#616859",
+          "#7d8773",
+          "#9ca394",
+          "#b8bdb2",
+          "#d6d9d3",
+          "#f2f3f1"
+        ],
+        "note": "Tone \"light\". Pale photo rooms use hsl(dominant hue, 26-42%, 87%)."
       },
-      "sign-panel": {
+      "court": {
         "role": "neutral",
-        "displayName": "Sign Panel",
-        "canonical": "oklch(98.4% 0.003 228.8)",
+        "displayName": "Court Green",
+        "canonical": "#0f2318",
         "tonalRamp": [
-          "#0a0b0c",
-          "#252727",
-          "#444546",
-          "#656667",
-          "#88898a",
-          "#acaeaf",
-          "#cfd1d2",
-          "#edeff0"
+          "#173625",
+          "#285d40",
+          "#3a885d",
+          "#4baf78",
+          "#74c398",
+          "#9bd4b5",
+          "#c6e7d5",
+          "#edf7f2"
         ]
       },
-      "ink": {
-        "role": "neutral",
-        "displayName": "Signage Ink",
-        "canonical": "oklch(18.9% 0.004 164.6)",
-        "tonalRamp": [
-          "#0a0c0b",
-          "#252726",
-          "#434644",
-          "#646765",
-          "#878a88",
-          "#acafad",
-          "#cfd2d0",
-          "#ecefee"
-        ]
-      },
-      "ink-2": {
-        "role": "neutral",
-        "displayName": "Ink 2",
-        "canonical": "oklch(39.6% 0.008 159.7)",
-        "tonalRamp": [
-          "#080c0a",
-          "#232825",
-          "#414643",
-          "#626864",
-          "#858b87",
-          "#aab0ac",
-          "#cdd3cf",
-          "#eaf0ec"
-        ]
-      },
-      "ink-3": {
-        "role": "neutral",
-        "displayName": "Ink 3",
-        "canonical": "oklch(51.1% 0.010 156.9)",
-        "tonalRamp": [
-          "#080c09",
-          "#232825",
-          "#414743",
-          "#626864",
-          "#858b87",
-          "#a9b0ab",
-          "#ccd3ce",
-          "#eaf0ec"
-        ]
-      },
-      "tunnel": {
-        "role": "neutral",
-        "displayName": "Tunnel",
-        "canonical": "oklch(15.3% 0.002 197.0)",
-        "tonalRamp": [
-          "#0a0b0b",
-          "#252727",
-          "#444545",
-          "#656666",
-          "#888989",
-          "#adaeae",
-          "#d0d1d1",
-          "#edefef"
-        ]
-      },
-      "on-dark": {
-        "role": "neutral",
-        "displayName": "On-dark",
-        "canonical": "oklch(96.0% 0.004 121.6)",
-        "tonalRamp": [
-          "#0b0b0a",
-          "#262725",
-          "#454543",
-          "#666664",
-          "#898987",
-          "#adaeab",
-          "#d0d1ce",
-          "#eeefec"
-        ]
-      },
-      "on-dark-2": {
-        "role": "neutral",
-        "displayName": "On-dark 2",
-        "canonical": "oklch(79.4% 0.006 153.7)",
-        "tonalRamp": [
-          "#090c0a",
-          "#242725",
-          "#434643",
-          "#636764",
-          "#868a87",
-          "#abafac",
-          "#ced2cf",
-          "#ebf0ed"
-        ]
-      },
-      "line-p": {
-        "role": "primary",
-        "displayName": "Signal Red, Line P",
-        "canonical": "oklch(56.5% 0.206 29.2)",
-        "tonalRamp": [
-          "#2d0000",
-          "#5a0000",
-          "#8a0000",
-          "#bc1b12",
-          "#e64c3d",
-          "#ff7f6d",
-          "#ffaa99",
-          "#ffcebd"
-        ]
-      },
-      "line-d": {
-        "role": "primary",
-        "displayName": "Platform Blue, Line D",
-        "canonical": "oklch(49.4% 0.139 251.1)",
-        "tonalRamp": [
-          "#00062f",
-          "#002558",
-          "#004585",
-          "#1668b1",
-          "#4d8dcf",
-          "#7bb2ee",
-          "#a6d6ff",
-          "#c9f3ff"
-        ]
-      },
-      "line-q": {
-        "role": "primary",
-        "displayName": "Court Green, Line Q",
-        "canonical": "oklch(51.8% 0.142 137.4)",
-        "tonalRamp": [
-          "#001200",
-          "#033100",
-          "#1e5300",
-          "#397819",
-          "#629b4b",
-          "#8cbe79",
-          "#b4e0a4",
-          "#d5fcc7"
-        ]
-      },
-      "line-q-deep": {
-        "role": "primary",
-        "displayName": "Court Green Deep (hover)",
-        "canonical": "oklch(45.0% 0.123 137.4)",
-        "tonalRamp": [
-          "#001200",
-          "#053000",
-          "#215204",
-          "#43752e",
-          "#6b985a",
-          "#94bb85",
-          "#bbddae",
-          "#dbf9d1"
-        ]
-      },
-      "line-d-lit": {
-        "role": "tertiary",
-        "displayName": "Lit Blue",
-        "canonical": "oklch(63.2% 0.133 247.9)",
-        "tonalRamp": [
-          "#000a26",
-          "#00284d",
-          "#064878",
-          "#226aa5",
-          "#3c8ed5",
-          "#6eb4f5",
-          "#9ad7ff",
-          "#bef5ff"
-        ]
-      },
-      "line-q-lit": {
-        "role": "tertiary",
-        "displayName": "Lit Green",
-        "canonical": "oklch(65.1% 0.166 135.5)",
-        "tonalRamp": [
-          "#001100",
-          "#093000",
-          "#235200",
-          "#3d770f",
-          "#599e2b",
-          "#82c35e",
-          "#aae58c",
-          "#ccffb1"
-        ]
-      },
-      "exit-yellow": {
+      "lime": {
         "role": "secondary",
-        "displayName": "Exit Yellow",
-        "canonical": "oklch(86.7% 0.177 90.8)",
+        "displayName": "Court Lime",
+        "canonical": "#c6f24e",
         "tonalRamp": [
-          "#130900",
-          "#342400",
-          "#584200",
-          "#7f6200",
-          "#a88400",
-          "#d3a800",
-          "#fccb00",
-          "#ffea5b"
+          "#364705",
+          "#5d7c09",
+          "#88b50d",
+          "#afe911",
+          "#c3f146",
+          "#d4f57a",
+          "#e7f9b3",
+          "#f7fde7"
+        ]
+      },
+      "lime-bright": {
+        "role": "secondary",
+        "displayName": "Bright Lime",
+        "canonical": "#d8fb78",
+        "tonalRamp": [
+          "#374a02",
+          "#5f8104",
+          "#8bbc06",
+          "#b4f307",
+          "#c7f93e",
+          "#d7fb74",
+          "#e8fdb0",
+          "#f8fee6"
+        ]
+      },
+      "teal-glow": {
+        "role": "primary",
+        "displayName": "Teal Glow",
+        "canonical": "#6fd3c9",
+        "tonalRamp": [
+          "#123b37",
+          "#1f665f",
+          "#2d948a",
+          "#3abfb2",
+          "#67d0c6",
+          "#92ded6",
+          "#c0ece8",
+          "#ebf9f8"
+        ]
+      },
+      "teal-deep": {
+        "role": "primary",
+        "displayName": "Deep Teal",
+        "canonical": "#0c7a74",
+        "tonalRamp": [
+          "#074642",
+          "#0c7973",
+          "#11b0a8",
+          "#16e4d8",
+          "#4aede4",
+          "#7df2ec",
+          "#b5f8f4",
+          "#e8fdfc"
+        ]
+      },
+      "night-ink": {
+        "role": "neutral",
+        "displayName": "Night Ink",
+        "canonical": "#eceff2",
+        "tonalRamp": [
+          "#1f262d",
+          "#36424f",
+          "#4f6173",
+          "#667d94",
+          "#899cae",
+          "#aab8c5",
+          "#cfd6de",
+          "#f0f2f5"
+        ]
+      },
+      "night-ink-2": {
+        "role": "neutral",
+        "displayName": "Night Ink, Secondary",
+        "canonical": "#aeb7c0",
+        "tonalRamp": [
+          "#21262b",
+          "#3a424b",
+          "#55616d",
+          "#6d7d8d",
+          "#8f9ca8",
+          "#afb8c1",
+          "#d1d6db",
+          "#f1f2f4"
+        ]
+      },
+      "night-ink-3": {
+        "role": "neutral",
+        "displayName": "Night Ink, Tertiary",
+        "canonical": "#8a949e",
+        "tonalRamp": [
+          "#23262a",
+          "#3c4248",
+          "#58616a",
+          "#717d89",
+          "#929ca5",
+          "#b1b8be",
+          "#d2d6da",
+          "#f1f2f3"
+        ]
+      },
+      "day-ink": {
+        "role": "neutral",
+        "displayName": "Day Ink",
+        "canonical": "#0e141a",
+        "tonalRamp": [
+          "#1b2632",
+          "#2e4256",
+          "#44617e",
+          "#577da2",
+          "#7e9cb9",
+          "#a2b8cd",
+          "#cad6e2",
+          "#eef2f6"
+        ]
+      },
+      "day-ink-2": {
+        "role": "neutral",
+        "displayName": "Day Ink, Secondary",
+        "canonical": "#46505a",
+        "tonalRamp": [
+          "#21262b",
+          "#3a424b",
+          "#55616d",
+          "#6d7d8d",
+          "#8f9ca8",
+          "#afb8c1",
+          "#d1d6db",
+          "#f1f2f4"
+        ]
+      },
+      "day-ink-3": {
+        "role": "neutral",
+        "displayName": "Day Ink, Tertiary",
+        "canonical": "#5c6670",
+        "tonalRamp": [
+          "#22262a",
+          "#3c4249",
+          "#57616a",
+          "#717d89",
+          "#929ca5",
+          "#b1b8bf",
+          "#d2d6da",
+          "#f1f2f4"
+        ]
+      },
+      "court-ink": {
+        "role": "neutral",
+        "displayName": "Court Ink",
+        "canonical": "#eef3ea",
+        "tonalRamp": [
+          "#25311c",
+          "#405430",
+          "#5e7b46",
+          "#799f5b",
+          "#99b780",
+          "#b5cba4",
+          "#d5e1cb",
+          "#f2f6ef"
+        ]
+      },
+      "court-ink-2": {
+        "role": "neutral",
+        "displayName": "Court Ink, Secondary",
+        "canonical": "#b9c8b3",
+        "tonalRamp": [
+          "#242c20",
+          "#3e4d38",
+          "#5a7051",
+          "#749169",
+          "#95ab8c",
+          "#b3c3ac",
+          "#d3ddd0",
+          "#f1f4f0"
+        ]
+      },
+      "court-ink-3": {
+        "role": "neutral",
+        "displayName": "Court Ink, Tertiary",
+        "canonical": "#93a68d",
+        "tonalRamp": [
+          "#242b22",
+          "#3e4a3a",
+          "#5b6d55",
+          "#758c6e",
+          "#95a88f",
+          "#b3c0af",
+          "#d4dbd1",
+          "#f1f4f1"
+        ]
+      },
+      "night-rule": {
+        "role": "neutral",
+        "displayName": "Night Hairline",
+        "canonical": "rgba(236, 239, 242, 0.14)"
+      },
+      "day-rule": {
+        "role": "neutral",
+        "displayName": "Day Hairline",
+        "canonical": "rgba(14, 20, 26, 0.14)"
+      },
+      "court-rule": {
+        "role": "neutral",
+        "displayName": "Court Hairline",
+        "canonical": "rgba(238, 243, 234, 0.16)"
+      },
+      "viewer-black": {
+        "role": "neutral",
+        "displayName": "Viewer Black",
+        "canonical": "#06090d",
+        "tonalRamp": [
+          "#182434",
+          "#2a3f5b",
+          "#3d5c85",
+          "#4f76ab",
+          "#7796c0",
+          "#9db4d2",
+          "#c7d4e5",
+          "#eef2f7"
         ]
       }
     },
     "typographyMeta": {
       "display": {
-        "displayName": "Station Name",
-        "purpose": "Station names only: home hero, /tech hero, footer terminus."
+        "displayName": "Display",
+        "purpose": "The cover name (\"Albert\" at 250) and the /tech title at 300."
+      },
+      "display-emphasis": {
+        "displayName": "Display Emphasis",
+        "purpose": "The emphasised half of the name (\"Antioquia\" at 600)."
       },
       "headline": {
-        "displayName": "Line Title",
-        "purpose": "Line and closing titles, paired with a line plate and 8px rule."
+        "displayName": "Headline",
+        "purpose": "Section titles."
+      },
+      "statement": {
+        "displayName": "Statement",
+        "purpose": "The personal statement and the /tech close; a small variant opens chapter bodies."
       },
       "title": {
-        "displayName": "Station Title",
-        "purpose": "Individual photo stations and ride steps."
+        "displayName": "Title",
+        "purpose": "Photo captions; index rows and footer links use neighbouring steps."
       },
-      "lede": {
-        "displayName": "Lede",
-        "purpose": "One opening paragraph per stop."
+      "body-lg": {
+        "displayName": "Body Large",
+        "purpose": "Section intros, chapter bodies, about text."
       },
       "body": {
         "displayName": "Body",
-        "purpose": "Reading copy, 40-62ch, usually ink-2."
+        "purpose": "Running text, tabular numerals."
       },
       "label": {
         "displayName": "Label",
-        "purpose": "Metadata, captions, row descriptions."
+        "purpose": "Numerals, places, dates, notes, credits. Sentence case, never tracked."
       },
-      "code": {
-        "displayName": "Station Code",
-        "purpose": "Codes inside roundels (P1, D2, Q3); tabular."
+      "mono": {
+        "displayName": "Mono",
+        "purpose": "Repository and code names only."
       }
     },
     "shadows": [
       {
-        "name": "sign-lip",
-        "value": "0 1px 0 rgba(18,20,19,0.14), 0 0 0 1px rgba(18,20,19,0.06)",
-        "purpose": "Enamel sign panel mounted on the tile wall."
-      },
-      {
-        "name": "lightbox-drop",
-        "value": "0 1px 0 rgba(11,12,12,0.2), 0 26px 50px -26px rgba(11,12,12,0.45)",
-        "purpose": "Poster lightbox; paired with a blurred screen-blend backlight of its photo."
-      },
-      {
-        "name": "device-cast",
-        "value": "inset 0 0 0 1.5px #3a3e3c, 0 2px 0 #0b0c0c, 0 30px 50px -24px rgba(11,12,12,0.55)",
-        "purpose": "Phone frames holding app captures."
+        "name": "device-drop",
+        "value": "inset 0 0 0 1px rgba(255, 255, 255, 0.08), 0 40px 70px -36px rgba(0, 0, 0, 0.6)",
+        "purpose": "The phone frame only."
       },
       {
         "name": "preview-lift",
-        "value": "0 18px 40px -18px rgba(11,12,12,0.6)",
-        "purpose": "Cursor-following timetable preview only."
+        "value": "0 24px 50px -20px rgba(0, 0, 0, 0.55)",
+        "purpose": "The cursor-following index preview only."
       },
       {
-        "name": "focus-ring",
-        "value": "outline: 3px solid #121413; outline-offset: 3px; box-shadow: 0 0 0 6px #ffcd00",
-        "purpose": "Global focus-visible; on dark grounds an on-dark or yellow outline with no halo."
+        "name": "nav-hairline",
+        "value": "0 1px 0 var(--rule)",
+        "purpose": "Bottom edge of the solid nav."
       }
     ],
     "motion": [
       {
-        "name": "ease-out",
+        "name": "ease",
         "value": "cubic-bezier(0.16, 1, 0.3, 1)",
-        "purpose": "Default for entrances, reveals, row slides."
+        "purpose": "Everything that moves: links, rows, cover entrance, viewer grow, phone crossfade scale."
       },
       {
         "name": "ease-in-out",
         "value": "cubic-bezier(0.65, 0, 0.35, 1)",
-        "purpose": "Travelling motion: pipeline train, queue tokens changing slots."
+        "purpose": "Wall colour changes and rotation-diagram moves."
       },
       {
-        "name": "rise",
-        "value": "translateY(105%) to 0, 900ms ease-out, second line +90ms",
-        "purpose": "Station name rises out of its sign line (overflow-clipped)."
+        "name": "tone-time",
+        "value": "900ms",
+        "purpose": "Wall colour transition between rooms (text colour 600ms)."
       },
       {
-        "name": "track-draw",
-        "value": "scaleX(0) to 1 from left, 1000ms ease-out, staggered 90ms; SVG route paths draw on desktop",
-        "purpose": "Line bands and hero routes draw in."
+        "name": "cover-settle",
+        "value": "1800ms scale(1.06) to 1",
+        "purpose": "Cover photograph entrance."
       },
       {
-        "name": "platform-doors",
-        "value": "clip-path inset(0 50% 0 50%) to inset(0), 1100ms ease-out; image scale 1.08 to 1 over 1400ms",
-        "purpose": "Photos open from the centre as they arrive; the poster on load."
+        "name": "cover-rise",
+        "value": "1000ms, 0.35em rise, 90ms stagger",
+        "purpose": "Name lines entrance; lede and foot fade up 12px at 300ms and 500ms."
       },
       {
-        "name": "led-scramble",
-        "value": "A-Z0-9 characters settle left to right over 360ms, 40ms ticks",
-        "purpose": "Strip-map Now readout, once per station change."
+        "name": "index-preview-lerp",
+        "value": "k = 0.16 per frame, lean clamped to 6deg",
+        "purpose": "Preview follows the cursor; reduced motion snaps (k = 1, no lean)."
       },
       {
-        "name": "row-slide",
-        "value": "padding-left +12-14px, 260ms ease-out; arrow translateX 4-5px",
-        "purpose": "Hover on ruled rows (hover-capable devices only)."
+        "name": "viewer-grow",
+        "value": "560ms",
+        "purpose": "Viewer image grows from the clicked thumbnail; skipped with reduced motion."
+      },
+      {
+        "name": "phone-crossfade",
+        "value": "450ms opacity, 700ms scale 0.985 to 1",
+        "purpose": "/tech sticky phone screen change."
+      },
+      {
+        "name": "modes-replay",
+        "value": "700ms, 450ms delay",
+        "purpose": "Rotation diagram replays on arrival and hover; static with reduced motion."
       },
       {
         "name": "reduced-motion",
-        "value": "all animations and transitions 1ms, single iteration; JS effects skip to final state",
-        "purpose": "Required path for every motion."
+        "value": "all animation and transition durations 1ms",
+        "purpose": "Global prefers-reduced-motion fallback."
       }
     ],
     "breakpoints": [
       {
-        "name": "compact",
-        "value": "719px"
-      },
-      {
         "name": "single-column",
-        "value": "959px"
+        "value": "max-width: 959px"
       },
       {
-        "name": "strip-plates",
-        "value": "1100px"
+        "name": "phone",
+        "value": "max-width: 719px"
       }
     ]
   },
   "components": [
     {
-      "name": "Q Button",
+      "name": "Lime Button",
       "kind": "button",
-      "refersTo": "button-q",
-      "description": "Primary action on the Q line (store links). Solid court green, wide 700 label.",
-      "html": "<a class=\"ds-btn ds-btn-q\" href=\"#\">App Store <svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M8 16L17 7M9 7h8v8\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"square\"/></svg></a>",
-      "css": ":host{--wall:#eef1f3;--wall-deep:#e1e6e9;--ink:#121413;--ink-2:#434845;--ink-3:#626864;--tunnel:#0b0c0c;--on-dark:#f1f2ef;--on-dark-2:#b9bdba;--p:#d42a1f;--d:#0a63ad;--q:#3b7a1b;--exit:#ffcd00;--font:'Archivo',ui-sans-serif,system-ui,sans-serif;--ease-out:cubic-bezier(0.16,1,0.3,1);} .ds-btn{display:inline-flex;align-items:center;gap:0.6em;min-height:48px;padding:0 1.15em;border-radius:6px;font-family:var(--font);font-weight:700;font-stretch:108%;text-decoration:none;transition:transform 160ms var(--ease-out),background-color 160ms ease,color 160ms ease;} .ds-btn:active{transform:scale(0.97);} .ds-btn-q{background:var(--q);color:#fff;} .ds-btn-q:hover{background:#2f6414;} :focus-visible{outline:3px solid var(--ink);outline-offset:3px;box-shadow:0 0 0 6px var(--exit);}"
+      "refersTo": "button-lime",
+      "description": "Primary action inside PaQueueKa (court) rooms only.",
+      "html": "<div class=\"ds-court\"><a class=\"ds-btn ds-btn-lime\" href=\"#\">App Store</a></div>",
+      "css": ".ds-court { background: #0f2318; padding: 32px; } .ds-btn { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 0 26px; border-radius: 999px; font-family: var(--font, 'Albert Sans', ui-sans-serif, system-ui, sans-serif); font-weight: 600; font-size: 1.0625rem; text-decoration: none; transition: background-color 200ms ease, color 200ms ease, transform 200ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-btn:active { transform: scale(0.97); } .ds-btn:focus-visible { outline: 2px solid #c6f24e; outline-offset: 4px; } .ds-btn-lime { background: #c6f24e; color: #0f2318; } .ds-btn-lime:hover { background: #d8fb78; }"
     },
     {
-      "name": "Ghost Button",
+      "name": "Outline Button",
       "kind": "button",
-      "refersTo": "button-ghost",
-      "description": "Secondary action: 2px inset ink stroke that inverts on hover.",
-      "html": "<a class=\"ds-btn ds-btn-ghost\" href=\"#\">paqueueka.info <svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M8 16L17 7M9 7h8v8\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"square\"/></svg></a>",
-      "css": ":host{--wall:#eef1f3;--wall-deep:#e1e6e9;--ink:#121413;--ink-2:#434845;--ink-3:#626864;--tunnel:#0b0c0c;--on-dark:#f1f2ef;--on-dark-2:#b9bdba;--p:#d42a1f;--d:#0a63ad;--q:#3b7a1b;--exit:#ffcd00;--font:'Archivo',ui-sans-serif,system-ui,sans-serif;--ease-out:cubic-bezier(0.16,1,0.3,1);} .ds-btn{display:inline-flex;align-items:center;gap:0.6em;min-height:48px;padding:0 1.15em;border-radius:6px;font-family:var(--font);font-weight:700;font-stretch:108%;text-decoration:none;transition:transform 160ms var(--ease-out),background-color 160ms ease,color 160ms ease;} .ds-btn:active{transform:scale(0.97);} .ds-btn-ghost{box-shadow:inset 0 0 0 2px var(--ink);color:var(--ink);background:transparent;} .ds-btn-ghost:hover{background:var(--ink);color:var(--wall);} :focus-visible{outline:3px solid var(--ink);outline-offset:3px;box-shadow:0 0 0 6px var(--exit);}"
+      "refersTo": "button-line",
+      "description": "Secondary action in any room; a 1.5px inset ring of the ink at 45%.",
+      "html": "<div class=\"ds-court\"><a class=\"ds-btn ds-btn-line\" href=\"#\">Google Play</a></div>",
+      "css": ".ds-court { background: #0f2318; padding: 32px; } .ds-btn { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 0 26px; border-radius: 999px; font-family: var(--font, 'Albert Sans', ui-sans-serif, system-ui, sans-serif); font-weight: 600; font-size: 1.0625rem; text-decoration: none; transition: background-color 200ms ease, color 200ms ease, transform 200ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-btn:active { transform: scale(0.97); } .ds-btn:focus-visible { outline: 2px solid #c6f24e; outline-offset: 4px; } .ds-btn-line { color: #eef3ea; box-shadow: inset 0 0 0 1.5px color-mix(in srgb, #eef3ea 45%, transparent); } .ds-btn-line:hover { background: #eef3ea; color: #0f2318; }"
     },
     {
-      "name": "Line Plates and Roundels",
-      "kind": "chip",
-      "refersTo": "line-plate",
-      "description": "Signage atoms: P/D/Q line plates, a station-code roundel, and a yellow exit plate.",
-      "html": "<div class=\"ds-atoms\"><span class=\"ds-plate\" style=\"--line:#d42a1f\">P</span><span class=\"ds-plate\" style=\"--line:#0a63ad\">D</span><span class=\"ds-plate\" style=\"--line:#3b7a1b\">Q</span><span class=\"ds-roundel\" style=\"--line:#d42a1f\">P3</span><span class=\"ds-exit\">A</span></div>",
-      "css": ":host{--wall:#eef1f3;--wall-deep:#e1e6e9;--ink:#121413;--ink-2:#434845;--ink-3:#626864;--tunnel:#0b0c0c;--on-dark:#f1f2ef;--on-dark-2:#b9bdba;--p:#d42a1f;--d:#0a63ad;--q:#3b7a1b;--exit:#ffcd00;--font:'Archivo',ui-sans-serif,system-ui,sans-serif;--ease-out:cubic-bezier(0.16,1,0.3,1);} .ds-atoms{display:flex;align-items:center;gap:10px;font-family:var(--font);font-variant-numeric:tabular-nums;} .ds-plate{display:inline-grid;place-items:center;width:2em;height:2em;border-radius:0.3em;background:var(--line);color:#fff;font-weight:800;font-stretch:112%;font-size:0.95rem;line-height:1;} .ds-roundel{display:inline-grid;place-items:center;min-width:2.6em;height:1.9em;padding:0 0.5em;border:3px solid var(--line);border-radius:999px;background:#fff;color:var(--ink);font-size:0.8125rem;font-weight:800;font-stretch:105%;line-height:1;letter-spacing:0.01em;} .ds-exit{display:grid;place-items:center;width:48px;height:48px;border-radius:6px;background:var(--exit);color:var(--ink);font-size:1.5rem;font-weight:900;font-stretch:112%;}"
+      "name": "Text Link",
+      "kind": "custom",
+      "description": "Underline draws in from the left; the arrow nudges right.",
+      "html": "<div class=\"ds-day\"><a class=\"ds-text-link\" href=\"#\">How it works, start to finish <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 12h15M13 6l6 6-6 6\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\"/></svg></a></div>",
+      "css": ".ds-day { background: #f2f3f1; color: #0e141a; padding: 32px; } .ds-text-link { display: inline-flex; align-items: center; gap: 0.5em; font-family: var(--font, 'Albert Sans', ui-sans-serif, system-ui, sans-serif); font-size: 1.125rem; font-weight: 500; color: inherit; text-decoration: none; padding-bottom: 2px; background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: background-size 400ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-text-link svg { transition: transform 400ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-text-link:hover, .ds-text-link:focus-visible { background-size: 100% 1px; } .ds-text-link:hover svg { transform: translateX(4px); } .ds-text-link:focus-visible { outline: 2px solid #0c7a74; outline-offset: 4px; }"
     },
     {
-      "name": "Strip Map",
+      "name": "Navigation",
       "kind": "nav",
-      "refersTo": "strip-map",
-      "description": "Fixed in-car route display: home roundel, stops on line-coloured track (ghost, passed, current), Now readout, Map pill.",
-      "html": "<header class=\"ds-strip\"><span class=\"ds-home\">AA</span><ol class=\"ds-stops\"><li class=\"ds-stop is-passed\" style=\"--line:#d42a1f\"><span></span></li><li class=\"ds-stop is-current\" style=\"--line:#d42a1f\"><span></span></li><li class=\"ds-stop\" style=\"--line:#0a63ad\"><span></span></li><li class=\"ds-stop\" style=\"--line:#3b7a1b\"><span></span></li></ol><p class=\"ds-now\"><b>Now</b> Crossing</p><button class=\"ds-map\" type=\"button\"><i></i>Map</button></header>",
-      "css": ":host{--wall:#eef1f3;--wall-deep:#e1e6e9;--ink:#121413;--ink-2:#434845;--ink-3:#626864;--tunnel:#0b0c0c;--on-dark:#f1f2ef;--on-dark-2:#b9bdba;--p:#d42a1f;--d:#0a63ad;--q:#3b7a1b;--exit:#ffcd00;--font:'Archivo',ui-sans-serif,system-ui,sans-serif;--ease-out:cubic-bezier(0.16,1,0.3,1);} .ds-strip{display:grid;grid-template-columns:auto minmax(0,1fr) auto auto;align-items:center;gap:20px;height:56px;padding:0 20px;background:var(--ink);color:var(--on-dark);font-family:var(--font);} .ds-home{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:var(--wall);color:var(--ink);font-size:0.8rem;font-weight:900;font-stretch:125%;} .ds-stops{display:flex;align-items:center;margin:0;padding:0;list-style:none;} .ds-stop{position:relative;flex:1 1 0;display:flex;justify-content:flex-end;} .ds-stop:first-child{flex:0 0 auto;} .ds-stop:not(:first-child)::before{content:'';position:absolute;left:0;right:9px;top:50%;height:4px;margin-top:-2px;background:var(--line);opacity:0.35;} .ds-stop.is-passed::before{opacity:0.6;} .ds-stop.is-current::before{opacity:1;} .ds-stop span{display:block;width:12px;height:12px;margin:9px 5px;border-radius:50%;background:var(--ink);box-shadow:inset 0 0 0 2px var(--line);transition:transform 200ms var(--ease-out);} .ds-stop.is-passed span{background:color-mix(in srgb,var(--line) 45%,var(--ink));} .ds-stop.is-current span{background:#fff;box-shadow:inset 0 0 0 3px var(--line),0 0 0 3px var(--ink),0 0 0 5px #fff;transform:scale(1.15);} .ds-stop:hover span{transform:scale(1.35);} .ds-now{margin:0;font-size:0.875rem;font-weight:700;font-stretch:108%;white-space:nowrap;} .ds-now b{margin-right:0.6em;color:var(--on-dark-2);font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;} .ds-map{display:inline-flex;align-items:center;gap:0.55em;min-height:40px;padding:0 0.9em;border:0;border-radius:999px;background:none;color:inherit;font:inherit;font-size:0.875rem;font-weight:700;box-shadow:inset 0 0 0 2px rgba(241,242,239,0.4);cursor:pointer;} .ds-map:hover{box-shadow:inset 0 0 0 2px var(--on-dark);} .ds-map i{width:14px;height:13px;background:linear-gradient(#d42a1f 0 3px,transparent 3px 5px,#3d8fd6 5px 8px,transparent 8px 10px,#5ea52f 10px 13px);} .ds-map:focus-visible{outline:3px solid var(--on-dark);outline-offset:3px;}"
+      "refersTo": "nav",
+      "description": "Name plus four links; white over the cover, solid room colour with a hairline after it.",
+      "html": "<header class=\"ds-nav\"><a class=\"ds-nav-name\" href=\"#\">Albert Antioquia</a><nav class=\"ds-nav-links\"><a href=\"#\" aria-current=\"page\">Photographs</a><a href=\"#\">About</a><a href=\"#\">PaQueueKa</a><a href=\"#\">Contact</a></nav></header>",
+      "css": ".ds-nav { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 68px; padding: 0 clamp(20px, 4.5vw, 72px); background: #0b111a; color: #eceff2; box-shadow: 0 1px 0 rgba(236, 239, 242, 0.14); font-family: var(--font, 'Albert Sans', ui-sans-serif, system-ui, sans-serif); } .ds-nav a { color: inherit; text-decoration: none; } .ds-nav-name { font-weight: 600; letter-spacing: -0.01em; } .ds-nav-links { display: flex; gap: clamp(20px, 3vw, 40px); } .ds-nav-links a { font-size: 0.9375rem; font-weight: 500; padding-bottom: 2px; background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: background-size 400ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-nav-links a:hover, .ds-nav-links a[aria-current=page] { background-size: 100% 1px; } .ds-nav a:focus-visible { outline: 2px solid #6fd3c9; outline-offset: 4px; }"
     },
     {
-      "name": "Change Line Row",
+      "name": "Photograph Index",
       "kind": "custom",
-      "refersTo": "sign-panel",
-      "description": "Interchange row on the sign panel: line plate, name and description, line-coloured arrow; lifts to white and slides on hover.",
-      "html": "<div class=\"ds-sign\"><p class=\"ds-label\">Change here for</p><a class=\"ds-change\" href=\"#\" style=\"--line:#d42a1f\"><span class=\"ds-plate\">P</span><span class=\"ds-text\"><b>Photography</b><span>6 stops in Hong Kong, Macau, Bangkok</span></span><span class=\"ds-arrow\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 12h13M13 6l6 6-6 6\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"square\"/></svg></span></a></div>",
-      "css": ":host{--wall:#eef1f3;--wall-deep:#e1e6e9;--ink:#121413;--ink-2:#434845;--ink-3:#626864;--tunnel:#0b0c0c;--on-dark:#f1f2ef;--on-dark-2:#b9bdba;--p:#d42a1f;--d:#0a63ad;--q:#3b7a1b;--exit:#ffcd00;--font:'Archivo',ui-sans-serif,system-ui,sans-serif;--ease-out:cubic-bezier(0.16,1,0.3,1);} .ds-sign{padding:32px;background:#f8fafb;border-radius:4px;box-shadow:0 1px 0 rgba(18,20,19,0.14),0 0 0 1px rgba(18,20,19,0.06);font-family:var(--font);color:var(--ink);max-width:560px;} .ds-label{margin:0 0 8px;font-size:0.875rem;font-weight:700;color:var(--ink-2);} .ds-change{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;min-height:64px;padding:8px 4px;border-top:2px solid var(--ink);border-bottom:1px solid rgba(18,20,19,0.18);color:inherit;text-decoration:none;transition:background-color 180ms ease,padding 260ms var(--ease-out);} .ds-change:hover{background:#fff;padding-left:12px;} .ds-plate{display:inline-grid;place-items:center;width:2em;height:2em;border-radius:0.3em;background:var(--line);color:#fff;font-weight:800;font-stretch:112%;font-size:0.95rem;} .ds-text{display:grid;line-height:1.25;} .ds-text b{font-weight:800;font-stretch:110%;font-size:1.125rem;} .ds-text span{color:var(--ink-2);font-size:0.9375rem;} .ds-arrow{color:var(--line);display:grid;transition:transform 260ms var(--ease-out);} .ds-change:hover .ds-arrow{transform:translateX(4px);} :focus-visible{outline:3px solid var(--ink);outline-offset:3px;box-shadow:0 0 0 6px var(--exit);}"
+      "refersTo": "index-row",
+      "description": "Every photograph by title between hairlines; other rows dim and the hovered title slides.",
+      "html": "<ol class=\"ds-index\"><li><button class=\"ds-index-row\"><span class=\"ds-n\">01</span><span class=\"ds-t\">After the Fireworks</span><span class=\"ds-p\">Hong Kong</span></button></li><li><button class=\"ds-index-row\"><span class=\"ds-n\">02</span><span class=\"ds-t\">Urban Pulse at Studio City</span><span class=\"ds-p\">Macau</span></button></li><li><button class=\"ds-index-row\"><span class=\"ds-n\">03</span><span class=\"ds-t\">Flow Through Senado</span><span class=\"ds-p\">Macau</span></button></li></ol>",
+      "css": ".ds-index { list-style: none; margin: 0; padding: 24px; background: #0b111a; color: #eceff2; font-family: var(--font, 'Albert Sans', ui-sans-serif, system-ui, sans-serif); } .ds-index li:last-child .ds-index-row { border-bottom: 1px solid rgba(236, 239, 242, 0.14); } .ds-index-row { display: grid; grid-template-columns: 4rem minmax(0, 1fr) auto; align-items: baseline; gap: 16px; width: 100%; padding: 18px 0; border: 0; border-top: 1px solid rgba(236, 239, 242, 0.14); background: none; color: inherit; font: inherit; text-align: left; cursor: pointer; transition: opacity 300ms ease; } .ds-n { font-size: 0.875rem; color: #8a949e; } .ds-t { font-size: clamp(1.35rem, 2.6vw, 2.1rem); font-weight: 300; letter-spacing: -0.02em; line-height: 1.15; transition: transform 500ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-p { font-size: 0.9375rem; color: #aeb7c0; } .ds-index:hover .ds-index-row:not(:hover) { opacity: 0.38; } .ds-index-row:hover .ds-t { transform: translateX(14px); } .ds-index-row:focus-visible { outline: 2px solid #6fd3c9; outline-offset: 4px; }"
     },
     {
-      "name": "Timetable Row",
+      "name": "Footer Link",
       "kind": "custom",
-      "refersTo": "roundel",
-      "description": "Ruled list row for photo stations: roundel code, title, place, tabular date; inverts to ink on hover.",
-      "html": "<ol class=\"ds-tt\"><li><button class=\"ds-row\" type=\"button\"><span class=\"ds-roundel\">P4</span><span class=\"ds-title\">Crossing</span><span class=\"ds-place\">Hong Kong</span><span class=\"ds-date\">12 Mar 2025</span></button></li><li><button class=\"ds-row\" type=\"button\"><span class=\"ds-roundel\">P5</span><span class=\"ds-title\">Vertical City</span><span class=\"ds-place\">Hong Kong</span><span class=\"ds-date\">02 Apr 2025</span></button></li></ol>",
-      "css": ":host{--wall:#eef1f3;--wall-deep:#e1e6e9;--ink:#121413;--ink-2:#434845;--ink-3:#626864;--tunnel:#0b0c0c;--on-dark:#f1f2ef;--on-dark-2:#b9bdba;--p:#d42a1f;--d:#0a63ad;--q:#3b7a1b;--exit:#ffcd00;--font:'Archivo',ui-sans-serif,system-ui,sans-serif;--ease-out:cubic-bezier(0.16,1,0.3,1);} .ds-tt{margin:0;padding:0;list-style:none;border-top:3px solid var(--ink);font-family:var(--font);font-variant-numeric:tabular-nums;color:var(--ink);} .ds-row{display:grid;grid-template-columns:4.5rem minmax(0,1fr) 8rem 7.5rem;align-items:center;gap:16px;width:100%;min-height:64px;padding:8px 8px 8px 0;border:0;border-bottom:1px solid rgba(18,20,19,0.2);background:none;color:inherit;font:inherit;text-align:left;cursor:pointer;transition:background-color 140ms ease,color 140ms ease,padding 260ms var(--ease-out);} .ds-row:hover{background:var(--ink);color:var(--on-dark);padding-left:14px;} .ds-row:hover .ds-place,.ds-row:hover .ds-date{color:var(--on-dark-2);} .ds-roundel{display:inline-grid;place-items:center;min-width:2.6em;height:1.9em;padding:0 0.5em;border:3px solid var(--p);border-radius:999px;background:#fff;color:var(--ink);font-size:0.8125rem;font-weight:800;font-stretch:105%;line-height:1;} .ds-title{font-size:1.2rem;font-weight:700;font-stretch:108%;} .ds-place{color:var(--ink-2);} .ds-date{color:var(--ink-3);font-size:0.9375rem;} :focus-visible{outline:3px solid var(--ink);outline-offset:3px;box-shadow:0 0 0 6px var(--exit);}"
+      "description": "Large light name whose weight animates 300 to 500 on hover; arrow turns accent.",
+      "html": "<div class=\"ds-foot\"><a class=\"ds-fl\" href=\"#\"><span class=\"ds-fl-name\">GitHub</span><span class=\"ds-fl-desc\">Code, dbt experiments and this site</span><span class=\"ds-fl-arrow\"><svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M7 17L17 7M8 7h9v9\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\"/></svg></span></a></div>",
+      "css": ".ds-foot { background: #0b111a; color: #eceff2; padding: 24px; font-family: var(--font, 'Albert Sans', ui-sans-serif, system-ui, sans-serif); } .ds-fl { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto; align-items: center; gap: 24px; padding: 26px 0; border-top: 1px solid rgba(236, 239, 242, 0.14); border-bottom: 1px solid rgba(236, 239, 242, 0.14); color: inherit; text-decoration: none; } .ds-fl-name { font-size: clamp(1.9rem, 4.4vw, 3.25rem); font-weight: 300; letter-spacing: -0.03em; line-height: 1; transition: font-weight 500ms cubic-bezier(0.16, 1, 0.3, 1), letter-spacing 500ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-fl-desc { color: #aeb7c0; } .ds-fl-arrow { display: inline-flex; color: #8a949e; transition: transform 500ms cubic-bezier(0.16, 1, 0.3, 1), color 200ms ease; } .ds-fl:hover .ds-fl-name { font-weight: 500; letter-spacing: -0.035em; } .ds-fl:hover .ds-fl-arrow { color: #6fd3c9; transform: translate(4px, -4px); } .ds-fl:focus-visible { outline: 2px solid #6fd3c9; outline-offset: 4px; }"
     },
     {
-      "name": "Exit Row",
+      "name": "Repo Row",
       "kind": "custom",
-      "refersTo": "exit-plate",
-      "description": "Footer exit on plain ink: yellow lettered plate, destination, out-arrow that turns yellow on hover.",
-      "html": "<div class=\"ds-foot\"><a class=\"ds-exitrow\" href=\"#\"><span class=\"ds-exit\">A</span><span class=\"ds-to\"><b>GitHub</b><span>Code, dbt experiments and this site</span></span><svg class=\"ds-out\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M8 16L17 7M9 7h8v8\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"square\"/></svg></a></div>",
-      "css": ":host{--wall:#eef1f3;--wall-deep:#e1e6e9;--ink:#121413;--ink-2:#434845;--ink-3:#626864;--tunnel:#0b0c0c;--on-dark:#f1f2ef;--on-dark-2:#b9bdba;--p:#d42a1f;--d:#0a63ad;--q:#3b7a1b;--exit:#ffcd00;--font:'Archivo',ui-sans-serif,system-ui,sans-serif;--ease-out:cubic-bezier(0.16,1,0.3,1);} .ds-foot{padding:24px;background:var(--ink);color:var(--on-dark);font-family:var(--font);} .ds-exitrow{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:16px;min-height:84px;padding:14px 4px;border-top:3px solid var(--on-dark);border-bottom:1px solid rgba(241,242,239,0.18);color:inherit;text-decoration:none;transition:padding 260ms var(--ease-out);} .ds-exitrow:hover{padding-left:12px;} .ds-exit{display:grid;place-items:center;width:48px;height:48px;border-radius:6px;background:var(--exit);color:var(--ink);font-size:1.5rem;font-weight:900;font-stretch:112%;} .ds-to{display:grid;line-height:1.3;} .ds-to b{font-size:1.25rem;font-weight:800;font-stretch:110%;} .ds-to span{color:var(--on-dark-2);font-size:0.9375rem;} .ds-out{color:var(--on-dark-2);transition:transform 260ms var(--ease-out),color 160ms ease;} .ds-exitrow:hover .ds-out{color:var(--exit);transform:translate(3px,-3px);} .ds-exitrow:focus-visible{outline:3px solid var(--exit);outline-offset:3px;}"
+      "description": "Mono repository name, description and outbound arrow on a hairline; accent on hover.",
+      "html": "<div class=\"ds-day\"><a class=\"ds-repo\" href=\"#\"><code class=\"ds-repo-name\">dbt_demo_university</code><span class=\"ds-repo-desc\">A small star schema for university teaching data.</span><span class=\"ds-repo-arrow\"><svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M7 17L17 7M8 7h9v9\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\"/></svg></span></a></div>",
+      "css": ".ds-day { background: #f2f3f1; color: #0e141a; padding: 24px; font-family: var(--font, 'Albert Sans', ui-sans-serif, system-ui, sans-serif); } .ds-repo { display: grid; grid-template-columns: minmax(0, 24rem) minmax(0, 1fr) 24px; align-items: center; gap: 24px; padding: 22px 0; border-top: 1px solid rgba(14, 20, 26, 0.14); border-bottom: 1px solid rgba(14, 20, 26, 0.14); color: inherit; text-decoration: none; } .ds-repo-name { font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace; font-size: 0.95rem; transition: color 200ms ease; } .ds-repo-desc { color: #46505a; } .ds-repo-arrow { display: inline-flex; color: #5c6670; transition: transform 400ms cubic-bezier(0.16, 1, 0.3, 1), color 200ms ease; } .ds-repo:hover .ds-repo-name, .ds-repo:hover .ds-repo-arrow { color: #0c7a74; } .ds-repo:hover .ds-repo-arrow { transform: translate(3px, -3px); } .ds-repo:focus-visible { outline: 2px solid #0c7a74; outline-offset: 4px; }"
     },
     {
-      "name": "Ride Link",
-      "kind": "card",
-      "refersTo": "ink-slab",
-      "description": "Dark slab linking to the next line or page, with a lit-green arrow.",
-      "html": "<a class=\"ds-ride\" href=\"#\">Ride the whole Q line<span>How a session runs, start to finish</span><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 12h13M13 6l6 6-6 6\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"square\"/></svg></a>",
-      "css": ":host{--wall:#eef1f3;--wall-deep:#e1e6e9;--ink:#121413;--ink-2:#434845;--ink-3:#626864;--tunnel:#0b0c0c;--on-dark:#f1f2ef;--on-dark-2:#b9bdba;--p:#d42a1f;--d:#0a63ad;--q:#3b7a1b;--exit:#ffcd00;--font:'Archivo',ui-sans-serif,system-ui,sans-serif;--ease-out:cubic-bezier(0.16,1,0.3,1);} .ds-ride{display:grid;grid-template-columns:1fr auto;align-items:center;column-gap:16px;max-width:520px;padding:18px 20px;border-radius:8px;background:var(--ink);color:var(--on-dark);font-family:var(--font);font-size:1.125rem;font-weight:800;font-stretch:110%;text-decoration:none;} .ds-ride span{grid-column:1;font-size:0.9375rem;font-weight:500;font-stretch:100%;color:var(--on-dark-2);} .ds-ride svg{grid-column:2;grid-row:1/span 2;color:#7cc24a;transition:transform 260ms var(--ease-out);} .ds-ride:hover svg{transform:translateX(5px);} :focus-visible{outline:3px solid var(--ink);outline-offset:3px;box-shadow:0 0 0 6px var(--exit);}"
+      "name": "Rotation Diagram",
+      "kind": "custom",
+      "description": "Six players on a hairline track: played = ink, won = accent, waiting = hollow ring.",
+      "html": "<div class=\"ds-day\"><div class=\"ds-queue\"><span class=\"ds-court-label\">Next on court</span><i class=\"ds-won\" style=\"--s:0\"></i><i style=\"--s:1\"></i><i style=\"--s:2\"></i><i style=\"--s:3\"></i><i style=\"--s:4\"></i><i class=\"ds-played\" style=\"--s:5\"></i></div></div>",
+      "css": ".ds-day { background: #f2f3f1; color: #0e141a; padding: 32px; font-family: var(--font, 'Albert Sans', ui-sans-serif, system-ui, sans-serif); } .ds-queue { position: relative; height: 64px; max-width: 340px; } .ds-queue::before { content: ''; position: absolute; left: 0; right: 0; top: 22px; height: 1px; background: rgba(14, 20, 26, 0.14); } .ds-queue::after { content: ''; position: absolute; left: 0; top: 44px; width: calc(16% + 34px); height: 6px; border: 1px solid #5c6670; border-top: 0; } .ds-court-label { position: absolute; left: 0; top: 54px; font-size: 0.75rem; color: #5c6670; } .ds-queue i { position: absolute; top: 12px; left: calc(var(--s) * 16%); width: 20px; height: 20px; border-radius: 50%; background: #f2f3f1; box-shadow: inset 0 0 0 1.5px #5c6670; transition: left 700ms cubic-bezier(0.65, 0, 0.35, 1); } .ds-queue i.ds-played { background: #0e141a; box-shadow: none; } .ds-queue i.ds-won { background: #0c7a74; box-shadow: none; } .ds-queue:hover i.ds-won { left: 16%; }"
     }
   ],
   "narrative": {
-    "northStar": "The Interchange",
-    "overview": "The public site is one Hong Kong / Bangkok metro station. Three lines (P for photography, D for data, Q for PaQueueKa) meet at a single interchange, and that interchange is Albert's name. Everything on the page is wayfinding: a cool enamel wall, signage-black ink, line colours used as state, lettered yellow exits, and a black tunnel where photographs are viewed. Nothing is decorative unless a real station would carry it.\n\nDensity is calm and generous: big wide station names, long rows of timetable, photographs given most of a viewport. The interface recedes around the photos; colour is spent on lines, plates and dots, never on surfaces. Navigation is a single system: the strip map at the top, the P/D/Q line plates, the route-map dialog and the footer exits are all drawn from the same `route` list, so every page shows the same stops in the same order.\n\nMotion is mechanical and transit-literal: a name rises out of its sign line, tracks draw in, photos open like platform doors, and the in-car display scrambles once when the current station changes. Every motion has a reduced-motion path that lands on the final state.",
+    "northStar": "Borrowed Light",
+    "overview": "The photographs are the site. Every surface is a wall in a room built for one photograph, and the wall takes its colour from that photograph: a deep shade of the picture's dominant hue for night shots, a pale tint for daylight ones. Between the photo rooms sit three fixed tones: night navy for the cover, index and footer, daylight for the personal statement and engineering, and a court green that belongs to PaQueueKa alone. Scrolling is a slow change of light, never a change of chrome.\n\nEverything else steps back. One typeface, Albert Sans, does all the work in two registers: very light display (250 to 300) against a 600 for the few words that carry emphasis. Structure is hairline rules, never boxes. There are no cards, no badges, no themed signage, and no decorative icons; the only glyphs are thin line arrows and a close mark. Motion exists to arrive (the cover), to follow (the wall colour, the index preview) and to explain (the /tech phone and rotation diagrams), and every effect has a reduced-motion path.\n\nDensity is low and the air is generous: a photograph gets a whole screen, captions are quiet, and section padding runs to a fifth of the viewport. The rejected direction this replaces was themed chrome (a transit map with line colours, strips and exits); nothing of that vocabulary returns.",
     "keyCharacteristics": [
-      "Cool enamel-tile wall, signage-black ink, three line colours as the only saturation.",
-      "Archivo variable, stretched wide (wdth 105-125) and heavy (800) for station names; normal width for reading.",
-      "Tabular figures everywhere: station codes, dates and counts line up.",
-      "Thick line strokes (6px rails, 8px rules, 10px bands) and dot-on-track stations.",
-      "Only the current station is ever fully lit; passed stations dim, unvisited ones are hollow ghosts.",
-      "One navigation system, drawn from one route list.",
-      "A black tunnel viewer for photographs."
+      "The wall colour follows the photograph in view, on `:root` only, over 900ms.",
+      "Three tones (dark, light, court), each a full set of ink, rule and accent.",
+      "Albert Sans only; display light 250–300 against 600 for emphasis.",
+      "Photographs at their own aspect ratio, one per screen, in a four-step composition cycle.",
+      "Hairline rules for every list; pill buttons; square photographs.",
+      "Entrance motion on the cover only; no scroll reveals."
     ],
     "rules": [
       {
-        "name": "The Colour-Is-State Rule",
-        "body": "P, D and Q carry only section identity and station state. They never fill a large surface, never decorate a heading, and never appear outside their own line's content (the Map glyph, which shows all three lines, is the one place they sit together).",
+        "name": "The Borrowed Light Rule",
+        "body": "Colour is set on `:root` and nowhere else. Sections only carry `data-tone` and `data-room` as data; the section crossing the middle of the viewport sets `html[data-tone]` and `--room`. Photo walls are computed from a 12×12 sample (chroma-weighted hue bins): dark photos get `hsl(hue, 24–48%, 13%)`, light photos `hsl(hue, 26–42%, 87%)`. Hue and saturation vary; lightness never does, so the ink always reads.",
         "section": "colors"
       },
       {
-        "name": "The Exit Rule",
-        "body": "Yellow means \"a way out or an end\". If it is not an exit, a terminus, a buffer or focus, it is not yellow.",
+        "name": "The Fenced Court Rule",
+        "body": "Court green and lime appear only in PaQueueKa rooms. Elsewhere the accent is teal, and buttons are outline only.",
         "section": "colors"
       },
       {
-        "name": "The Lit Station Rule",
-        "body": "Only the current station is fully lit. Passed stops dim (line colour mixed 45% into ink); unvisited stops are hollow ghosts (ink fill, line-coloured ring). States swap in place; nothing slides between them.",
+        "name": "The Accent On Touch Rule",
+        "body": "The accent answers the visitor (hover, focus, selection), marks a state (a won player) or numbers a sequence (the /tech session steps). It never fills a section or a surface.",
         "section": "colors"
       },
       {
-        "name": "The Stretch-Means-Sign Rule",
-        "body": "Width goes up with importance: 125 for station names, 108-122 for titles and row names, 100 for reading. Reading text is never stretched.",
+        "name": "The Two Weights Rule",
+        "body": "Display sizes are light (250–300). Weight 600 is for emphasis at any size; nothing in between is used for headings except the flow and mode titles at 400.",
         "section": "typography"
       },
       {
-        "name": "The Tabular Rule",
-        "body": "Every code, date and count uses tabular figures; codes live in roundels, dates in timetable columns.",
+        "name": "The One Face Rule",
+        "body": "Albert Sans for everything; system monospace only for repository and code names. No second display face, no system display fallback by design.",
         "section": "typography"
       },
       {
-        "name": "The Mounted-Not-Floating Rule",
-        "body": "Shadows describe a physical object on the wall (sign, lightbox, phone). Rows, buttons and sections never get shadows; their state is a fill change.",
+        "name": "The Own Proportions Rule",
+        "body": "A photograph is shown at its own aspect ratio, one per screen. Never crop photographs into a grid, a uniform tile or a card.",
+        "section": "layout"
+      },
+      {
+        "name": "The Flat Wall Rule",
+        "body": "Walls, rows and sections carry no shadow and no border box. Separation is a 1px rule or a change of tone.",
         "section": "elevation"
       }
     ],
     "dos": [
-      "**Do** take every new page's navigation from the shared route list: strip dots, route map and line plates must show the same stops.",
-      "**Do** give every line section its plate, its wide 800 title, its 8px line rule, and a 6px rail with roundel-coded stops.",
-      "**Do** mount copy on the sign panel when it sits over the tiled wall.",
-      "**Do** use tabular figures and roundels for any code, date or count.",
-      "**Do** ship a reduced-motion path for every animation that lands directly on the final state.",
-      "**Do** keep focus visible as a 3px ink outline with a 6px yellow halo (on dark grounds, an on-dark or yellow outline with no halo)."
+      "Do set tone and wall colour on `:root` only and let sections carry them as data.",
+      "Do keep computed photo walls at 13% lightness for dark photographs and 87% for light ones.",
+      "Do show every photograph at its own aspect ratio and cycle large, small, offset and full-height; let landscapes bleed.",
+      "Do set display type light (250–300) and reserve 600 for emphasis.",
+      "Do separate list items with 1px rules at 14–16% ink.",
+      "Do give every motion effect a reduced-motion path; the global fallback collapses durations to 1ms.",
+      "Do use the 900ms in-out curve for wall changes and the long ease-out (cubic-bezier(0.16, 1, 0.3, 1)) for everything that moves."
     ],
     "donts": [
-      "**Don't** use P, D or Q as a background fill, a heading colour, or outside its own line.",
-      "**Don't** use yellow for anything that is not an exit, a terminus or focus.",
-      "**Don't** light more than one station at a time, or animate a highlight sliding between stops.",
-      "**Don't** set body copy directly on the tile pattern.",
-      "**Don't** add shadows to rows, buttons or sections; only wall-mounted objects and devices carry them.",
-      "**Don't** apply this system to the admin pages (app/templates/admin, style.css); they keep their own look."
+      "Don't use court green or a lime fill outside PaQueueKa rooms.",
+      "Don't add scroll-triggered reveals; the cover entrance is the only entrance.",
+      "Don't put photographs in cards, uniform grids or cropped tiles.",
+      "Don't add themed chrome: maps, line colours, badges, signage or decorative icons. Line arrows and the close mark are the whole icon set.",
+      "Don't add a second typeface; monospace is for code names only.",
+      "Don't shadow walls or rows; only the phone and the index preview float.",
+      "Don't add small uppercase labels or eyebrows above headings."
     ]
   }
 }

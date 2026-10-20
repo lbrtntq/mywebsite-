@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-tone="{{ initial_tone | default('dark') }}">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    {% set page_title = page_title | default('Albert Antioquia — data engineer, phone photographer, app builder') %}
-    {% set page_description = page_description | default('Albert Antioquia is a data engineer from the Philippines who shoots cities on his phone and builds PaQueueKa, a queue app for badminton and pickleball.') %}
+    {% set page_title = page_title | default('Albert Antioquia — photographs, data, and PaQueueKa') %}
+    {% set page_description = page_description | default('Albert Antioquia is a data engineer from the Philippines who photographs cities on his phone and builds PaQueueKa, a queue app for badminton and pickleball.') %}
     {% set canonical = url_for(request.endpoint, _external=True) if request.endpoint else request.base_url %}
     <title>{{ page_title }}</title>
     <meta name="description" content="{{ page_description }}">
     <link rel="canonical" href="{{ canonical }}">
-    <meta name="theme-color" content="#121413">
+    <meta name="theme-color" content="#0b111a">
     <meta name="author" content="Albert Antioquia">
 
     <meta property="og:type" content="website">
@@ -28,9 +28,9 @@
     <meta name="twitter:title" content="{{ page_title }}">
     <meta name="twitter:description" content="{{ page_description }}">
 
-    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='img/favicon.svg') }}">
-    <link rel="apple-touch-icon" href="{{ url_for('static', filename='img/apple-touch-icon.png') }}">
-    <link rel="preload" href="{{ url_for('static', filename='fonts/archivo-latin.woff2') }}" as="font" type="font/woff2" crossorigin>
+    <link rel="icon" type="image/svg+xml" href="{{ asset('img/favicon.svg') }}">
+    <link rel="apple-touch-icon" href="{{ asset('img/apple-touch-icon.png') }}">
+    <link rel="preload" href="{{ url_for('static', filename='fonts/albert-sans-latin.woff2') }}" as="font" type="font/woff2" crossorigin>
     <link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
     <link rel="stylesheet" href="{{ asset('css/site.css') }}">
     <script>document.documentElement.classList.add('js');</script>
@@ -54,76 +54,36 @@
     <a class="skip" href="#main">Skip to content</a>
 
     <svg class="sprite" aria-hidden="true" focusable="false">
-        <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></symbol>
-        <symbol id="i-left" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></symbol>
-        <symbol id="i-right" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></symbol>
-        <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></symbol>
-        <symbol id="i-expand" viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></symbol>
-        <symbol id="i-out" viewBox="0 0 24 24"><path d="M8 16L17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></symbol>
+        <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+        <symbol id="i-out" viewBox="0 0 24 24"><path d="M7 17L17 7M8 7h9v9" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+        <symbol id="i-left" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+        <symbol id="i-right" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+        <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
     </svg>
 
-    <header class="strip" data-strip>
-        <a class="strip-home" href="{{ url_for('main.index') }}" aria-label="Albert Antioquia, home">
-            <span class="roundel roundel--home" aria-hidden="true">AA</span>
-        </a>
-
-        <nav class="strip-map" aria-label="Stops on this page">
-            <ol>
-                {% for stop in route %}
-                <li class="stop" data-line="{{ stop.line }}">
-                    <a href="{{ stop.href }}" data-stop="{{ stop.id }}" title="{{ stop.label }}">
-                        <span class="stop-dot" aria-hidden="true"></span>
-                        <span class="visually-hidden">{{ stop.label }}</span>
-                    </a>
-                </li>
-                {% endfor %}
-            </ol>
+    {% set home = '' if request.endpoint == 'main.index' else url_for('main.index') %}
+    <header class="nav" data-nav>
+        <a class="nav-name" href="{{ url_for('main.index') }}">Albert Antioquia</a>
+        <nav class="nav-links" aria-label="Main">
+            <a href="{{ home }}#photographs">Photographs</a>
+            <a href="{{ home }}#about">About</a>
+            <a href="{{ url_for('main.tech') }}"{% if request.endpoint == 'main.tech' %} aria-current="page"{% endif %}>PaQueueKa</a>
+            <a href="#contact">Contact</a>
         </nav>
-
-        <p class="strip-now" aria-hidden="true">
-            <span class="now-label">Now</span>
-            <span class="now-name" data-now>{{ route[0].label if route else '' }}</span>
-        </p>
-
-        {% set home = '' if request.endpoint == 'main.index' else url_for('main.index') %}
-        <ul class="strip-lines" aria-label="Lines">
-            <li><a class="line-plate" data-line="p" href="{{ home }}#photography" aria-label="Photography line">P</a></li>
-            <li><a class="line-plate" data-line="d" href="{{ home }}#about" aria-label="Data line">D</a></li>
-            <li><a class="line-plate" data-line="q" href="{{ '#q-top' if request.endpoint == 'main.tech' else '#paqueueka' }}" aria-label="PaQueueKa line">Q</a></li>
-        </ul>
-
-        <button class="map-button" type="button" aria-haspopup="dialog" aria-controls="route-map" data-open-map>
-            <span class="map-glyph" aria-hidden="true"><i></i><i></i><i></i></span>
-            Map
-        </button>
+        <button class="nav-menu" type="button" aria-haspopup="dialog" aria-controls="menu" data-open-menu>Menu</button>
     </header>
 
-    <dialog class="route-map" id="route-map" aria-label="Route map">
-        <div class="route-map-inner">
-            <div class="route-map-head">
-                <p class="route-map-title">Route map</p>
-                <button class="icon-button" type="button" data-close-map aria-label="Close map">
-                    <svg width="22" height="22"><use href="#i-close"/></svg>
-                </button>
-            </div>
-            <ol class="route-list">
-                {% for stop in route %}
-                <li class="route-stop" data-line="{{ stop.line }}">
-                    <a href="{{ stop.href }}" data-stop-link="{{ stop.id }}">
-                        <span class="route-dot" aria-hidden="true"></span>
-                        {% if stop.code %}<span class="route-code">{{ stop.code }}</span>{% endif %}
-                        <span class="route-name">{{ stop.label }}</span>
-                    </a>
-                </li>
-                {% endfor %}
-            </ol>
-            {% if branch %}
-            <a class="route-branch" href="{{ branch.href }}">
-                <span class="line-plate" data-line="{{ branch.line }}">{{ branch.letter }}</span>
-                {{ branch.label }}
-                <svg width="18" height="18" aria-hidden="true"><use href="#i-arrow"/></svg>
-            </a>
-            {% endif %}
+    <dialog class="menu" id="menu" aria-label="Menu">
+        <div class="menu-inner">
+            <button class="menu-close" type="button" data-close-menu aria-label="Close menu">
+                <svg width="28" height="28" aria-hidden="true"><use href="#i-close"/></svg>
+            </button>
+            <nav class="menu-links" aria-label="Menu">
+                <a href="{{ home }}#photographs">Photographs</a>
+                <a href="{{ home }}#about">About</a>
+                <a href="{{ url_for('main.tech') }}">PaQueueKa</a>
+                <a href="#contact">Contact</a>
+            </nav>
         </div>
     </dialog>
 
@@ -131,10 +91,9 @@
         {% block content %}{% endblock %}
     </main>
 
-    {% include '_exits.html' %}
+    {% include '_footer.html' %}
 
     <script src="{{ asset('js/site.js') }}" defer></script>
-    {% block scripts %}{% endblock %}
 </body>
 
 </html>

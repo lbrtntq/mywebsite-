@@ -10,21 +10,18 @@ related_targets: ["app/templates/tech.html"]
 Audience: recruiters/engineers, fellow builders, the badminton/pickleball crowd, photo viewers; phone-first.
 Job: feel one curious person across photos, data work and PaQueueKa; open a photo, the app, or a profile.
 Proof: six real photos (Cloudinary), real PaQueueKa 2.0 captures, verified links. No invented stats, employers, emails.
+History: the transit-map direction (seed d7f689c4) was rejected by the owner on 2026-10-20 ("overall look… kinda sucks"): too literal, UI chrome over photographs. Replaced by the owner-requested reimagining below; no new roll was run because the owner's feedback pinned the brief (photographs first, no gimmick components).
 
 ## Direction contract
 
-THESIS: Albert's site is a transit system. Three lines (P Photography red, D Data blue, Q PaQueueKa court green) meet at one interchange: his name. Refuses the dark dev portfolio and the cream editorial photo journal.
+THESIS: The photographs are the site. The page takes its light from the photograph in view, from fireworks at night to daylight streets. Refuses themed chrome (maps, badges, signage) and the card-grid portfolio.
 
-OWN-WORLD: HK/Bangkok wayfinding. Cool enamel-tile white wall with faint grout grid, signage-black ink, three line colours as the only saturation, yellow exit plates. Archivo (wide 800 for station names, normal for text), tabular figures for codes and dates. Station roundels (line letter + number), thick line strokes, ghost stations for unvisited. Night viewer for photos is the tunnel: black.
+OWN-WORLD: Night navy #0b111a, daylight #f2f3f1, court green #0f2318 for PaQueueKa only, teal accent (lime inside the court room). Rooms sampled from each photo's average colour in the browser. One face, Albert Sans: light 250–300 display against 600 for emphasis; hairline rules; no cards, no badges, no icons beyond arrows.
 
-STORY: Visitor reads the interchange sign, picks a line, rides the photo stations, sees the app at work, learns how the pieces connect, leaves by a lettered exit.
+STORY: A full-bleed night photograph with the name; an index of photographs by title (preview follows the cursor); one photograph per screen at its own proportions with a quiet caption; a short personal statement; PaQueueKa as a court-green chapter with real screens; engineering repos and how this site moves a photo; large typographic links to close.
 
-FIRST VIEWPORT: fixed strip map across top (AA roundel left, current line's stations as dots, P/D/Q line badges right). Left 7 cols: "Albert / Antioquia" in wide 800 black at max 6rem, one-line positioning, "Change here for" with three line plates as links. Right 5 cols: lightbox poster frame holding a portrait photo with its station caption plate. Three line stripes run across the wall at the base and converge on the name block.
+FIRST VIEWPORT: Cover photograph full-bleed (first landscape in display order), name top-left in two weights at ≤6rem, one-line lede, credit bottom-left (opens the viewer), "N photographs ↓" bottom-right. Minimal nav (name + four links) in white over the photo.
 
-FORM: grounded candidate 3 of 7 (transit wayfinding). Seed d7f689c4. Raises — from neo-tokyo night: only the current station is ever fully lit, colour is state. From Saville catalog: the route map is the single navigation system (strip, mobile menu, footer all draw it). From daylight section: every station carries its real data stamp (upload date, tabular). From seven-segment: unlit stations drawn deliberately as ghosts; states swap in place, no sliding pill.
-
-Signature interaction: the in-car strip map lights the current station as you scroll; photos open through platform doors (clip-path from centre) and morph into a black tunnel viewer.
+FORM: owner-pinned reimagining (photo-first, night-to-day). Signature interaction: the wall colour follows the photograph in view; photos open in a full-screen viewer that grows out of the thumbnail.
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
-
-Challenger verdicts: neo-tokyo neon night — declined (4 of 6 photos are daylight). Saville catalog sleeve — declined (hides names; hurts clarity). Daylight section — declined. Drawcord cape, one-bit desktop, seven-segment — declined.

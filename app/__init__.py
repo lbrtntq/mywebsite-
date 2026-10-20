@@ -110,12 +110,20 @@ def create_app(test_config=None):
             'title': station['title'],
             'description': station['description'],
             'place': station['place'],
-            'date': date_stamp(station['date']),
+            'date': station['date'].strftime('%B %Y') if station['date'] else '',
             'width': station['width'],
             'height': station['height'],
             'src': cloudinary_transform(station['url'], 'f_auto,q_auto,c_limit,w_1600'),
             'srcset': cloudinary_srcset(station['url']),
         }
+
+    @app.template_filter('natural_join')
+    def natural_join(items):
+        """['a', 'b', 'c'] -> 'a, b and c'."""
+        items = list(items)
+        if len(items) < 2:
+            return ''.join(items)
+        return f"{', '.join(items[:-1])} and {items[-1]}"
 
     @app.template_filter('stamp')
     def date_stamp(value):

@@ -1,290 +1,276 @@
 ---
 name: Albert Antioquia
-description: A personal site drawn as one transit interchange; three lines meet at a name.
+description: Photographs first; the page takes its light from the photograph in view.
 colors:
-  wall: "#eef1f3"
-  wall-deep: "#e1e6e9"
-  sign-panel: "#f8fafb"
-  ink: "#121413"
-  ink-2: "#434845"
-  ink-3: "#626864"
-  tunnel: "#0b0c0c"
-  on-dark: "#f1f2ef"
-  on-dark-2: "#b9bdba"
-  line-p: "#d42a1f"
-  line-d: "#0a63ad"
-  line-q: "#3b7a1b"
-  line-q-deep: "#2f6414"
-  line-d-lit: "#3d8fd6"
-  line-q-lit: "#5ea52f"
-  exit-yellow: "#ffcd00"
+  night: "#0b111a"
+  day: "#f2f3f1"
+  court: "#0f2318"
+  lime: "#c6f24e"
+  lime-bright: "#d8fb78"
+  teal-glow: "#6fd3c9"
+  teal-deep: "#0c7a74"
+  night-ink: "#eceff2"
+  night-ink-2: "#aeb7c0"
+  night-ink-3: "#8a949e"
+  day-ink: "#0e141a"
+  day-ink-2: "#46505a"
+  day-ink-3: "#5c6670"
+  court-ink: "#eef3ea"
+  court-ink-2: "#b9c8b3"
+  court-ink-3: "#93a68d"
+  night-rule: "rgba(236, 239, 242, 0.14)"
+  day-rule: "rgba(14, 20, 26, 0.14)"
+  court-rule: "rgba(238, 243, 234, 0.16)"
+  viewer-black: "#06090d"
 typography:
   display:
-    fontFamily: "Archivo, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "clamp(3.1rem, 12.4vw, 6rem)"
-    fontWeight: 800
-    lineHeight: 0.9
-    letterSpacing: "-0.035em"
-    fontVariation: "'wdth' 125"
-  headline:
-    fontFamily: "Archivo, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "clamp(2.25rem, 6vw, 4.25rem)"
-    fontWeight: 800
-    lineHeight: 0.95
-    letterSpacing: "-0.03em"
-    fontVariation: "'wdth' 122"
-  title:
-    fontFamily: "Archivo, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "clamp(1.6rem, 3.2vw, 2.6rem)"
-    fontWeight: 800
-    lineHeight: 1.02
-    letterSpacing: "-0.02em"
-    fontVariation: "'wdth' 115"
-  lede:
-    fontFamily: "Archivo, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "clamp(1.2rem, 1.9vw, 1.45rem)"
+    fontFamily: "'Albert Sans', ui-sans-serif, system-ui, sans-serif"
+    fontSize: "clamp(3.25rem, 9vw, 6rem)"
+    fontWeight: 250
+    lineHeight: 0.92
+    letterSpacing: "-0.04em"
+  display-emphasis:
+    fontFamily: "'Albert Sans', ui-sans-serif, system-ui, sans-serif"
+    fontSize: "clamp(3.25rem, 9vw, 6rem)"
     fontWeight: 600
-    lineHeight: 1.4
+    lineHeight: 0.92
+    letterSpacing: "-0.04em"
+  headline:
+    fontFamily: "'Albert Sans', ui-sans-serif, system-ui, sans-serif"
+    fontSize: "clamp(2.5rem, 6.4vw, 5.25rem)"
+    fontWeight: 300
+    lineHeight: 0.95
+    letterSpacing: "-0.04em"
+  statement:
+    fontFamily: "'Albert Sans', ui-sans-serif, system-ui, sans-serif"
+    fontSize: "clamp(1.9rem, 4.4vw, 3.75rem)"
+    fontWeight: 300
+    lineHeight: 1.1
+    letterSpacing: "-0.03em"
+  title:
+    fontFamily: "'Albert Sans', ui-sans-serif, system-ui, sans-serif"
+    fontSize: "clamp(1.75rem, 3vw, 2.6rem)"
+    fontWeight: 300
+    lineHeight: 1.08
+    letterSpacing: "-0.025em"
+  body-lg:
+    fontFamily: "'Albert Sans', ui-sans-serif, system-ui, sans-serif"
+    fontSize: "1.125rem"
+    fontWeight: 400
+    lineHeight: 1.6
   body:
-    fontFamily: "Archivo, ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "'Albert Sans', ui-sans-serif, system-ui, sans-serif"
     fontSize: "1.0625rem"
     fontWeight: 400
     lineHeight: 1.6
-    fontFeature: "'tnum'"
+    fontFeature: "tnum"
   label:
-    fontFamily: "Archivo, ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "'Albert Sans', ui-sans-serif, system-ui, sans-serif"
     fontSize: "0.875rem"
-    fontWeight: 700
-    lineHeight: 1.25
-    fontFeature: "'tnum'"
-  code:
-    fontFamily: "Archivo, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "0.8125rem"
-    fontWeight: 800
-    lineHeight: 1
-    letterSpacing: "0.01em"
-    fontVariation: "'wdth' 105"
-    fontFeature: "'tnum'"
+    fontWeight: 400
+    lineHeight: 1.4
+  mono:
+    fontFamily: "ui-monospace, 'SF Mono', Menlo, Consolas, monospace"
+    fontSize: "0.95rem"
+    fontWeight: 400
 rounded:
-  frame: "3px"
-  panel: "4px"
-  control: "6px"
-  slab: "8px"
-  plate: "0.3em"
-  full: "999px"
+  hairline: "2px"
+  app-icon: "15px"
+  pill: "999px"
+  round: "50%"
+  phone: "15% / 7.4%"
 spacing:
-  gutter: "clamp(16px, 4.2vw, 64px)"
-  rail: "clamp(40px, 5vw, 72px)"
-  strip: "56px"
-  strip-mobile: "64px"
-  stroke: "6px"
-  tile: "56px"
-  section: "clamp(72px, 12vh, 140px)"
+  gutter: "clamp(20px, 4.5vw, 72px)"
+  column-gap: "clamp(16px, 2.4vw, 40px)"
+  nav-height: "68px"
+  row: "18px"
+  section: "clamp(96px, 18vh, 200px)"
+  section-lg: "clamp(120px, 22vh, 240px)"
 components:
-  button-q:
-    backgroundColor: "{colors.line-q}"
-    textColor: "#ffffff"
-    rounded: "{rounded.control}"
-    padding: "0 1.15em"
-    height: "48px"
-  button-q-hover:
-    backgroundColor: "{colors.line-q-deep}"
-  button-ghost:
+  button-lime:
+    backgroundColor: "{colors.lime}"
+    textColor: "{colors.court}"
+    rounded: "{rounded.pill}"
+    padding: "0 26px"
+    height: "52px"
+    typography: "{typography.body}"
+  button-lime-hover:
+    backgroundColor: "{colors.lime-bright}"
+    textColor: "{colors.court}"
+  button-line:
     backgroundColor: "transparent"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.control}"
-    padding: "0 1.15em"
-    height: "48px"
-  button-ghost-hover:
-    backgroundColor: "{colors.ink}"
-    textColor: "{colors.wall}"
-  line-plate:
-    textColor: "#ffffff"
-    rounded: "{rounded.plate}"
-    size: "2em"
-  roundel:
-    backgroundColor: "#ffffff"
-    textColor: "{colors.ink}"
-    typography: "{typography.code}"
-    rounded: "{rounded.full}"
-    height: "1.9em"
-  exit-plate:
-    backgroundColor: "{colors.exit-yellow}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.control}"
-    size: "48px"
-  strip-map:
-    backgroundColor: "{colors.ink}"
-    textColor: "{colors.on-dark}"
-    height: "{spacing.strip}"
-  sign-panel:
-    backgroundColor: "{colors.sign-panel}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.panel}"
-    padding: "clamp(24px, 3vw, 44px)"
-  route-map:
-    backgroundColor: "{colors.wall}"
-    textColor: "{colors.ink}"
-    width: "min(460px, 100vw)"
-  ink-slab:
-    backgroundColor: "{colors.ink}"
-    textColor: "{colors.on-dark}"
-    rounded: "{rounded.slab}"
-    padding: "18px 20px"
+    textColor: "{colors.court-ink}"
+    rounded: "{rounded.pill}"
+    padding: "0 26px"
+    height: "52px"
+  button-line-hover:
+    backgroundColor: "{colors.court-ink}"
+    textColor: "{colors.court}"
+  nav:
+    backgroundColor: "transparent"
+    textColor: "{colors.night-ink}"
+    height: "{spacing.nav-height}"
+    padding: "0 {spacing.gutter}"
+  index-row:
+    textColor: "{colors.night-ink}"
+    typography: "{typography.title}"
+    padding: "{spacing.row} 0"
   viewer:
-    backgroundColor: "{colors.tunnel}"
-    textColor: "{colors.on-dark}"
+    backgroundColor: "{colors.viewer-black}"
+    textColor: "{colors.night-ink}"
 ---
 
 # Design System: Albert Antioquia
 
 ## Overview
 
-**Creative North Star: "The Interchange"**
+**Creative North Star: "Borrowed Light"**
 
-The public site is one Hong Kong / Bangkok metro station. Three lines (P for photography, D for data, Q for PaQueueKa) meet at a single interchange, and that interchange is Albert's name. Everything on the page is wayfinding: a cool enamel wall, signage-black ink, line colours used as state, lettered yellow exits, and a black tunnel where photographs are viewed. Nothing is decorative unless a real station would carry it.
+The photographs are the site. Every surface is a wall in a room built for one photograph, and the wall takes its colour from that photograph: a deep shade of the picture's dominant hue for night shots, a pale tint for daylight ones. Between the photo rooms sit three fixed tones: night navy for the cover, index and footer, daylight for the personal statement and engineering, and a court green that belongs to PaQueueKa alone. Scrolling is a slow change of light, never a change of chrome.
 
-Density is calm and generous: big wide station names, long rows of timetable, photographs given most of a viewport. The interface recedes around the photos; colour is spent on lines, plates and dots, never on surfaces. Navigation is a single system: the strip map at the top, the P/D/Q line plates, the route-map dialog and the footer exits are all drawn from the same `route` list, so every page shows the same stops in the same order.
+Everything else steps back. One typeface, Albert Sans, does all the work in two registers: very light display (250 to 300) against a 600 for the few words that carry emphasis. Structure is hairline rules, never boxes. There are no cards, no badges, no themed signage, and no decorative icons; the only glyphs are thin line arrows and a close mark. Motion exists to arrive (the cover), to follow (the wall colour, the index preview) and to explain (the /tech phone and rotation diagrams), and every effect has a reduced-motion path.
 
-Motion is mechanical and transit-literal: a name rises out of its sign line, tracks draw in, photos open like platform doors, and the in-car display scrambles once when the current station changes. Every motion has a reduced-motion path that lands on the final state.
+Density is low and the air is generous: a photograph gets a whole screen, captions are quiet, and section padding runs to a fifth of the viewport. The rejected direction this replaces was themed chrome (a transit map with line colours, strips and exits); nothing of that vocabulary returns.
 
 **Key Characteristics:**
-- Cool enamel-tile wall, signage-black ink, three line colours as the only saturation.
-- Archivo variable, stretched wide (wdth 105-125) and heavy (800) for station names; normal width for reading.
-- Tabular figures everywhere: station codes, dates and counts line up.
-- Thick line strokes (6px rails, 8px rules, 10px bands) and dot-on-track stations.
-- Only the current station is ever fully lit; passed stations dim, unvisited ones are hollow ghosts.
-- One navigation system, drawn from one route list.
-- A black tunnel viewer for photographs.
+- The wall colour follows the photograph in view, on `:root` only, over 900ms.
+- Three tones (dark, light, court), each a full set of ink, rule and accent.
+- Albert Sans only; display light 250–300 against 600 for emphasis.
+- Photographs at their own aspect ratio, one per screen, in a four-step composition cycle.
+- Hairline rules for every list; pill buttons; square photographs.
+- Entrance motion on the cover only; no scroll reveals.
 
 ## Colors
 
-A cool, near-colourless station with three saturated line colours and one yellow, each reserved for a single meaning.
+A night-to-day palette with one fenced-off green: neutrals carry the page, a teal accent appears only on interaction, and the photographs supply every other colour.
 
 ### Primary
-- **Signal Red, Line P** (line-p): the photography line. Station roundels, the vertical rail beside the photo stations, the timetable's line rule, the first meta item on each station, the P plate.
-- **Platform Blue, Line D** (line-d): the data line. The D section's rail, the pipeline track and its stop stamps, repo arrows, the D plate.
-- **Court Green, Line Q** (line-q): the PaQueueKa line. The Q rail down /tech, waiting-player dots in the mode diagrams, and the store buttons (deepening to line-q-deep on hover).
+- **Teal Glow** (teal-glow): the accent in dark rooms. Focus rings, text selection, the hover colour of outbound arrows. Never a fill for a surface.
+- **Deep Teal** (teal-deep): the same accent in daylight rooms: repo-name hover, step numerals on /tech, the "won, stays on" dot in rotation diagrams.
 
 ### Secondary
-- **Exit Yellow** (exit-yellow): exits and endings only. Lettered exit plates in the footer, the buffer stop at the end of the footer line band, the terminal dot of the data pipeline, the winner token in Challenger's Court, the skip link, text selection and the outer focus halo.
-
-### Tertiary
-- **Lit Blue and Lit Green** (line-d-lit, line-q-lit): lightened line colours for marks that sit on ink, where the base blue and green lose contrast (the Map button glyph, the arrow on the dark ride link). Red needs no lit variant.
+- **Court Lime** (lime): PaQueueKa's accent. The solid App Store button and the accent token inside court rooms. Hover lifts to **Bright Lime** (lime-bright).
 
 ### Neutral
-- **Enamel Wall** (wall): the page ground and the route-map dialog. On hero walls it carries the glazed tile pattern.
-- **Grout Wall** (wall-deep): the recessed band behind the D section, hover fill in the route map, placeholder behind loading photos, the mode-diagram trough.
-- **Sign Panel** (sign-panel): the enamel panel the hero name is mounted on; brighter than the wall so the sign reads as a separate object.
-- **Signage Ink** (ink): text, the strip map, the footer, 2-3px table rules, ghost-button strokes, dark slabs.
-- **Ink 2 / Ink 3** (ink-2, ink-3): secondary copy and quiet metadata (places, dates, captions).
-- **Tunnel** (tunnel): the photo viewer and its backdrop, poster frame fill.
-- **On-dark / On-dark 2** (on-dark, on-dark-2): text on ink and tunnel.
+- **Night Navy** (night): the cover, the photograph index, pagination and footer wall; also the phone-menu background and the base under the cover photograph.
+- **Daylight** (day): the wall for the personal statement, engineering and the /tech chapters.
+- **Court Green** (court): the wall for PaQueueKa rooms on both pages, and the text colour of the lime button.
+- **Night ink** (night-ink, night-ink-2, night-ink-3): primary text, secondary text (intros, descriptions), tertiary (numerals, arrows at rest, footer base) on night and on dark photo walls.
+- **Day ink** (day-ink, day-ink-2, day-ink-3): the same three steps on daylight and pale photo walls.
+- **Court ink** (court-ink, court-ink-2, court-ink-3): the same three steps on court green.
+- **Rules** (night-rule, day-rule, court-rule): the 1px hairlines between index rows, repos, flow steps, modes, spec rows and footer links; the ink at 14–16% alpha.
+- **Viewer Black** (viewer-black): the full-screen viewer, a fixed near-black independent of the room behind it.
 
 ### Named Rules
-**The Colour-Is-State Rule.** P, D and Q carry only section identity and station state. They never fill a large surface, never decorate a heading, and never appear outside their own line's content (the Map glyph, which shows all three lines, is the one place they sit together).
+**The Borrowed Light Rule.** Colour is set on `:root` and nowhere else. Sections only carry `data-tone` and `data-room` as data; the section crossing the middle of the viewport sets `html[data-tone]` and `--room`. Photo walls are computed from a 12×12 sample (chroma-weighted hue bins): dark photos get `hsl(hue, 24–48%, 13%)`, light photos `hsl(hue, 26–42%, 87%)`. Hue and saturation vary; lightness never does, so the ink always reads.
 
-**The Exit Rule.** Yellow means "a way out or an end". If it is not an exit, a terminus, a buffer or focus, it is not yellow.
+**The Fenced Court Rule.** Court green and lime appear only in PaQueueKa rooms. Elsewhere the accent is teal, and buttons are outline only.
 
-**The Lit Station Rule.** Only the current station is fully lit. Passed stops dim (line colour mixed 45% into ink); unvisited stops are hollow ghosts (ink fill, line-coloured ring). States swap in place; nothing slides between them.
+**The Accent On Touch Rule.** The accent answers the visitor (hover, focus, selection), marks a state (a won player) or numbers a sequence (the /tech session steps). It never fills a section or a surface.
 
 ## Typography
 
-**Display Font:** Archivo (self-hosted variable, weight 100-900, width 62-125%), falling back to ui-sans-serif, system-ui.
-**Body Font:** Archivo at normal width.
-**Label/Mono Font:** Archivo for codes and labels; ui-monospace only for inline `code`.
+**Display Font:** Albert Sans (self-hosted variable, 100–900, with ui-sans-serif, system-ui)
+**Body Font:** Albert Sans
+**Label/Mono Font:** system monospace (ui-monospace, SF Mono, Menlo, Consolas), for repository and code names only
 
-**Character:** One family doing two jobs. Pushed wide and heavy it becomes station signage; at normal width and weight it is plain, warm reading text. Tabular figures are on for the whole body, so codes and dates sit in columns.
+**Character:** One humanist grotesk at two extremes of weight: hairline-light display that lets the photographs stay louder, with a 600 used sparingly where a word must land.
 
 ### Hierarchy
-- **Display** (800, wdth 125, clamp(3.1rem, 12.4vw, 6rem), 0.9): station names only. The hero name, the /tech hero, the footer terminus name.
-- **Headline** (800, wdth 122, clamp(2.25rem, 6vw, 4.25rem), 0.95): line titles and the closing "get the app" title; always paired with its line plate and an 8px line rule underneath.
-- **Title** (800, wdth 115, clamp(1.6rem, 3.2vw, 2.6rem), 1.02, balanced): individual stations (photo titles, ride steps). Sub-section titles step down to clamp(1.75rem, 3.6vw, 2.75rem).
-- **Lede** (600, clamp(1.2rem, 1.9vw, 1.45rem), 1.4): one opening paragraph per stop, 34-62ch.
-- **Body** (400, 1.0625rem, 1.6): reading copy, kept to 40-62ch, usually in ink-2.
-- **Label** (600-700, 0.875rem): metadata, captions, "Change here for", station meta.
-- **Code** (800, wdth 105, 0.8125rem, tabular): station codes inside roundels (P1, Q2, D3).
+- **Display** (250 with 600 emphasis, clamp(3.25rem, 9vw, 6rem), 0.92, -0.04em): the name on the cover, "Albert" light over "Antioquia" heavy; PaQueueKa on /tech at 300. The closing "Kumusta?" uses the same scale at 300.
+- **Headline** (300, clamp(2.5rem, 6.4vw, 5.25rem), 0.95, -0.04em): section titles (Photographs, PaQueueKa, Engineering, /tech chapters).
+- **Statement** (300, clamp(1.9rem, 4.4vw, 3.75rem), 1.1, -0.03em, max 22ch, balanced): the personal statement and the /tech close; a small variant (clamp(1.5rem, 2.8vw, 2.25rem), 30ch) opens a chapter body.
+- **Title** (300, clamp(1.75rem, 3vw, 2.6rem), 1.08, -0.025em): photo captions; the index rows use a smaller step (clamp(1.35rem, 2.6vw, 2.1rem)) and footer links a larger one (clamp(1.9rem, 4.4vw, 3.25rem)).
+- **Body** (400, 1.0625rem, 1.6, tabular numerals): running text; the large step (1.125rem) carries intros and chapter bodies at 44–62ch.
+- **Label** (400, 0.875rem): numerals, places, dates, notes and credits in ink-2 or ink-3. Never uppercase, never tracked out.
+- **Emphasis** (600): the nav name, buttons, the cover credit title, flow-step names, spec terms.
 
 ### Named Rules
-**The Stretch-Means-Sign Rule.** Width goes up with importance: 125 for station names, 108-122 for titles and row names, 100 for reading. Reading text is never stretched.
+**The Two Weights Rule.** Display sizes are light (250–300). Weight 600 is for emphasis at any size; nothing in between is used for headings except the flow and mode titles at 400.
 
-**The Tabular Rule.** Every code, date and count uses tabular figures; codes live in roundels, dates in timetable columns.
+**The One Face Rule.** Albert Sans for everything; system monospace only for repository and code names. No second display face, no system display fallback by design.
 
 ## Layout
 
-A 12-column grid with fluid gutters (clamp(16px, 4.2vw, 64px)) under a fixed 56px strip map (64px and two rows below 720px). Line sections hang off a left **rail** (clamp(40px, 5vw, 72px)) that carries the line's vertical 6px track; station roundels sit centred on the rail and content starts one column-gap to its right. Sections breathe with clamp(72px, 12vh, 140px) top padding.
+A 12-column grid (column gap clamp(16px, 2.4vw, 40px)) inside a fluid gutter (clamp(20px, 4.5vw, 72px)). Section heads put the headline on columns 1–6 and the intro on 8–12, bottom-aligned. Sections breathe: top padding runs clamp(96px, 18vh, 200px) to clamp(120px, 22vh, 240px).
 
-The home hero splits 7/5: the sign panel left, a backlit poster frame right; three line bands at the base converge on the name (an SVG route drawing on desktop, stacked bands below 960px). On phones the photograph leads: the poster moves above the name as a 16:11 crop.
+Photo rooms are a full viewport tall. The composition cycles large (photo columns 1–8, caption 9–12 at the bottom), small (photo 8–11 in a lot of air, caption 2–5 at the top), offset (photo 4–9 centred, caption 10–12), full-height (photo at 100svh, no vertical padding). Landscapes break the cycle and bleed edge to edge with the caption below. Each photograph's width is capped by its own aspect ratio against the viewport height, so it is never cropped.
 
-Photo stations alternate three compositions so the line never becomes a grid: wide photos run the full line with text below right; upright photos alternate left-photo / right-text, right-photo / left-text, and a centred narrower photo. Below 960px everything collapses to rail + one column. Lists of things (timetable, repos, modes, spec, exits) are ruled rows: a 2-3px ink rule on top, 1px ink-at-20% dividers between rows, 60-84px row height.
+Below 960px everything collapses to one column; the small room keeps its character by sitting right-aligned at 64% width. Below 720px the nav links fold into a full-screen menu, index and repo rows drop their third column under the title, and the nav height drops to 60px. Safe-area insets are respected on nav, cover foot, footer and viewer.
 
-Breakpoints: 1100px (line plates leave the strip), 960px (single column, sticky phone becomes inline), 720px (two-row strip, compact timetable, swipeable phones).
+### Named Rules
+**The Own Proportions Rule.** A photograph is shown at its own aspect ratio, one per screen. Never crop photographs into a grid, a uniform tile or a card.
 
 ## Elevation & Depth
 
-Flat by default. Depth comes from material, not from floating cards: a tiled wall, an enamel sign bolted to it with a hairline lip, a lightbox whose own photograph glows onto the tiles, and phones that sit on the page with a soft cast shadow. Dark surfaces (strip, footer, tunnel) read as separate planes by value, not by shadow.
+Flat. Depth comes from the change of light between rooms and from the photographs themselves; surfaces never lift. Two objects float, because they are objects: the phone frame and the cursor-following index preview.
 
 ### Shadow Vocabulary
-- **Sign lip** (`box-shadow: 0 1px 0 rgba(18,20,19,0.14), 0 0 0 1px rgba(18,20,19,0.06)`): the hero sign panel; a mounted panel's edge.
-- **Lightbox drop** (`box-shadow: 0 1px 0 rgba(11,12,12,0.2), 0 26px 50px -26px rgba(11,12,12,0.45)`): the poster lightbox, with a blurred screen-blended copy of the photo behind it as backlight spill.
-- **Device cast** (`box-shadow: inset 0 0 0 1.5px #3a3e3c, 0 2px 0 #0b0c0c, 0 30px 50px -24px rgba(11,12,12,0.55)`): phone frames holding app captures.
-- **Preview lift** (`box-shadow: 0 18px 40px -18px rgba(11,12,12,0.6)`): the cursor-following timetable preview only.
+- **Device drop** (`box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08), 0 40px 70px -36px rgba(0,0,0,0.6)`): the phone frame only.
+- **Preview lift** (`box-shadow: 0 24px 50px -20px rgba(0,0,0,0.55)`): the floating index preview only.
+- **Hairline** (`box-shadow: 0 1px 0 var(--rule)`): the solid nav's bottom edge.
 
 ### Named Rules
-**The Mounted-Not-Floating Rule.** Shadows describe a physical object on the wall (sign, lightbox, phone). Rows, buttons and sections never get shadows; their state is a fill change.
+**The Flat Wall Rule.** Walls, rows and sections carry no shadow and no border box. Separation is a 1px rule or a change of tone.
 
 ## Shapes
 
-Station hardware geometry. Plates are near-square with small corners (line plates 0.3em, exit plates 6px). Roundels and station dots are full pills and circles. Panels and frames barely round (3-4px), interactive controls take 6px, dark slabs 8px. Lines are drawn thick and square-ended: 6px rails, 8px section rules, 10px bands, 4px strip tracks. Arrows and controls are 2px square-cap strokes from one inline SVG sprite. The footer line band ends at a 10px yellow buffer block.
+Photographs are square-cornered rectangles at their own proportions. Interactive controls are fully round: pill buttons (999px) and circular icon buttons (48px; 56px for viewer arrows). The only other corners belong to things that are curved in life: the phone (15% / 7.4% outer, 12.4% / 5.8% screen) and the app icon (15px). Diagram marks are 20px circles; legend keys 12px. Lines are 1px rules; icons are 24-unit line drawings at 1.6 stroke.
 
 ## Components
 
 ### Buttons
-Solid and ticket-like.
-- **Shape:** gently cornered (6px), 48px tall, wide 700-weight label (wdth 108).
-- **Primary (Q):** court green with white text; deepens on hover; scales to 0.97 on press.
-- **Ghost:** 2px inset ink stroke; inverts to ink with wall-coloured text on hover.
-- **Pill link:** the same ghost behaviour on a full pill, 44px tall.
-- **Icon button:** 44px circle, wall-deep fill on hover; on-dark variant for the tunnel.
+- **Shape:** full pill (999px), min-height 52px, 26px side padding, weight 600.
+- **Primary (Court Lime):** lime fill with court-green text, only inside court rooms; hover to bright lime.
+- **Outline:** a 1.5px inset ring of the ink at 45%; hover fills with the ink and inverts the text.
+- **Active:** scale 0.97.
+- **Icon button:** 48px circle, transparent; hover a faint light wash (viewer and menu, which are always dark).
 
-### Line Plates and Roundels
-The signage atoms every other component is built from.
-- **Line plate:** a 2em square in the line colour, white wide 800 letter (P, D, Q). Large variant opens each line title.
-- **Roundel:** white pill with a 3px line-coloured ring holding a station code; the dark variant sits on tunnel.
-- **Exit plate:** 48px yellow square, 900-weight ink letter (A, B, C...).
-
-### Rows (timetable, repos, change lines, exits)
-- **Style:** ruled rows on the wall, code/plate left, name and quiet description centre, arrow right.
-- **Hover:** the row inverts to ink (timetable, repos) or lifts to white (change lines) and its content slides 12-14px right; the arrow nudges forward. Hover effects only apply on hover-capable devices.
+### Text Links
+- **Style:** weight 500, an underline that draws in from the left on hover (1px, 400ms), the arrow nudging 4px right. Nav links use the same drawn underline, held on for the current page.
 
 ### Navigation
-- **Strip map:** fixed ink bar. AA home roundel left; the page's stops as dots on line-coloured track segments; a "Now" readout that scrambles once to the new station name; P/D/Q plates (current plate full opacity, others 35%); a pill Map button with a three-line glyph.
-- **Route map:** a right-hand wall-coloured dialog listing every stop as a vertical 6px track with ring dots; the current stop fills with its line colour and goes bold. A dark branch slab links to the other page's line.
-- **Exits:** the footer is plain ink with a display-size terminus name and lettered exit rows; the line band beneath ends at the yellow buffer.
+- **Style:** fixed, 68px, name at 600 on the left, four links at 0.9375rem / 500 on the right.
+- **States:** transparent with white text over the cover; after the cover, solid in the current room colour with a hairline bottom; slides away when scrolling down past 480px and returns on the way up or on focus.
+- **Mobile:** a "Menu" text button opens a full-screen night dialog with the links at display scale, weight 300.
 
-### Station Wall and Sign Panel (signature)
-The glazed tile wall (56px enamel tiles with 2px grout, authored SVG at 224px repeat) appears on hero walls only. Copy on a tiled wall is mounted on the enamel sign panel; the hero name rises out of its sign line on entry.
+### Cover
+Full-bleed first landscape at 100svh with a top and bottom navy shade; name top-left, a one-line lede at 30ch, the photo credit bottom-left (opens the viewer) and "N photographs" with a down arrow bottom-right. Entrance: the photo settles from 1.06 scale (1800ms), the name rises in two staggered lines, lede and foot fade up.
 
-### Photo Station and Tunnel Viewer (signature)
-Photographs keep their real aspect ratio, sit on the rail with a roundel code, and open through **platform doors** (clip-path from centre, with a slight scale settle). Opening one morphs into the full-screen tunnel viewer: black ground, title and count across the top, round prev/next controls, caption and dated meta below; swipe and keys work.
+### Index
+A numbered list of every photograph by title between hairlines: numeral (ink-3), title (light, title scale), place (ink-2). On hover the other rows dim to 38%, the hovered title slides 14px, and a 260px preview follows the cursor with a lerp and a slight lean from horizontal velocity.
+
+### Room
+One photograph per screen at its own aspect ratio, opening the viewer on click (a 1.02 zoom on hover). The caption is a light title, a meta line (numeral, place, month and year) and an optional description, all at most 38ch.
+
+### Viewer
+A full-screen dialog on viewer black: count, title and close along the top; the photograph contained in the stage; meta and description beneath. It grows out of the clicked thumbnail (560ms), swipes on touch, and steps with arrow buttons.
 
 ### Phone Frame
-App captures are shown only in a drawn device frame (433:882, dark bezel, device cast). On /tech a sticky phone crossfades between captures as ride steps scroll by.
+A device at 433:882 with a bezel in the tone's bezel colour, used for real PaQueueKa screens only. On /tech a sticky phone crossfades between screens (450ms opacity, 700ms scale) as the session steps pass the middle of the screen; inactive step headings dim to 42% on wide screens.
+
+### Hairline Rows
+Repo rows (mono name, description, outbound arrow that turns accent and shifts up-right on hover), spec rows (600 term, ink-2 definition), flow steps (six columns, each a top rule with a thin chevron where one step hands to the next), and footer links: a large light name whose weight animates from 300 to 500 on hover while the arrow turns accent.
+
+### Rotation Diagram
+Six players on a hairline track with a bracket marking the next court. Played players are solid ink, a winner who stays on is the accent, waiting players are hollow rings. On arrival or hover the queue replays its shuffle (700ms); with reduced motion it rests in the played state.
 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** take every new page's navigation from the shared route list: strip dots, route map and line plates must show the same stops.
-- **Do** give every line section its plate, its wide 800 title, its 8px line rule, and a 6px rail with roundel-coded stops.
-- **Do** mount copy on the sign panel when it sits over the tiled wall.
-- **Do** use tabular figures and roundels for any code, date or count.
-- **Do** ship a reduced-motion path for every animation that lands directly on the final state.
-- **Do** keep focus visible as a 3px ink outline with a 6px yellow halo (on dark grounds, an on-dark or yellow outline with no halo).
+- **Do** set tone and wall colour on `:root` only and let sections carry them as data.
+- **Do** keep computed photo walls at 13% lightness for dark photographs and 87% for light ones.
+- **Do** show every photograph at its own aspect ratio and cycle large, small, offset and full-height; let landscapes bleed.
+- **Do** set display type light (250–300) and reserve 600 for emphasis.
+- **Do** separate list items with 1px rules at 14–16% ink.
+- **Do** give every motion effect a reduced-motion path; the global fallback collapses durations to 1ms.
+- **Do** use the 900ms in-out curve for wall changes and the long ease-out (cubic-bezier(0.16, 1, 0.3, 1)) for everything that moves.
 
 ### Don't:
-- **Don't** use P, D or Q as a background fill, a heading colour, or outside its own line.
-- **Don't** use yellow for anything that is not an exit, a terminus or focus.
-- **Don't** light more than one station at a time, or animate a highlight sliding between stops.
-- **Don't** set body copy directly on the tile pattern.
-- **Don't** add shadows to rows, buttons or sections; only wall-mounted objects and devices carry them.
-- **Don't** apply this system to the admin pages (app/templates/admin, style.css); they keep their own look.
+- **Don't** use court green or a lime fill outside PaQueueKa rooms.
+- **Don't** add scroll-triggered reveals; the cover entrance is the only entrance.
+- **Don't** put photographs in cards, uniform grids or cropped tiles.
+- **Don't** add themed chrome: maps, line colours, badges, signage or decorative icons. Line arrows and the close mark are the whole icon set.
+- **Don't** add a second typeface; monospace is for code names only.
+- **Don't** shadow walls or rows; only the phone and the index preview float.
+- **Don't** add small uppercase labels or eyebrows above headings.

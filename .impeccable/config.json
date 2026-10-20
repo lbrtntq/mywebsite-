@@ -1,0 +1,20 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "design-system-font",
+        "value": "space grotesk",
+        "createdAt": "2026-10-20T05:44:46.702Z",
+        "reason": "builder decision: admin pages (admin/_layout.html + style.css) keep the pre-redesign look; DESIGN.md records admin as out of scope"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "inter",
+        "createdAt": "2026-10-20T05:44:46.717Z",
+        "reason": "builder decision: admin pages keep the pre-redesign look; DESIGN.md records admin as out of scope"
+      }
+    ]
+  }
+}

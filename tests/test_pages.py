@@ -34,18 +34,21 @@ def client(monkeypatch):
         yield app.test_client()
 
 
-def test_home_renders_every_photo_as_a_station(client):
+def test_home_gives_every_photo_a_room(client):
     html = client.get('/').get_data(as_text=True)
-    assert 'id="p1"' in html and 'id="p3"' in html
-    assert 'After the Fireworks' in html and 'Vertical City' in html
-    assert 'station--wide' in html and 'station--tall' in html
+    # The landscape photo opens the page; the others each get their own room.
+    assert 'class="cover-img"' in html and 'After the Fireworks' in html
+    assert 'id="photo-2"' in html and 'id="photo-3"' in html
+    assert 'id="photo-1"' not in html
     assert 'c_limit,w_1600' in html  # srcset reaches the large widths
+    assert 'data-room-sample=' in html
 
 
-def test_poster_is_the_first_upright_photo(client):
+def test_cover_is_the_first_landscape_photo(client):
     html = client.get('/').get_data(as_text=True)
-    poster = html[html.index('class="poster"'):html.index('</figure>', html.index('class="poster"'))]
-    assert 'Urban Pulse at Studio City Macau' in poster
+    cover = html[html.index('class="cover"'):html.index('</section>', html.index('class="cover"'))]
+    assert 'After the Fireworks' in cover
+    assert 'Vertical City' not in cover
 
 
 def test_places_come_from_captions(client):
@@ -64,4 +67,4 @@ def test_empty_gallery_still_renders(client):
     db.session.commit()
     res = client.get('/')
     assert res.status_code == 200
-    assert 'No photographs on this line yet.' in res.get_data(as_text=True)
+    assert 'No photographs here yet.' in res.get_data(as_text=True)
