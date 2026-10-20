@@ -1,5 +1,6 @@
 import os
 from flask import Flask
+from werkzeug.middleware.proxy_fix import ProxyFix
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_wtf.csrf import CSRFProtect
@@ -23,6 +24,9 @@ csrf = CSRFProtect()
 
 def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
+    # Render terminates TLS in front of gunicorn; trust its forwarded headers
+    # so canonical URLs, the sitemap and Open Graph tags come out as https.
+    app.wsgi_app = ProxyFix(app.wsgi_app, x_proto=1, x_host=1)
     
     # Load configuration
     if test_config is None:
@@ -58,9 +62,30 @@ def create_app(test_config=None):
     app.register_blueprint(gallery.bp)
     
     @app.context_processor
-    def inject_year():
+    def inject_site():
         import datetime
-        return {'current_year': datetime.datetime.now().year}
+        return {
+            'current_year': datetime.datetime.now().year,
+            'links': {
+                'github': 'https://github.com/lbrtntq',
+                'linkedin': 'https://www.linkedin.com/in/albert-antioquia-ph/',
+                'youtube': 'https://www.youtube.com/@LBRTNTQ',
+                'paqueueka': 'https://paqueueka.info',
+                'app_store': 'https://apps.apple.com/ph/app/paqueueka-court-queue/id6770977347',
+                'play_store': 'https://play.google.com/store/apps/details?id=com.paqueueka.app',
+            },
+        }
+
+    @app.template_global('asset')
+    def asset_url(filename):
+        """A static URL that changes whenever the file does, so deploys bust caches."""
+        from flask import url_for
+        path = os.path.join(app.static_folder, filename)
+        try:
+            version = int(os.path.getmtime(path))
+        except OSError:
+            version = 0
+        return url_for('static', filename=filename, v=version)
 
     @app.template_filter('cl')
     def cloudinary_transform(url, transforms='f_auto,q_auto,w_1200'):
@@ -68,5 +93,32 @@ def create_app(test_config=None):
         if url and 'cloudinary.com' in url and '/upload/' in url:
             return url.replace('/upload/', f'/upload/{transforms}/', 1)
         return url
+
+    @app.template_filter('srcset')
+    def cloudinary_srcset(url, widths=(480, 800, 1200, 1600, 2200)):
+        """A responsive srcset of auto-format, auto-quality widths."""
+        if not (url and 'cloudinary.com' in url and '/upload/' in url):
+            return ''
+        return ', '.join(f"{cloudinary_transform(url, f'f_auto,q_auto,c_limit,w_{w}')} {w}w" for w in widths)
+
+    @app.template_filter('photo_json')
+    def photo_json(station):
+        """What the full-screen viewer needs to know about one photo."""
+        return {
+            'id': station['id'],
+            'code': station['code'],
+            'title': station['title'],
+            'description': station['description'],
+            'place': station['place'],
+            'date': date_stamp(station['date']),
+            'width': station['width'],
+            'height': station['height'],
+            'src': cloudinary_transform(station['url'], 'f_auto,q_auto,c_limit,w_1600'),
+            'srcset': cloudinary_srcset(station['url']),
+        }
+
+    @app.template_filter('stamp')
+    def date_stamp(value):
+        return value.strftime('%d.%m.%Y') if value else ''
 
     return app

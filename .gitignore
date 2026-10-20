@@ -22,3 +22,6 @@ app/static/uploads/*
 # Misc
 .DS_Store
 *.log
+
+# Local review captures
+.impeccable/review/

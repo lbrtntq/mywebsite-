@@ -44,13 +44,18 @@ Flask portfolio website with a service layer pattern, Cloudinary image storage, 
 
 ### Frontend
 
-Pure HTML/CSS/JS with Jinja2 templates. No build step.
+Pure HTML/CSS/JS with Jinja2 templates. No build step, no JS dependencies.
 
-- `app/templates/base.html` — shared navbar and footer layout
-- `app/static/css/style.css` — CSS variables for theming; light mode default
-- `app/static/js/main.js` — carousel (infinite loop via DOM-cloned slides), scroll-reveal via IntersectionObserver, navbar scroll behavior
+The public site is designed as a transit system: three lines (P photography red, D data blue, Q PaQueueKa green) meet at an interchange (the home hero). Product truth lives in `PRODUCT.md`; the design direction lives in `.impeccable/surfaces/`.
 
-The carousel clones the first and last slides and listens for `transitionend` to silently jump to the real slide — edit this logic carefully as timing bugs are easy to introduce.
+- `app/templates/base.html` — public layout: SEO/OG/JSON-LD, icon sprite, the fixed **strip map** header and the **route map** dialog. Both are drawn from a `route` list of stops that each view builds (`_stop()` in `app/routes/main.py`); a stop's `id` must match a `data-station` element on the page.
+- `app/templates/index.html` — interchange hero, Photography line (timetable + one station per photo), Data line, Q line teaser. `_viewer.html` is the full-screen photo viewer; `_exits.html` is the footer.
+- `app/templates/tech.html` — the full PaQueueKa case study (`/tech`).
+- `app/templates/admin/_layout.html` + `app/static/css/style.css` — the admin pages keep the old layout and stylesheet.
+- `app/static/css/site.css` — all public styles; tokens on `:root`. Self-hosted Archivo variable font in `app/static/fonts/`.
+- `app/static/js/site.js` — strip-map tracking, route map, reveals, timetable hover preview, viewer, pipeline diagram, `/tech` sticky phone. Every effect has a reduced-motion path.
+
+`app/services/photo_service.py` turns gallery rows into stations: it asks Cloudinary (`fl_getinfo`) for each photo's size once and caches it in memory (uploads prime the cache), and derives a place name from the title/caption. App screenshots in `app/static/img/paqueueka/` are frames from real PaQueueKa 2.0 simulator recordings (demo session data).
 
 ### Image Storage
 

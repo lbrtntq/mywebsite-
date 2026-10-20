@@ -1,128 +1,311 @@
 {% extends 'base.html' %}
 
+{% set og_image = poster.url | cl('f_jpg,q_auto,c_fill,g_auto,w_1200,h_630') if poster else none %}
+{% set places = stations | map(attribute='place') | select | unique | list %}
+
 {% block head %}
-{% if carousel_items %}
-<link rel="preload" as="image" href="{{ carousel_items[0].filename | cl('f_auto,q_auto,w_1920') }}">
+{% if poster %}
+<link rel="preload" as="image" imagesrcset="{{ poster.url | srcset }}" imagesizes="(min-width: 960px) 30vw, 70vw" fetchpriority="high">
 {% endif %}
 {% endblock %}
 
 {% block content %}
 
-<!-- ── Hero ──────────────────────────────────────────────────────────────── -->
-<section id="hero">
-    {% if carousel_items %}
-    <div class="hero-bg">
-        <img src="{{ carousel_items[0].filename | cl('f_auto,q_auto,w_1920') }}" alt="" fetchpriority="high">
-    </div>
-    {% endif %}
+{# ── Interchange ─────────────────────────────────────────────────────────── #}
+<section class="interchange wall" id="interchange" data-station="interchange" data-line="x" aria-labelledby="interchange-title">
+    <svg class="hero-routes" data-hero-routes aria-hidden="true" focusable="false"></svg>
+    <div class="interchange-grid">
+        <div class="sign">
+            <h1 class="station-name" id="interchange-title">
+                <span class="name-line"><span>Albert</span></span>
+                <span class="name-line"><span>Antioquia</span></span>
+            </h1>
+            <p class="sign-lede">Data engineer. Photographer on a phone. Builder of PaQueueKa.</p>
+            <p class="sign-thread">I like watching how things move: traffic, crowds, rows of data, players waiting for a court. Then I put them in order.</p>
 
-    <div class="hero-content">
-        <span class="hero-eyebrow">Data Engineer &amp; Photographer</span>
-        <h1 class="hero-title">
-            <span class="line-reveal"><span>Albert</span></span>
-            <span class="line-reveal" style="--line-delay: 0.12s"><span>Antioquia</span></span>
-        </h1>
-        <div class="hero-scroll">
-            <a href="#gallery" class="scroll-pill" aria-label="Scroll to gallery">
-                <span></span>
-            </a>
-            <span class="scroll-label">Scroll</span>
-        </div>
-    </div>
-</section>
-
-<!-- ── Gallery ───────────────────────────────────────────────────────────── -->
-<section id="gallery">
-    <div class="container">
-        <div class="section-header reveal">
-            <span class="section-counter">01</span>
-            <span class="section-label">Photography</span>
-        </div>
-        <h2 class="reveal">Gallery</h2>
-
-        <div id="gallery-grid" class="gallery-grid stagger-reveal">
-            {% for item in pagination.items %}
-            <div class="gallery-item"
-                 data-id="{{ item.id }}"
-                 data-title="{{ item.title }}"
-                 data-description="{{ item.description }}"
-                 data-fullsrc="{{ item.filename | cl('f_auto,q_auto,w_1200') }}">
-                <img
-                    src="{{ item.filename | cl('w_30,q_10,e_blur:300') }}"
-                    data-src="{{ item.filename | cl('f_auto,q_auto,w_800') }}"
-                    alt="{{ item.title }}"
-                    class="blur-up"
-                    loading="lazy">
-                <div class="item-overlay">
-                    <h3>{{ item.title }}</h3>
-                </div>
+            <div class="change">
+                <p class="change-label">Change here for</p>
+                <ul class="change-lines">
+                    <li>
+                        <a class="change-line" href="#photography" data-line="p" data-dock="p">
+                            <span class="line-plate" data-line="p" aria-hidden="true">P</span>
+                            <span class="change-text">
+                                <span class="change-name">Photography</span>
+                                <span class="change-desc">{{ total_photos }} stops{% if places %} in {{ places | join(', ') }}{% endif %}</span>
+                            </span>
+                            <svg class="change-arrow" width="20" height="20" aria-hidden="true"><use href="#i-arrow"/></svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="change-line" href="#about" data-line="d" data-dock="d">
+                            <span class="line-plate" data-line="d" aria-hidden="true">D</span>
+                            <span class="change-text">
+                                <span class="change-name">Data</span>
+                                <span class="change-desc">About me, and how this site moves a photo</span>
+                            </span>
+                            <svg class="change-arrow" width="20" height="20" aria-hidden="true"><use href="#i-arrow"/></svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="change-line" href="#paqueueka" data-line="q" data-dock="q">
+                            <span class="line-plate" data-line="q" aria-hidden="true">Q</span>
+                            <span class="change-text">
+                                <span class="change-name">PaQueueKa</span>
+                                <span class="change-desc">My badminton and pickleball queue app</span>
+                            </span>
+                            <svg class="change-arrow" width="20" height="20" aria-hidden="true"><use href="#i-arrow"/></svg>
+                        </a>
+                    </li>
+                </ul>
             </div>
-            {% endfor %}
         </div>
 
-        {% if pagination.pages > 1 %}
-        <div class="pagination-controls reveal">
-            {% if pagination.has_prev %}
-            <a href="{{ url_for('main.index', page=pagination.prev_num) }}#gallery" class="pagination-btn">&larr; Previous</a>
-            {% else %}
-            <span class="pagination-btn disabled">&larr; Previous</span>
-            {% endif %}
-            <div class="page-numbers">{{ pagination.page }} / {{ pagination.pages }}</div>
-            {% if pagination.has_next %}
-            <a href="{{ url_for('main.index', page=pagination.next_num) }}#gallery" class="pagination-btn">Next &rarr;</a>
-            {% else %}
-            <span class="pagination-btn disabled">Next &rarr;</span>
-            {% endif %}
-        </div>
+        {% if poster %}
+        <figure class="poster">
+            <div class="poster-box">
+                <img class="poster-glow" src="{{ poster.url | cl('f_auto,q_auto,c_limit,w_480') }}" width="{{ poster.width }}" height="{{ poster.height }}" alt="" aria-hidden="true" decoding="async">
+                <button class="poster-frame" type="button" data-open-photo="{{ poster.id }}" aria-label="Open {{ poster.title }} full screen">
+                    <img src="{{ poster.url | cl('f_auto,q_auto,c_limit,w_1200') }}"
+                         srcset="{{ poster.url | srcset }}"
+                         sizes="(min-width: 960px) 30vw, 70vw"
+                         width="{{ poster.width }}" height="{{ poster.height }}"
+                         alt="{{ poster.description or poster.title }}"
+                         fetchpriority="high" decoding="async">
+                </button>
+            </div>
+            <figcaption class="plate">
+                <span class="roundel" data-line="p">{{ poster.code }}</span>
+                <span class="plate-text">
+                    <span class="plate-title">{{ poster.title }}</span>
+                    {% if poster.place %}<span class="plate-place">{{ poster.place }}</span>{% endif %}
+                </span>
+            </figcaption>
+        </figure>
         {% endif %}
     </div>
+
+    <div class="line-band line-band--hero" aria-hidden="true"><i data-line="p"></i><i data-line="d"></i><i data-line="q"></i></div>
 </section>
 
-<!-- ── About ─────────────────────────────────────────────────────────────── -->
-<section id="about">
-    <div class="container">
-        <div class="section-header reveal">
-            <span class="section-counter">02</span>
-            <span class="section-label">About</span>
+{# ── P · Photography line ───────────────────────────────────────────────── #}
+<section class="line-section" id="photography" data-station="photography" data-line="p" aria-labelledby="photography-title">
+    <div class="line-head">
+        <span class="line-plate line-plate--lg" data-line="p" aria-hidden="true">P</span>
+        <h2 class="line-title" id="photography-title">Photography line</h2>
+        <p class="line-intro">Cities, streets and buildings that go straight up, all shot on my phone. {{ total_photos }} stops so far. Pick one from the timetable, or ride the line from the top.</p>
+    </div>
+
+    {% if stations %}
+    <div class="timetable-wrap">
+        <ol class="timetable" data-timetable>
+            {% for s in stations %}
+            <li>
+                <button class="tt-row" type="button" data-open-photo="{{ s.id }}" data-preview="{{ s.url | cl('f_auto,q_auto,c_limit,w_560') }}">
+                    <span class="roundel" data-line="p">{{ s.code }}</span>
+                    <span class="tt-title">{{ s.title }}</span>
+                    <span class="tt-place">{{ s.place or '' }}</span>
+                    <span class="tt-date">{{ s.date | stamp }}</span>
+                    <span class="tt-go" aria-hidden="true"><svg width="18" height="18"><use href="#i-expand"/></svg></span>
+                </button>
+            </li>
+            {% endfor %}
+        </ol>
+        <div class="tt-preview" data-tt-preview aria-hidden="true"></div>
+    </div>
+
+    <div class="stations">
+        {% for s in stations %}
+        <article class="station station--{{ s.shape }} station--v{{ loop.index0 % 3 }}" id="p{{ s.n }}" data-station="p{{ s.n }}" data-line="p" aria-labelledby="p{{ s.n }}-title">
+            <span class="station-stop roundel" data-line="p" aria-hidden="true">{{ s.code }}</span>
+            <button class="station-photo doors" type="button" data-open-photo="{{ s.id }}" aria-label="Open {{ s.title }} full screen" style="--ar: {{ s.width }} / {{ s.height }}">
+                <img src="{{ s.url | cl('f_auto,q_auto,c_limit,w_1200') }}"
+                     srcset="{{ s.url | srcset }}"
+                     sizes="{% if s.shape == 'wide' %}(min-width: 960px) 86vw, 100vw{% else %}(min-width: 960px) 44vw, 92vw{% endif %}"
+                     width="{{ s.width }}" height="{{ s.height }}"
+                     alt="{{ s.description or s.title }}"
+                     loading="lazy" decoding="async">
+                <span class="photo-expand" aria-hidden="true"><svg width="18" height="18"><use href="#i-expand"/></svg></span>
+            </button>
+            <div class="station-text">
+                <h3 class="station-title" id="p{{ s.n }}-title">{{ s.title }}</h3>
+                <p class="station-meta">
+                    {% if s.place %}<span>{{ s.place }}</span>{% endif %}
+                    <span>Added <time datetime="{{ s.date.isoformat() }}">{{ s.date | stamp }}</time></span>
+                </p>
+                {% if s.description %}<p class="station-desc">{{ s.description }}</p>{% endif %}
+            </div>
+        </article>
+        {% endfor %}
+    </div>
+
+    {% if pagination.pages > 1 %}
+    <nav class="line-pages" aria-label="More photographs">
+        {% if pagination.has_prev %}
+        <a class="pill-link" href="{{ url_for('main.index', page=pagination.prev_num) }}#photography"><svg width="18" height="18" aria-hidden="true"><use href="#i-left"/></svg> Earlier stops</a>
+        {% endif %}
+        <span class="line-pages-count">{{ pagination.page }} / {{ pagination.pages }}</span>
+        {% if pagination.has_next %}
+        <a class="pill-link" href="{{ url_for('main.index', page=pagination.next_num) }}#photography">Next stops <svg width="18" height="18" aria-hidden="true"><use href="#i-right"/></svg></a>
+        {% endif %}
+    </nav>
+    {% endif %}
+    {% else %}
+    <p class="line-empty">No photographs on this line yet.</p>
+    {% endif %}
+</section>
+
+{# ── D · Data line ──────────────────────────────────────────────────────── #}
+<section class="line-section line-section--d" data-line="d" aria-labelledby="data-title">
+    <div class="line-head">
+        <span class="line-plate line-plate--lg" data-line="d" aria-hidden="true">D</span>
+        <h2 class="line-title" id="data-title">Data line</h2>
+    </div>
+
+    <article class="d-stop about" id="about" data-station="about" data-line="d" aria-labelledby="about-title">
+        <span class="station-stop roundel" data-line="d" aria-hidden="true">D1</span>
+        <h3 class="about-title" id="about-title">Hey, I’m Albert.</h3>
+        <div class="about-body">
+            <p class="about-lede">I’m a data engineer from the Philippines. My day job is moving data from where it lands to where it’s useful, and keeping it moving.</p>
+            <p>Off the clock I shoot on my phone: streets, crowds crossing a square, towers stacked against the sky. I vlog a little and make the occasional video. I also build apps, lately with an AI pair-programmer at my elbow. The one I care about most is PaQueueKa, because I play badminton and I wanted the queue at our courts to run itself.</p>
+            <p>It turns out it’s all the same hobby. A street at rush hour, a pipeline at 2 a.m. and a court with twelve people waiting are each a flow of things that wants a fair order.</p>
         </div>
-        <div class="about-grid">
-            <div class="reveal">
-                <h2 class="about-title">Hey,<br>I'm Albert</h2>
+    </article>
+
+    <article class="d-stop pipeline" id="pipeline" data-station="pipeline" data-line="d" aria-labelledby="pipeline-title">
+        <span class="station-stop roundel" data-line="d" aria-hidden="true">D2</span>
+        <div class="pipeline-head">
+            <h3 class="d-title" id="pipeline-title">How a photo gets here</h3>
+            <p>This site is a small pipeline. Every photo above rode this line.</p>
+        </div>
+
+        <ol class="pipe-route">
+            <li class="pipe-stop">
+                <span class="pipe-dot" aria-hidden="true"></span>
+                <span class="pipe-name">Phone</span>
+                <span class="pipe-desc">Shot on my phone, out in the street.</span>
+            </li>
+            <li class="pipe-stop">
+                <span class="pipe-dot" aria-hidden="true"></span>
+                <span class="pipe-name">/admin</span>
+                <span class="pipe-desc">I upload it with a title and a caption.</span>
+            </li>
+            <li class="pipe-stop">
+                <span class="pipe-dot" aria-hidden="true"></span>
+                <span class="pipe-name">Cloudinary</span>
+                <span class="pipe-desc">Keeps the original and makes every size on request.</span>
+            </li>
+            <li class="pipe-stop">
+                <span class="pipe-dot" aria-hidden="true"></span>
+                <span class="pipe-name">Postgres</span>
+                <span class="pipe-desc">One row in <code>gallery_items</code>: title, caption, order.</span>
+                <span class="pipe-stamp">{{ total_photos }} row{{ 's' if total_photos != 1 }}{% if latest_upload %} · newest {{ latest_upload | stamp }}{% endif %}</span>
+            </li>
+            <li class="pipe-stop">
+                <span class="pipe-dot" aria-hidden="true"></span>
+                <span class="pipe-name">Flask</span>
+                <span class="pipe-desc">Reads the rows, asks Cloudinary for sizes, renders this page.</span>
+            </li>
+            <li class="pipe-stop pipe-stop--end">
+                <span class="pipe-dot" aria-hidden="true"></span>
+                <span class="pipe-name">You</span>
+                <span class="pipe-desc">HTML from Flask, pixels straight from Cloudinary at the width your screen needs.</span>
+                <span class="pipe-stamp">5 widths per photo</span>
+            </li>
+        </ol>
+    </article>
+
+    <article class="d-stop experiments" id="experiments" data-station="experiments" data-line="d" aria-labelledby="experiments-title">
+        <span class="station-stop roundel" data-line="d" aria-hidden="true">D3</span>
+        <h3 class="d-title" id="experiments-title">Experiments</h3>
+        <p class="d-intro">Small public repos where I try tools out before I trust them.</p>
+        <ul class="repos">
+            <li>
+                <a class="repo" href="https://github.com/lbrtntq/dbt_demo_astro_cosmos_airflow" target="_blank" rel="noopener">
+                    <code class="repo-name">dbt_demo_astro_cosmos_airflow</code>
+                    <span class="repo-desc">dbt models run from Airflow with Astronomer Cosmos.</span>
+                    <svg class="repo-arrow" width="20" height="20" aria-hidden="true"><use href="#i-out"/></svg>
+                </a>
+            </li>
+            <li>
+                <a class="repo" href="https://github.com/lbrtntq/dbt_demo_university" target="_blank" rel="noopener">
+                    <code class="repo-name">dbt_demo_university</code>
+                    <span class="repo-desc">A demo dbt project.</span>
+                    <svg class="repo-arrow" width="20" height="20" aria-hidden="true"><use href="#i-out"/></svg>
+                </a>
+            </li>
+            <li>
+                <a class="repo" href="https://github.com/lbrtntq/dbt_tutorial_project" target="_blank" rel="noopener">
+                    <code class="repo-name">dbt_tutorial_project</code>
+                    <span class="repo-desc">A simple dbt project, start to finish.</span>
+                    <svg class="repo-arrow" width="20" height="20" aria-hidden="true"><use href="#i-out"/></svg>
+                </a>
+            </li>
+            <li>
+                <a class="repo" href="https://github.com/lbrtntq/mywebsite-" target="_blank" rel="noopener">
+                    <code class="repo-name">mywebsite-</code>
+                    <span class="repo-desc">This site. Flask, Postgres and Cloudinary, no build step.</span>
+                    <svg class="repo-arrow" width="20" height="20" aria-hidden="true"><use href="#i-out"/></svg>
+                </a>
+            </li>
+            <li>
+                <a class="repo" href="https://github.com/lbrtntq/react-practice" target="_blank" rel="noopener">
+                    <code class="repo-name">react-practice</code>
+                    <span class="repo-desc">React with Firebase and TypeScript.</span>
+                    <svg class="repo-arrow" width="20" height="20" aria-hidden="true"><use href="#i-out"/></svg>
+                </a>
+            </li>
+        </ul>
+    </article>
+</section>
+
+{# ── Q · PaQueueKa ──────────────────────────────────────────────────────── #}
+<section class="line-section line-section--q" id="paqueueka" data-station="paqueueka" data-line="q" aria-labelledby="paqueueka-title">
+    <div class="q-grid">
+        <div class="q-text">
+            <div class="q-brand">
+                <span class="line-plate line-plate--lg" data-line="q" aria-hidden="true">Q</span>
+                <img class="app-icon" src="{{ url_for('static', filename='img/paqueueka/app-icon.png') }}" width="56" height="56" alt="PaQueueKa app icon">
             </div>
-            <div class="about-body reveal">
-                <p>A <strong>data engineer</strong> from the Philippines who enjoys
-                   mobile photography and vlogging in my spare time. I build apps,
-                   shoot on my phone, and occasionally make videos.</p>
-                <div class="about-stats">
-                    <div>
-                        <span class="stat-value">PH</span>
-                        <span class="stat-label">Philippines</span>
-                    </div>
-                    <div>
-                        <span class="stat-value">📷</span>
-                        <span class="stat-label">Mobile Photo</span>
-                    </div>
-                    <div>
-                        <span class="stat-value">⚙️</span>
-                        <span class="stat-label">Data Eng.</span>
-                    </div>
-                </div>
+            <h2 class="line-title" id="paqueueka-title">PaQueueKa</h2>
+            <p class="q-lede">A queue app for badminton and pickleball open play. The host sets up the courts; the app works out who plays next.</p>
+            <p class="q-body">Open play used to run on a whiteboard, a clipboard and a lot of “sino next?”. So I built the app I wanted at our courts. Players join by scanning a code, no account needed. Matches are balanced by skill tier. Record a score and the queue rotates itself.</p>
+            <ul class="q-stops">
+                <li><span class="roundel" data-line="q">Q1</span>Join with a code or QR, no sign-up</li>
+                <li><span class="roundel" data-line="q">Q2</span>Fair, skill-balanced matches</li>
+                <li><span class="roundel" data-line="q">Q3</span>Next Up plans every court ahead</li>
+            </ul>
+            <div class="q-actions">
+                <a class="button button--q" href="{{ links.app_store }}" target="_blank" rel="noopener">App Store <svg width="18" height="18" aria-hidden="true"><use href="#i-out"/></svg></a>
+                <a class="button button--q" href="{{ links.play_store }}" target="_blank" rel="noopener">Google Play <svg width="18" height="18" aria-hidden="true"><use href="#i-out"/></svg></a>
             </div>
+            <a class="ride-link" href="{{ url_for('main.tech') }}">
+                Ride the full Q line
+                <span>How a session runs, the rotation modes, the stack</span>
+                <svg width="22" height="22" aria-hidden="true"><use href="#i-arrow"/></svg>
+            </a>
+        </div>
+
+        <div class="q-visual">
+        <div class="q-phones">
+            <figure class="q-phone q-phone--1">
+                <div class="phone"><img src="{{ url_for('static', filename='img/paqueueka/live-400.webp') }}" srcset="{{ url_for('static', filename='img/paqueueka/live-400.webp') }} 400w, {{ url_for('static', filename='img/paqueueka/live-800.webp') }} 800w" sizes="(min-width: 960px) 15vw, 40vw" width="400" height="870" loading="lazy" decoding="async" alt="PaQueueKa live session: Court 1 is live with Paolo and Dom against Kat and Joy, drawn on a pickleball court."></div>
+                <figcaption>Live courts</figcaption>
+            </figure>
+            <figure class="q-phone q-phone--2">
+                <div class="phone"><img src="{{ url_for('static', filename='img/paqueueka/nextup-400.webp') }}" srcset="{{ url_for('static', filename='img/paqueueka/nextup-400.webp') }} 400w, {{ url_for('static', filename='img/paqueueka/nextup-800.webp') }} 800w" sizes="(min-width: 960px) 15vw, 40vw" width="400" height="870" loading="lazy" decoding="async" alt="PaQueueKa Next Up: two planned sets, one ready to deploy to Court 2, and eight players waiting in the queue."></div>
+                <figcaption>Next Up</figcaption>
+            </figure>
+            <figure class="q-phone q-phone--3">
+                <div class="phone"><img src="{{ url_for('static', filename='img/paqueueka/score-400.webp') }}" srcset="{{ url_for('static', filename='img/paqueueka/score-400.webp') }} 400w, {{ url_for('static', filename='img/paqueueka/score-800.webp') }} 800w" sizes="(min-width: 960px) 15vw, 40vw" width="400" height="870" loading="lazy" decoding="async" alt="PaQueueKa match result: score 11 to 9 entered on a keypad, with a Save and rotate queue button."></div>
+                <figcaption>Score, then rotate</figcaption>
+            </figure>
+        </div>
+        <p class="q-phones-note">Real screens from the app, with a demo session.</p>
         </div>
     </div>
 </section>
 
-<!-- ── Lightbox ───────────────────────────────────────────────────────────── -->
-<div id="lightbox" class="modal">
-    <span class="close-btn">&times;</span>
-    <div class="modal-content">
-        <img id="lightbox-img" src="" alt="">
-        <div id="lightbox-caption" class="caption"></div>
-    </div>
-</div>
+{# ── Viewer ─────────────────────────────────────────────────────────────── #}
+{% include '_viewer.html' %}
 
-{% endblock %}
-
-{% block scripts %}
-<script src="{{ url_for('static', filename='js/main.js') }}"></script>
 {% endblock %}

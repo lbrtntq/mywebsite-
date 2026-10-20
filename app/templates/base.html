@@ -3,64 +3,137 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>albertantioquia |</title>
-    <link rel="icon" type="image/svg+xml"
-        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%2250%25%22 x=%2250%25%22 font-size=%2280%22 font-family=%22Assistant, sans-serif%22 font-weight=%22800%22 text-anchor=%22middle%22 dominant-baseline=%22central%22 fill=%22%23c9a882%22>A</text></svg>">
-    <meta name="description" content="Albert Antioquia — Data Engineer & Photographer from the Philippines.">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    {% set page_title = page_title | default('Albert Antioquia — data engineer, phone photographer, app builder') %}
+    {% set page_description = page_description | default('Albert Antioquia is a data engineer from the Philippines who shoots cities on his phone and builds PaQueueKa, a queue app for badminton and pickleball.') %}
+    {% set canonical = url_for(request.endpoint, _external=True) if request.endpoint else request.base_url %}
+    <title>{{ page_title }}</title>
+    <meta name="description" content="{{ page_description }}">
+    <link rel="canonical" href="{{ canonical }}">
+    <meta name="theme-color" content="#121413">
+    <meta name="author" content="Albert Antioquia">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Albert Antioquia">
+    <meta property="og:title" content="{{ page_title }}">
+    <meta property="og:description" content="{{ page_description }}">
+    <meta property="og:url" content="{{ canonical }}">
+    {% if og_image %}
+    <meta property="og:image" content="{{ og_image }}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:image" content="{{ og_image }}">
+    {% endif %}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ page_title }}">
+    <meta name="twitter:description" content="{{ page_description }}">
+
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='img/favicon.svg') }}">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='img/apple-touch-icon.png') }}">
+    <link rel="preload" href="{{ url_for('static', filename='fonts/archivo-latin.woff2') }}" as="font" type="font/woff2" crossorigin>
+    <link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
+    <link rel="stylesheet" href="{{ asset('css/site.css') }}">
+    <script>document.documentElement.classList.add('js');</script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Albert Antioquia",
+        "url": "{{ url_for('main.index', _external=True) }}",
+        "jobTitle": "Data Engineer",
+        "homeLocation": {"@type": "Country", "name": "Philippines"},
+        "knowsAbout": ["Data engineering", "Mobile photography", "App development"],
+        "sameAs": ["{{ links.github }}", "{{ links.linkedin }}", "{{ links.youtube }}"]
+    }
+    </script>
     {% block head %}{% endblock %}
 </head>
 
 <body>
-    <nav id="navbar">
-        <div class="nav-top">
-            <a href="/" class="nav-logo">AA</a>
-            <button class="menu-toggle" aria-label="Toggle navigation"
-                onclick="document.body.classList.toggle('nav-open')">
-                <span></span><span></span><span></span>
-            </button>
-        </div>
+    <a class="skip" href="#main">Skip to content</a>
 
-        <div class="nav-middle">
-            <ul class="nav-links">
-                <li><a href="/#gallery" onclick="document.body.classList.remove('nav-open')">Photography</a></li>
-                <li><a href="/#about" onclick="document.body.classList.remove('nav-open')">About</a></li>
-                <li><a href="{{ url_for('main.tech') }}" onclick="document.body.classList.remove('nav-open')">Tech</a></li>
-                {% if session.admin_logged_in %}
-                <li><a href="{{ url_for('gallery.dashboard') }}" onclick="document.body.classList.remove('nav-open')">Dashboard</a></li>
-                {% endif %}
-            </ul>
-        </div>
+    <svg class="sprite" aria-hidden="true" focusable="false">
+        <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></symbol>
+        <symbol id="i-left" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></symbol>
+        <symbol id="i-right" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></symbol>
+        <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></symbol>
+        <symbol id="i-expand" viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></symbol>
+        <symbol id="i-out" viewBox="0 0 24 24"><path d="M8 16L17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></symbol>
+    </svg>
 
-        <div class="nav-bottom">
-            <a href="https://github.com/lbrtntq" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
-            <a href="https://www.linkedin.com/in/albert-antioquia-ph/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-            <a href="https://www.youtube.com/@LBRTNTQ" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
-        </div>
-    </nav>
+    <header class="strip" data-strip>
+        <a class="strip-home" href="{{ url_for('main.index') }}" aria-label="Albert Antioquia, home">
+            <span class="roundel roundel--home" aria-hidden="true">AA</span>
+        </a>
 
-    <main>
+        <nav class="strip-map" aria-label="Stops on this page">
+            <ol>
+                {% for stop in route %}
+                <li class="stop" data-line="{{ stop.line }}">
+                    <a href="{{ stop.href }}" data-stop="{{ stop.id }}" title="{{ stop.label }}">
+                        <span class="stop-dot" aria-hidden="true"></span>
+                        <span class="visually-hidden">{{ stop.label }}</span>
+                    </a>
+                </li>
+                {% endfor %}
+            </ol>
+        </nav>
+
+        <p class="strip-now" aria-hidden="true">
+            <span class="now-label">Now</span>
+            <span class="now-name" data-now>{{ route[0].label if route else '' }}</span>
+        </p>
+
+        {% set home = '' if request.endpoint == 'main.index' else url_for('main.index') %}
+        <ul class="strip-lines" aria-label="Lines">
+            <li><a class="line-plate" data-line="p" href="{{ home }}#photography" aria-label="Photography line">P</a></li>
+            <li><a class="line-plate" data-line="d" href="{{ home }}#about" aria-label="Data line">D</a></li>
+            <li><a class="line-plate" data-line="q" href="{{ '#q-top' if request.endpoint == 'main.tech' else '#paqueueka' }}" aria-label="PaQueueKa line">Q</a></li>
+        </ul>
+
+        <button class="map-button" type="button" aria-haspopup="dialog" aria-controls="route-map" data-open-map>
+            <span class="map-glyph" aria-hidden="true"><i></i><i></i><i></i></span>
+            Map
+        </button>
+    </header>
+
+    <dialog class="route-map" id="route-map" aria-label="Route map">
+        <div class="route-map-inner">
+            <div class="route-map-head">
+                <p class="route-map-title">Route map</p>
+                <button class="icon-button" type="button" data-close-map aria-label="Close map">
+                    <svg width="22" height="22"><use href="#i-close"/></svg>
+                </button>
+            </div>
+            <ol class="route-list">
+                {% for stop in route %}
+                <li class="route-stop" data-line="{{ stop.line }}">
+                    <a href="{{ stop.href }}" data-stop-link="{{ stop.id }}">
+                        <span class="route-dot" aria-hidden="true"></span>
+                        {% if stop.code %}<span class="route-code">{{ stop.code }}</span>{% endif %}
+                        <span class="route-name">{{ stop.label }}</span>
+                    </a>
+                </li>
+                {% endfor %}
+            </ol>
+            {% if branch %}
+            <a class="route-branch" href="{{ branch.href }}">
+                <span class="line-plate" data-line="{{ branch.line }}">{{ branch.letter }}</span>
+                {{ branch.label }}
+                <svg width="18" height="18" aria-hidden="true"><use href="#i-arrow"/></svg>
+            </a>
+            {% endif %}
+        </div>
+    </dialog>
+
+    <main id="main">
         {% block content %}{% endblock %}
     </main>
 
-    <footer>
-        <div class="footer-content">
-            <p>&copy; {{ current_year }} Albert Antioquia</p>
-            <div class="footer-icons">
-                <a href="https://github.com/lbrtntq" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/albert-antioquia-ph/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-                <a href="https://www.youtube.com/@LBRTNTQ" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
-            </div>
-        </div>
-    </footer>
+    {% include '_exits.html' %}
 
+    <script src="{{ asset('js/site.js') }}" defer></script>
     {% block scripts %}{% endblock %}
 </body>
 

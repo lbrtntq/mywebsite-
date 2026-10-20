@@ -3,6 +3,7 @@ import cloudinary.uploader
 from app import db
 from app.models.gallery import GalleryItem
 from flask import current_app
+from app.services.photo_service import remember_size
 
 class GalleryService:
     @staticmethod
@@ -32,6 +33,7 @@ class GalleryService:
                     resource_type="image"
                 )
                 print(f"Cloudinary upload successful: {upload_result.get('secure_url')}")
+                remember_size(upload_result.get('secure_url'), upload_result.get('width'), upload_result.get('height'))
                 
                 # Create DB entry using Cloudinary's secure URL
                 item = GalleryItem(
@@ -92,6 +94,7 @@ class GalleryService:
                 resource_type="image"
             )
             item.filename = upload_result['secure_url']
+            remember_size(item.filename, upload_result.get('width'), upload_result.get('height'))
             
         db.session.commit()
         return item

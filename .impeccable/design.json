@@ -1,0 +1,489 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-20T00:00:00Z",
+  "title": "Design System: Albert Antioquia",
+  "extensions": {
+    "colorMeta": {
+      "wall": {
+        "role": "neutral",
+        "displayName": "Enamel Wall",
+        "canonical": "oklch(95.6% 0.004 236.5)",
+        "tonalRamp": [
+          "#0a0b0d",
+          "#252728",
+          "#434547",
+          "#646668",
+          "#87898b",
+          "#abaeb0",
+          "#ced1d3",
+          "#eceff1"
+        ]
+      },
+      "wall-deep": {
+        "role": "neutral",
+        "displayName": "Grout Wall",
+        "canonical": "oklch(92.2% 0.007 233.6)",
+        "tonalRamp": [
+          "#080c0e",
+          "#232729",
+          "#424648",
+          "#626769",
+          "#858a8d",
+          "#aaafb2",
+          "#cdd2d5",
+          "#eaeff2"
+        ]
+      },
+      "sign-panel": {
+        "role": "neutral",
+        "displayName": "Sign Panel",
+        "canonical": "oklch(98.4% 0.003 228.8)",
+        "tonalRamp": [
+          "#0a0b0c",
+          "#252727",
+          "#444546",
+          "#656667",
+          "#88898a",
+          "#acaeaf",
+          "#cfd1d2",
+          "#edeff0"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Signage Ink",
+        "canonical": "oklch(18.9% 0.004 164.6)",
+        "tonalRamp": [
+          "#0a0c0b",
+          "#252726",
+          "#434644",
+          "#646765",
+          "#878a88",
+          "#acafad",
+          "#cfd2d0",
+          "#ecefee"
+        ]
+      },
+      "ink-2": {
+        "role": "neutral",
+        "displayName": "Ink 2",
+        "canonical": "oklch(39.6% 0.008 159.7)",
+        "tonalRamp": [
+          "#080c0a",
+          "#232825",
+          "#414643",
+          "#626864",
+          "#858b87",
+          "#aab0ac",
+          "#cdd3cf",
+          "#eaf0ec"
+        ]
+      },
+      "ink-3": {
+        "role": "neutral",
+        "displayName": "Ink 3",
+        "canonical": "oklch(51.1% 0.010 156.9)",
+        "tonalRamp": [
+          "#080c09",
+          "#232825",
+          "#414743",
+          "#626864",
+          "#858b87",
+          "#a9b0ab",
+          "#ccd3ce",
+          "#eaf0ec"
+        ]
+      },
+      "tunnel": {
+        "role": "neutral",
+        "displayName": "Tunnel",
+        "canonical": "oklch(15.3% 0.002 197.0)",
+        "tonalRamp": [
+          "#0a0b0b",
+          "#252727",
+          "#444545",
+          "#656666",
+          "#888989",
+          "#adaeae",
+          "#d0d1d1",
+          "#edefef"
+        ]
+      },
+      "on-dark": {
+        "role": "neutral",
+        "displayName": "On-dark",
+        "canonical": "oklch(96.0% 0.004 121.6)",
+        "tonalRamp": [
+          "#0b0b0a",
+          "#262725",
+          "#454543",
+          "#666664",
+          "#898987",
+          "#adaeab",
+          "#d0d1ce",
+          "#eeefec"
+        ]
+      },
+      "on-dark-2": {
+        "role": "neutral",
+        "displayName": "On-dark 2",
+        "canonical": "oklch(79.4% 0.006 153.7)",
+        "tonalRamp": [
+          "#090c0a",
+          "#242725",
+          "#434643",
+          "#636764",
+          "#868a87",
+          "#abafac",
+          "#ced2cf",
+          "#ebf0ed"
+        ]
+      },
+      "line-p": {
+        "role": "primary",
+        "displayName": "Signal Red, Line P",
+        "canonical": "oklch(56.5% 0.206 29.2)",
+        "tonalRamp": [
+          "#2d0000",
+          "#5a0000",
+          "#8a0000",
+          "#bc1b12",
+          "#e64c3d",
+          "#ff7f6d",
+          "#ffaa99",
+          "#ffcebd"
+        ]
+      },
+      "line-d": {
+        "role": "primary",
+        "displayName": "Platform Blue, Line D",
+        "canonical": "oklch(49.4% 0.139 251.1)",
+        "tonalRamp": [
+          "#00062f",
+          "#002558",
+          "#004585",
+          "#1668b1",
+          "#4d8dcf",
+          "#7bb2ee",
+          "#a6d6ff",
+          "#c9f3ff"
+        ]
+      },
+      "line-q": {
+        "role": "primary",
+        "displayName": "Court Green, Line Q",
+        "canonical": "oklch(51.8% 0.142 137.4)",
+        "tonalRamp": [
+          "#001200",
+          "#033100",
+          "#1e5300",
+          "#397819",
+          "#629b4b",
+          "#8cbe79",
+          "#b4e0a4",
+          "#d5fcc7"
+        ]
+      },
+      "line-q-deep": {
+        "role": "primary",
+        "displayName": "Court Green Deep (hover)",
+        "canonical": "oklch(45.0% 0.123 137.4)",
+        "tonalRamp": [
+          "#001200",
+          "#053000",
+          "#215204",
+          "#43752e",
+          "#6b985a",
+          "#94bb85",
+          "#bbddae",
+          "#dbf9d1"
+        ]
+      },
+      "line-d-lit": {
+        "role": "tertiary",
+        "displayName": "Lit Blue",
+        "canonical": "oklch(63.2% 0.133 247.9)",
+        "tonalRamp": [
+          "#000a26",
+          "#00284d",
+          "#064878",
+          "#226aa5",
+          "#3c8ed5",
+          "#6eb4f5",
+          "#9ad7ff",
+          "#bef5ff"
+        ]
+      },
+      "line-q-lit": {
+        "role": "tertiary",
+        "displayName": "Lit Green",
+        "canonical": "oklch(65.1% 0.166 135.5)",
+        "tonalRamp": [
+          "#001100",
+          "#093000",
+          "#235200",
+          "#3d770f",
+          "#599e2b",
+          "#82c35e",
+          "#aae58c",
+          "#ccffb1"
+        ]
+      },
+      "exit-yellow": {
+        "role": "secondary",
+        "displayName": "Exit Yellow",
+        "canonical": "oklch(86.7% 0.177 90.8)",
+        "tonalRamp": [
+          "#130900",
+          "#342400",
+          "#584200",
+          "#7f6200",
+          "#a88400",
+          "#d3a800",
+          "#fccb00",
+          "#ffea5b"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Station Name",
+        "purpose": "Station names only: home hero, /tech hero, footer terminus."
+      },
+      "headline": {
+        "displayName": "Line Title",
+        "purpose": "Line and closing titles, paired with a line plate and 8px rule."
+      },
+      "title": {
+        "displayName": "Station Title",
+        "purpose": "Individual photo stations and ride steps."
+      },
+      "lede": {
+        "displayName": "Lede",
+        "purpose": "One opening paragraph per stop."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Reading copy, 40-62ch, usually ink-2."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Metadata, captions, row descriptions."
+      },
+      "code": {
+        "displayName": "Station Code",
+        "purpose": "Codes inside roundels (P1, D2, Q3); tabular."
+      }
+    },
+    "shadows": [
+      {
+        "name": "sign-lip",
+        "value": "0 1px 0 rgba(18,20,19,0.14), 0 0 0 1px rgba(18,20,19,0.06)",
+        "purpose": "Enamel sign panel mounted on the tile wall."
+      },
+      {
+        "name": "lightbox-drop",
+        "value": "0 1px 0 rgba(11,12,12,0.2), 0 26px 50px -26px rgba(11,12,12,0.45)",
+        "purpose": "Poster lightbox; paired with a blurred screen-blend backlight of its photo."
+      },
+      {
+        "name": "device-cast",
+        "value": "inset 0 0 0 1.5px #3a3e3c, 0 2px 0 #0b0c0c, 0 30px 50px -24px rgba(11,12,12,0.55)",
+        "purpose": "Phone frames holding app captures."
+      },
+      {
+        "name": "preview-lift",
+        "value": "0 18px 40px -18px rgba(11,12,12,0.6)",
+        "purpose": "Cursor-following timetable preview only."
+      },
+      {
+        "name": "focus-ring",
+        "value": "outline: 3px solid #121413; outline-offset: 3px; box-shadow: 0 0 0 6px #ffcd00",
+        "purpose": "Global focus-visible; on dark grounds an on-dark or yellow outline with no halo."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Default for entrances, reveals, row slides."
+      },
+      {
+        "name": "ease-in-out",
+        "value": "cubic-bezier(0.65, 0, 0.35, 1)",
+        "purpose": "Travelling motion: pipeline train, queue tokens changing slots."
+      },
+      {
+        "name": "rise",
+        "value": "translateY(105%) to 0, 900ms ease-out, second line +90ms",
+        "purpose": "Station name rises out of its sign line (overflow-clipped)."
+      },
+      {
+        "name": "track-draw",
+        "value": "scaleX(0) to 1 from left, 1000ms ease-out, staggered 90ms; SVG route paths draw on desktop",
+        "purpose": "Line bands and hero routes draw in."
+      },
+      {
+        "name": "platform-doors",
+        "value": "clip-path inset(0 50% 0 50%) to inset(0), 1100ms ease-out; image scale 1.08 to 1 over 1400ms",
+        "purpose": "Photos open from the centre as they arrive; the poster on load."
+      },
+      {
+        "name": "led-scramble",
+        "value": "A-Z0-9 characters settle left to right over 360ms, 40ms ticks",
+        "purpose": "Strip-map Now readout, once per station change."
+      },
+      {
+        "name": "row-slide",
+        "value": "padding-left +12-14px, 260ms ease-out; arrow translateX 4-5px",
+        "purpose": "Hover on ruled rows (hover-capable devices only)."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "all animations and transitions 1ms, single iteration; JS effects skip to final state",
+        "purpose": "Required path for every motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "compact",
+        "value": "719px"
+      },
+      {
+        "name": "single-column",
+        "value": "959px"
+      },
+      {
+        "name": "strip-plates",
+        "value": "1100px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Q Button",
+      "kind": "button",
+      "refersTo": "button-q",
+      "description": "Primary action on the Q line (store links). Solid court green, wide 700 label.",
+      "html": "<a class=\"ds-btn ds-btn-q\" href=\"#\">App Store <svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M8 16L17 7M9 7h8v8\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"square\"/></svg></a>",
+      "css": ":host{--wall:#eef1f3;--wall-deep:#e1e6e9;--ink:#121413;--ink-2:#434845;--ink-3:#626864;--tunnel:#0b0c0c;--on-dark:#f1f2ef;--on-dark-2:#b9bdba;--p:#d42a1f;--d:#0a63ad;--q:#3b7a1b;--exit:#ffcd00;--font:'Archivo',ui-sans-serif,system-ui,sans-serif;--ease-out:cubic-bezier(0.16,1,0.3,1);} .ds-btn{display:inline-flex;align-items:center;gap:0.6em;min-height:48px;padding:0 1.15em;border-radius:6px;font-family:var(--font);font-weight:700;font-stretch:108%;text-decoration:none;transition:transform 160ms var(--ease-out),background-color 160ms ease,color 160ms ease;} .ds-btn:active{transform:scale(0.97);} .ds-btn-q{background:var(--q);color:#fff;} .ds-btn-q:hover{background:#2f6414;} :focus-visible{outline:3px solid var(--ink);outline-offset:3px;box-shadow:0 0 0 6px var(--exit);}"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Secondary action: 2px inset ink stroke that inverts on hover.",
+      "html": "<a class=\"ds-btn ds-btn-ghost\" href=\"#\">paqueueka.info <svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M8 16L17 7M9 7h8v8\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"square\"/></svg></a>",
+      "css": ":host{--wall:#eef1f3;--wall-deep:#e1e6e9;--ink:#121413;--ink-2:#434845;--ink-3:#626864;--tunnel:#0b0c0c;--on-dark:#f1f2ef;--on-dark-2:#b9bdba;--p:#d42a1f;--d:#0a63ad;--q:#3b7a1b;--exit:#ffcd00;--font:'Archivo',ui-sans-serif,system-ui,sans-serif;--ease-out:cubic-bezier(0.16,1,0.3,1);} .ds-btn{display:inline-flex;align-items:center;gap:0.6em;min-height:48px;padding:0 1.15em;border-radius:6px;font-family:var(--font);font-weight:700;font-stretch:108%;text-decoration:none;transition:transform 160ms var(--ease-out),background-color 160ms ease,color 160ms ease;} .ds-btn:active{transform:scale(0.97);} .ds-btn-ghost{box-shadow:inset 0 0 0 2px var(--ink);color:var(--ink);background:transparent;} .ds-btn-ghost:hover{background:var(--ink);color:var(--wall);} :focus-visible{outline:3px solid var(--ink);outline-offset:3px;box-shadow:0 0 0 6px var(--exit);}"
+    },
+    {
+      "name": "Line Plates and Roundels",
+      "kind": "chip",
+      "refersTo": "line-plate",
+      "description": "Signage atoms: P/D/Q line plates, a station-code roundel, and a yellow exit plate.",
+      "html": "<div class=\"ds-atoms\"><span class=\"ds-plate\" style=\"--line:#d42a1f\">P</span><span class=\"ds-plate\" style=\"--line:#0a63ad\">D</span><span class=\"ds-plate\" style=\"--line:#3b7a1b\">Q</span><span class=\"ds-roundel\" style=\"--line:#d42a1f\">P3</span><span class=\"ds-exit\">A</span></div>",
+      "css": ":host{--wall:#eef1f3;--wall-deep:#e1e6e9;--ink:#121413;--ink-2:#434845;--ink-3:#626864;--tunnel:#0b0c0c;--on-dark:#f1f2ef;--on-dark-2:#b9bdba;--p:#d42a1f;--d:#0a63ad;--q:#3b7a1b;--exit:#ffcd00;--font:'Archivo',ui-sans-serif,system-ui,sans-serif;--ease-out:cubic-bezier(0.16,1,0.3,1);} .ds-atoms{display:flex;align-items:center;gap:10px;font-family:var(--font);font-variant-numeric:tabular-nums;} .ds-plate{display:inline-grid;place-items:center;width:2em;height:2em;border-radius:0.3em;background:var(--line);color:#fff;font-weight:800;font-stretch:112%;font-size:0.95rem;line-height:1;} .ds-roundel{display:inline-grid;place-items:center;min-width:2.6em;height:1.9em;padding:0 0.5em;border:3px solid var(--line);border-radius:999px;background:#fff;color:var(--ink);font-size:0.8125rem;font-weight:800;font-stretch:105%;line-height:1;letter-spacing:0.01em;} .ds-exit{display:grid;place-items:center;width:48px;height:48px;border-radius:6px;background:var(--exit);color:var(--ink);font-size:1.5rem;font-weight:900;font-stretch:112%;}"
+    },
+    {
+      "name": "Strip Map",
+      "kind": "nav",
+      "refersTo": "strip-map",
+      "description": "Fixed in-car route display: home roundel, stops on line-coloured track (ghost, passed, current), Now readout, Map pill.",
+      "html": "<header class=\"ds-strip\"><span class=\"ds-home\">AA</span><ol class=\"ds-stops\"><li class=\"ds-stop is-passed\" style=\"--line:#d42a1f\"><span></span></li><li class=\"ds-stop is-current\" style=\"--line:#d42a1f\"><span></span></li><li class=\"ds-stop\" style=\"--line:#0a63ad\"><span></span></li><li class=\"ds-stop\" style=\"--line:#3b7a1b\"><span></span></li></ol><p class=\"ds-now\"><b>Now</b> Crossing</p><button class=\"ds-map\" type=\"button\"><i></i>Map</button></header>",
+      "css": ":host{--wall:#eef1f3;--wall-deep:#e1e6e9;--ink:#121413;--ink-2:#434845;--ink-3:#626864;--tunnel:#0b0c0c;--on-dark:#f1f2ef;--on-dark-2:#b9bdba;--p:#d42a1f;--d:#0a63ad;--q:#3b7a1b;--exit:#ffcd00;--font:'Archivo',ui-sans-serif,system-ui,sans-serif;--ease-out:cubic-bezier(0.16,1,0.3,1);} .ds-strip{display:grid;grid-template-columns:auto minmax(0,1fr) auto auto;align-items:center;gap:20px;height:56px;padding:0 20px;background:var(--ink);color:var(--on-dark);font-family:var(--font);} .ds-home{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:var(--wall);color:var(--ink);font-size:0.8rem;font-weight:900;font-stretch:125%;} .ds-stops{display:flex;align-items:center;margin:0;padding:0;list-style:none;} .ds-stop{position:relative;flex:1 1 0;display:flex;justify-content:flex-end;} .ds-stop:first-child{flex:0 0 auto;} .ds-stop:not(:first-child)::before{content:'';position:absolute;left:0;right:9px;top:50%;height:4px;margin-top:-2px;background:var(--line);opacity:0.35;} .ds-stop.is-passed::before{opacity:0.6;} .ds-stop.is-current::before{opacity:1;} .ds-stop span{display:block;width:12px;height:12px;margin:9px 5px;border-radius:50%;background:var(--ink);box-shadow:inset 0 0 0 2px var(--line);transition:transform 200ms var(--ease-out);} .ds-stop.is-passed span{background:color-mix(in srgb,var(--line) 45%,var(--ink));} .ds-stop.is-current span{background:#fff;box-shadow:inset 0 0 0 3px var(--line),0 0 0 3px var(--ink),0 0 0 5px #fff;transform:scale(1.15);} .ds-stop:hover span{transform:scale(1.35);} .ds-now{margin:0;font-size:0.875rem;font-weight:700;font-stretch:108%;white-space:nowrap;} .ds-now b{margin-right:0.6em;color:var(--on-dark-2);font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;} .ds-map{display:inline-flex;align-items:center;gap:0.55em;min-height:40px;padding:0 0.9em;border:0;border-radius:999px;background:none;color:inherit;font:inherit;font-size:0.875rem;font-weight:700;box-shadow:inset 0 0 0 2px rgba(241,242,239,0.4);cursor:pointer;} .ds-map:hover{box-shadow:inset 0 0 0 2px var(--on-dark);} .ds-map i{width:14px;height:13px;background:linear-gradient(#d42a1f 0 3px,transparent 3px 5px,#3d8fd6 5px 8px,transparent 8px 10px,#5ea52f 10px 13px);} .ds-map:focus-visible{outline:3px solid var(--on-dark);outline-offset:3px;}"
+    },
+    {
+      "name": "Change Line Row",
+      "kind": "custom",
+      "refersTo": "sign-panel",
+      "description": "Interchange row on the sign panel: line plate, name and description, line-coloured arrow; lifts to white and slides on hover.",
+      "html": "<div class=\"ds-sign\"><p class=\"ds-label\">Change here for</p><a class=\"ds-change\" href=\"#\" style=\"--line:#d42a1f\"><span class=\"ds-plate\">P</span><span class=\"ds-text\"><b>Photography</b><span>6 stops in Hong Kong, Macau, Bangkok</span></span><span class=\"ds-arrow\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 12h13M13 6l6 6-6 6\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"square\"/></svg></span></a></div>",
+      "css": ":host{--wall:#eef1f3;--wall-deep:#e1e6e9;--ink:#121413;--ink-2:#434845;--ink-3:#626864;--tunnel:#0b0c0c;--on-dark:#f1f2ef;--on-dark-2:#b9bdba;--p:#d42a1f;--d:#0a63ad;--q:#3b7a1b;--exit:#ffcd00;--font:'Archivo',ui-sans-serif,system-ui,sans-serif;--ease-out:cubic-bezier(0.16,1,0.3,1);} .ds-sign{padding:32px;background:#f8fafb;border-radius:4px;box-shadow:0 1px 0 rgba(18,20,19,0.14),0 0 0 1px rgba(18,20,19,0.06);font-family:var(--font);color:var(--ink);max-width:560px;} .ds-label{margin:0 0 8px;font-size:0.875rem;font-weight:700;color:var(--ink-2);} .ds-change{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;min-height:64px;padding:8px 4px;border-top:2px solid var(--ink);border-bottom:1px solid rgba(18,20,19,0.18);color:inherit;text-decoration:none;transition:background-color 180ms ease,padding 260ms var(--ease-out);} .ds-change:hover{background:#fff;padding-left:12px;} .ds-plate{display:inline-grid;place-items:center;width:2em;height:2em;border-radius:0.3em;background:var(--line);color:#fff;font-weight:800;font-stretch:112%;font-size:0.95rem;} .ds-text{display:grid;line-height:1.25;} .ds-text b{font-weight:800;font-stretch:110%;font-size:1.125rem;} .ds-text span{color:var(--ink-2);font-size:0.9375rem;} .ds-arrow{color:var(--line);display:grid;transition:transform 260ms var(--ease-out);} .ds-change:hover .ds-arrow{transform:translateX(4px);} :focus-visible{outline:3px solid var(--ink);outline-offset:3px;box-shadow:0 0 0 6px var(--exit);}"
+    },
+    {
+      "name": "Timetable Row",
+      "kind": "custom",
+      "refersTo": "roundel",
+      "description": "Ruled list row for photo stations: roundel code, title, place, tabular date; inverts to ink on hover.",
+      "html": "<ol class=\"ds-tt\"><li><button class=\"ds-row\" type=\"button\"><span class=\"ds-roundel\">P4</span><span class=\"ds-title\">Crossing</span><span class=\"ds-place\">Hong Kong</span><span class=\"ds-date\">12 Mar 2025</span></button></li><li><button class=\"ds-row\" type=\"button\"><span class=\"ds-roundel\">P5</span><span class=\"ds-title\">Vertical City</span><span class=\"ds-place\">Hong Kong</span><span class=\"ds-date\">02 Apr 2025</span></button></li></ol>",
+      "css": ":host{--wall:#eef1f3;--wall-deep:#e1e6e9;--ink:#121413;--ink-2:#434845;--ink-3:#626864;--tunnel:#0b0c0c;--on-dark:#f1f2ef;--on-dark-2:#b9bdba;--p:#d42a1f;--d:#0a63ad;--q:#3b7a1b;--exit:#ffcd00;--font:'Archivo',ui-sans-serif,system-ui,sans-serif;--ease-out:cubic-bezier(0.16,1,0.3,1);} .ds-tt{margin:0;padding:0;list-style:none;border-top:3px solid var(--ink);font-family:var(--font);font-variant-numeric:tabular-nums;color:var(--ink);} .ds-row{display:grid;grid-template-columns:4.5rem minmax(0,1fr) 8rem 7.5rem;align-items:center;gap:16px;width:100%;min-height:64px;padding:8px 8px 8px 0;border:0;border-bottom:1px solid rgba(18,20,19,0.2);background:none;color:inherit;font:inherit;text-align:left;cursor:pointer;transition:background-color 140ms ease,color 140ms ease,padding 260ms var(--ease-out);} .ds-row:hover{background:var(--ink);color:var(--on-dark);padding-left:14px;} .ds-row:hover .ds-place,.ds-row:hover .ds-date{color:var(--on-dark-2);} .ds-roundel{display:inline-grid;place-items:center;min-width:2.6em;height:1.9em;padding:0 0.5em;border:3px solid var(--p);border-radius:999px;background:#fff;color:var(--ink);font-size:0.8125rem;font-weight:800;font-stretch:105%;line-height:1;} .ds-title{font-size:1.2rem;font-weight:700;font-stretch:108%;} .ds-place{color:var(--ink-2);} .ds-date{color:var(--ink-3);font-size:0.9375rem;} :focus-visible{outline:3px solid var(--ink);outline-offset:3px;box-shadow:0 0 0 6px var(--exit);}"
+    },
+    {
+      "name": "Exit Row",
+      "kind": "custom",
+      "refersTo": "exit-plate",
+      "description": "Footer exit on plain ink: yellow lettered plate, destination, out-arrow that turns yellow on hover.",
+      "html": "<div class=\"ds-foot\"><a class=\"ds-exitrow\" href=\"#\"><span class=\"ds-exit\">A</span><span class=\"ds-to\"><b>GitHub</b><span>Code, dbt experiments and this site</span></span><svg class=\"ds-out\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M8 16L17 7M9 7h8v8\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"square\"/></svg></a></div>",
+      "css": ":host{--wall:#eef1f3;--wall-deep:#e1e6e9;--ink:#121413;--ink-2:#434845;--ink-3:#626864;--tunnel:#0b0c0c;--on-dark:#f1f2ef;--on-dark-2:#b9bdba;--p:#d42a1f;--d:#0a63ad;--q:#3b7a1b;--exit:#ffcd00;--font:'Archivo',ui-sans-serif,system-ui,sans-serif;--ease-out:cubic-bezier(0.16,1,0.3,1);} .ds-foot{padding:24px;background:var(--ink);color:var(--on-dark);font-family:var(--font);} .ds-exitrow{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:16px;min-height:84px;padding:14px 4px;border-top:3px solid var(--on-dark);border-bottom:1px solid rgba(241,242,239,0.18);color:inherit;text-decoration:none;transition:padding 260ms var(--ease-out);} .ds-exitrow:hover{padding-left:12px;} .ds-exit{display:grid;place-items:center;width:48px;height:48px;border-radius:6px;background:var(--exit);color:var(--ink);font-size:1.5rem;font-weight:900;font-stretch:112%;} .ds-to{display:grid;line-height:1.3;} .ds-to b{font-size:1.25rem;font-weight:800;font-stretch:110%;} .ds-to span{color:var(--on-dark-2);font-size:0.9375rem;} .ds-out{color:var(--on-dark-2);transition:transform 260ms var(--ease-out),color 160ms ease;} .ds-exitrow:hover .ds-out{color:var(--exit);transform:translate(3px,-3px);} .ds-exitrow:focus-visible{outline:3px solid var(--exit);outline-offset:3px;}"
+    },
+    {
+      "name": "Ride Link",
+      "kind": "card",
+      "refersTo": "ink-slab",
+      "description": "Dark slab linking to the next line or page, with a lit-green arrow.",
+      "html": "<a class=\"ds-ride\" href=\"#\">Ride the whole Q line<span>How a session runs, start to finish</span><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 12h13M13 6l6 6-6 6\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"square\"/></svg></a>",
+      "css": ":host{--wall:#eef1f3;--wall-deep:#e1e6e9;--ink:#121413;--ink-2:#434845;--ink-3:#626864;--tunnel:#0b0c0c;--on-dark:#f1f2ef;--on-dark-2:#b9bdba;--p:#d42a1f;--d:#0a63ad;--q:#3b7a1b;--exit:#ffcd00;--font:'Archivo',ui-sans-serif,system-ui,sans-serif;--ease-out:cubic-bezier(0.16,1,0.3,1);} .ds-ride{display:grid;grid-template-columns:1fr auto;align-items:center;column-gap:16px;max-width:520px;padding:18px 20px;border-radius:8px;background:var(--ink);color:var(--on-dark);font-family:var(--font);font-size:1.125rem;font-weight:800;font-stretch:110%;text-decoration:none;} .ds-ride span{grid-column:1;font-size:0.9375rem;font-weight:500;font-stretch:100%;color:var(--on-dark-2);} .ds-ride svg{grid-column:2;grid-row:1/span 2;color:#7cc24a;transition:transform 260ms var(--ease-out);} .ds-ride:hover svg{transform:translateX(5px);} :focus-visible{outline:3px solid var(--ink);outline-offset:3px;box-shadow:0 0 0 6px var(--exit);}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Interchange",
+    "overview": "The public site is one Hong Kong / Bangkok metro station. Three lines (P for photography, D for data, Q for PaQueueKa) meet at a single interchange, and that interchange is Albert's name. Everything on the page is wayfinding: a cool enamel wall, signage-black ink, line colours used as state, lettered yellow exits, and a black tunnel where photographs are viewed. Nothing is decorative unless a real station would carry it.\n\nDensity is calm and generous: big wide station names, long rows of timetable, photographs given most of a viewport. The interface recedes around the photos; colour is spent on lines, plates and dots, never on surfaces. Navigation is a single system: the strip map at the top, the P/D/Q line plates, the route-map dialog and the footer exits are all drawn from the same `route` list, so every page shows the same stops in the same order.\n\nMotion is mechanical and transit-literal: a name rises out of its sign line, tracks draw in, photos open like platform doors, and the in-car display scrambles once when the current station changes. Every motion has a reduced-motion path that lands on the final state.",
+    "keyCharacteristics": [
+      "Cool enamel-tile wall, signage-black ink, three line colours as the only saturation.",
+      "Archivo variable, stretched wide (wdth 105-125) and heavy (800) for station names; normal width for reading.",
+      "Tabular figures everywhere: station codes, dates and counts line up.",
+      "Thick line strokes (6px rails, 8px rules, 10px bands) and dot-on-track stations.",
+      "Only the current station is ever fully lit; passed stations dim, unvisited ones are hollow ghosts.",
+      "One navigation system, drawn from one route list.",
+      "A black tunnel viewer for photographs."
+    ],
+    "rules": [
+      {
+        "name": "The Colour-Is-State Rule",
+        "body": "P, D and Q carry only section identity and station state. They never fill a large surface, never decorate a heading, and never appear outside their own line's content (the Map glyph, which shows all three lines, is the one place they sit together).",
+        "section": "colors"
+      },
+      {
+        "name": "The Exit Rule",
+        "body": "Yellow means \"a way out or an end\". If it is not an exit, a terminus, a buffer or focus, it is not yellow.",
+        "section": "colors"
+      },
+      {
+        "name": "The Lit Station Rule",
+        "body": "Only the current station is fully lit. Passed stops dim (line colour mixed 45% into ink); unvisited stops are hollow ghosts (ink fill, line-coloured ring). States swap in place; nothing slides between them.",
+        "section": "colors"
+      },
+      {
+        "name": "The Stretch-Means-Sign Rule",
+        "body": "Width goes up with importance: 125 for station names, 108-122 for titles and row names, 100 for reading. Reading text is never stretched.",
+        "section": "typography"
+      },
+      {
+        "name": "The Tabular Rule",
+        "body": "Every code, date and count uses tabular figures; codes live in roundels, dates in timetable columns.",
+        "section": "typography"
+      },
+      {
+        "name": "The Mounted-Not-Floating Rule",
+        "body": "Shadows describe a physical object on the wall (sign, lightbox, phone). Rows, buttons and sections never get shadows; their state is a fill change.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** take every new page's navigation from the shared route list: strip dots, route map and line plates must show the same stops.",
+      "**Do** give every line section its plate, its wide 800 title, its 8px line rule, and a 6px rail with roundel-coded stops.",
+      "**Do** mount copy on the sign panel when it sits over the tiled wall.",
+      "**Do** use tabular figures and roundels for any code, date or count.",
+      "**Do** ship a reduced-motion path for every animation that lands directly on the final state.",
+      "**Do** keep focus visible as a 3px ink outline with a 6px yellow halo (on dark grounds, an on-dark or yellow outline with no halo)."
+    ],
+    "donts": [
+      "**Don't** use P, D or Q as a background fill, a heading colour, or outside its own line.",
+      "**Don't** use yellow for anything that is not an exit, a terminus or focus.",
+      "**Don't** light more than one station at a time, or animate a highlight sliding between stops.",
+      "**Don't** set body copy directly on the tile pattern.",
+      "**Don't** add shadows to rows, buttons or sections; only wall-mounted objects and devices carry them.",
+      "**Don't** apply this system to the admin pages (app/templates/admin, style.css); they keep their own look."
+    ]
+  }
+}
