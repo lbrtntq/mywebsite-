@@ -191,7 +191,7 @@ A night-to-day palette with one fenced-off green: neutrals carry the page, a tea
 
 **The One Face Rule.** Albert Sans for everything; system monospace only for repository and code names. No second display face, no system display fallback by design.
 
-**The Mark.** The logo is the one exception: the italic capital A from DM Serif Display (OFL), outlined to a path with its hairlines thickened slightly so it survives 16px, crossing in front of the day scene's warm sun (#f7c873) on a night-navy tile (rx 22 of 100). It appears as the favicon, the home-screen icon and, without the tile and in the current ink, beside the name in the nav. It is a drawing, not a typeface in use: never set text in DM Serif Display.
+**The Mark.** A lowercase a from Albert Sans (600), outlined to a path, white on a night-navy tile (rx 22 of 100). In the nav it inverts with the room: a tile in the current ink with the a cut out in the wall colour. Nothing else: no sun, no flourish.
 
 ## Layout
 
