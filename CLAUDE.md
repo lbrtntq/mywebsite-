@@ -46,17 +46,17 @@ Flask portfolio website with a service layer pattern, Cloudinary image storage, 
 
 Pure HTML/CSS/JS with Jinja2 templates. No build step, no JS dependencies.
 
-The public site is photo-first: each photograph gets its own screen, and the page background ("the wall") takes its colour from the photograph in view. Product truth lives in `PRODUCT.md`, the design system in `DESIGN.md`, the direction contract in `.impeccable/surfaces/`.
+The public site is photo-first. Its centre is "One long day": a pinned scroll scene where a clock ticks to the real minute each photo was taken (EXIF, read server-side from the first 64 KB of the original) while the wall moves from morning to night and photos are dealt as prints. Product truth lives in `PRODUCT.md`, the design system in `DESIGN.md`, the direction contract in `.impeccable/surfaces/`.
 
 - `app/templates/base.html` — public layout: SEO/OG/JSON-LD, icon sprite, nav, full-screen phone menu.
-- `app/templates/index.html` — cover (first landscape photo full-bleed), photograph index, one "room" per photo, about, PaQueueKa chapter, engineering. `_viewer.html` is the full-screen photo viewer; `_footer.html` is the closing.
+- `app/templates/index.html` — hero with a deck of prints, the day scene, photograph index, about, PaQueueKa chapter, engineering. `_viewer.html` is the full-screen photo viewer; `_footer.html` is the closing.
 - `app/templates/tech.html` — the full PaQueueKa case study (`/tech`).
 - `app/templates/admin/_layout.html` + `app/static/css/style.css` — the admin pages keep the old layout and stylesheet.
 - `app/static/css/site.css` — all public styles. Tones (`dark`, `light`, `court`) are set only on `:root[data-tone]`; sections carry `data-tone`/`data-room` as data for the JS.
-- `app/static/js/site.js` — room colours (samples a 12×12 Cloudinary thumbnail per photo and picks the dominant hue), nav, index hover preview, viewer, `/tech` sticky phone and rotation modes. Every effect has a reduced-motion path.
+- `app/static/js/site.js` — Lenis smooth scroll (self-hosted in `app/static/vendor/`), a small spring rig, the print deck (tap / drag-to-fling), the day scene (clock, sky keyframes, dealt prints), section tones, nav, index hover preview, viewer, `/tech` sticky phone and rotation modes. Every effect has a reduced-motion path.
 - Self-hosted Albert Sans in `app/static/fonts/`.
 
-`app/services/photo_service.py` turns gallery rows into view data: it asks Cloudinary (`fl_getinfo`) for each photo's size once and caches it in memory (uploads prime the cache), and derives a place name from the title/caption. App screenshots in `app/static/img/paqueueka/` are frames from real PaQueueKa 2.0 simulator recordings (demo session data).
+`app/services/photo_service.py` turns gallery rows into view data: it asks Cloudinary (`fl_getinfo`) for each photo's size once and caches it in memory (uploads prime the cache), reads each photo's capture time from EXIF (cached), and derives a place name from the title/caption. App screenshots in `app/static/img/paqueueka/` are frames from real PaQueueKa 2.0 simulator recordings (demo session data).
 
 ### Image Storage
 

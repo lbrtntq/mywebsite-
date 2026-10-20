@@ -14,20 +14,19 @@ def index():
     pagination = GalleryService.get_paginated_items(page=page, per_page=PER_PAGE)
     photos = as_stations(pagination.items, offset=(pagination.page - 1) * PER_PAGE)
 
-    # The opening frame: the first landscape photo in display order fills the
-    # screen, and the rest of the page's photos follow it one room at a time.
-    first = as_stations(GalleryItem.query.order_by(GalleryItem.order.asc()).limit(PER_PAGE).all())
-    cover = next((p for p in first if p['shape'] == 'wide'), first[0] if first else None)
-    rooms = [p for p in photos if not cover or p['id'] != cover['id']]
+    # The photographs as one day: ordered by the time of day each was taken
+    # (from EXIF), so the page can walk from late morning to fireworks.
+    # Photos without a capture time follow in display order.
+    day = sorted((p for p in photos if p['minute'] is not None), key=lambda p: p['minute'])
+    day += [p for p in photos if p['minute'] is None]
 
     latest = GalleryItem.query.order_by(GalleryItem.created_at.desc()).first()
     return render_template(
         'index.html',
         pagination=pagination,
         photos=photos,
-        rooms=rooms,
-        cover=cover,
-        viewer_items=([cover] if cover and cover not in photos else []) + photos,
+        day=day,
+        viewer_items=day,
         total_photos=pagination.total,
         latest_upload=latest.created_at if latest else None,
     )

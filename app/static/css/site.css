@@ -112,7 +112,7 @@ code { font-family: var(--mono); font-size: 0.9em; }
 /* ── Type ─────────────────────────────────────────────────────────────── */
 
 .name {
-    font-size: clamp(3.25rem, 9vw, 6rem);
+    font-size: clamp(3.5rem, 10.5vw, 8.5rem);
     line-height: 0.92;
     letter-spacing: -0.04em;
 }
@@ -177,6 +177,11 @@ code { font-family: var(--mono); font-size: 0.9em; }
 }
 .icon-button:hover { background: rgba(236, 239, 242, 0.12); }
 
+/* Lenis smooth scrolling (from its own stylesheet). */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
 /* ── Navigation ───────────────────────────────────────────────────────── */
 
 .nav {
@@ -240,76 +245,188 @@ code { font-family: var(--mono); font-size: 0.9em; }
 }
 @keyframes fade-in { from { opacity: 0; } }
 
-/* ── Cover ────────────────────────────────────────────────────────────── */
+/* ── Hero: the name and a deck of prints ───────────────────────────── */
 
-.cover {
-    position: relative;
-    height: 100svh;
-    min-height: 560px;
-    overflow: hidden;
-    color: #fff;
-    background: var(--night);
+.hero {
+    min-height: 100svh;
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: clamp(16px, 2.4vw, 40px);
+    align-items: center;
+    padding: calc(var(--nav-h) + 4vh) var(--gutter) 8vh;
 }
-.cover-img {
-    position: absolute;
-    inset: 0;
-    width: 100%; height: 100%;
-    object-fit: cover;
-    object-position: 50% 60%;
-}
-.cover-shade {
-    position: absolute;
-    inset: 0;
-    background:
-        linear-gradient(180deg, rgba(11, 17, 26, 0.78) 0%, rgba(11, 17, 26, 0.2) 38%, rgba(11, 17, 26, 0) 55%),
-        linear-gradient(0deg, rgba(11, 17, 26, 0.7) 0%, rgba(11, 17, 26, 0) 22%);
-}
-.cover-text {
-    position: absolute;
-    left: var(--gutter);
-    top: calc(var(--nav-h) + clamp(32px, 9vh, 110px));
-    max-width: min(760px, calc(100% - 2 * var(--gutter)));
-}
-.cover-lede {
+.hero-text { grid-column: 1 / span 6; }
+.hero-lede {
     margin-top: clamp(20px, 3.5vh, 36px);
     max-width: 30ch;
-    font-size: clamp(1.1rem, 1.55vw, 1.4rem);
+    font-size: clamp(1.15rem, 1.6vw, 1.4rem);
     line-height: 1.45;
-    color: rgba(255, 255, 255, 0.86);
+    color: var(--fg-2);
 }
-.cover-foot {
+
+.deck { grid-column: 8 / span 4; justify-self: center; width: min(100%, 380px); }
+.deck-stack { position: relative; aspect-ratio: 4 / 5; }
+/* A real print: a white border, a thicker margin at the bottom. */
+.deck-print {
     position: absolute;
-    left: var(--gutter); right: var(--gutter);
-    bottom: max(24px, env(safe-area-inset-bottom));
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 24px;
+    inset: 0;
+    margin: 0;
+    padding: 10px 10px 34px;
+    background: #fff;
+    border-radius: 2px;
+    box-shadow: 0 1px 2px rgba(14, 20, 26, 0.08), 0 24px 44px -22px rgba(14, 20, 26, 0.45);
+    transform: rotate(calc((var(--i) - 2) * 3deg));
+    z-index: calc(10 - var(--i));
+    transform-origin: 50% 85%;
+    cursor: grab;
+    touch-action: pan-y;
+    user-select: none;
+}
+.deck-print:active { cursor: grabbing; }
+.deck-print img { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+.deck-foot { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 30px; }
+.deck-caption { display: grid; line-height: 1.35; min-width: 0; }
+.deck-title { font-weight: 500; }
+.deck-meta { font-size: 0.875rem; color: var(--fg-3); }
+.deck-next {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    flex: none;
+    min-height: 44px;
+    padding: 0 16px;
+    border-radius: 999px;
+    box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--fg) 30%, transparent);
     font-size: 0.875rem;
-}
-.cover-credit { display: grid; text-align: left; line-height: 1.4; }
-.cover-credit span:first-child {
     font-weight: 600;
-    justify-self: start;
-    background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
-    transition: background-size 400ms var(--ease);
+    transition: background-color 200ms ease, color 200ms ease;
 }
-.cover-credit span + span { color: rgba(255, 255, 255, 0.72); }
-.cover-credit:hover span:first-child { background-size: 100% 1px; }
-.cover-next { display: inline-flex; align-items: center; gap: 10px; font-weight: 600; }
-.cover-next svg { transform: rotate(90deg); transition: transform 400ms var(--ease); }
-.cover-next:hover svg { transform: rotate(90deg) translateX(4px); }
+.deck-next:hover { background: var(--fg); color: var(--bg); }
+.deck-hint { margin-top: 10px; text-align: right; font-size: 0.8125rem; color: var(--fg-3); }
 
 @media (prefers-reduced-motion: no-preference) {
-    .cover-img { animation: settle 1800ms var(--ease) both; }
     .name-first, .name-last { animation: rise 1000ms var(--ease) both; }
     .name-last { animation-delay: 90ms; }
-    .cover-lede { animation: fade-up 900ms var(--ease) 300ms both; }
-    .cover-foot { animation: fade-up 900ms var(--ease) 500ms both; }
+    .hero-lede, .hero .text-link { animation: fade-up 900ms var(--ease) 300ms both; }
+    .deck { animation: fade-up 1100ms var(--ease) 200ms both; }
 }
-@keyframes settle { from { transform: scale(1.06); } }
 @keyframes rise { from { opacity: 0; transform: translateY(0.35em); } }
-@keyframes fade-up { from { opacity: 0; transform: translateY(12px); } }
+@keyframes fade-up { from { opacity: 0; transform: translateY(14px); } }
+
+/* ── One long day: pinned, scroll-driven ──────────────────────────────── */
+
+.day-intro {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: clamp(16px, 2.4vw, 40px);
+    align-items: end;
+    padding: clamp(96px, 16vh, 180px) var(--gutter) clamp(32px, 6vh, 64px);
+}
+.day-intro .section-title { grid-column: 1 / span 6; }
+.day-lede { grid-column: 8 / span 5; max-width: 44ch; color: var(--fg-2); font-size: 1.125rem; }
+
+/* Without JS (or before it runs) the day is a plain sequence of prints. */
+.day-stages { display: grid; gap: clamp(64px, 12vh, 140px); padding: 0 var(--gutter) clamp(96px, 16vh, 180px); }
+.stage { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: clamp(16px, 2.4vw, 40px); align-items: end; }
+.stage .print { grid-column: 2 / span 6; }
+.stage .stage-caption { grid-column: 9 / span 4; }
+.day-clock, .day-rail, .day-sun, .day-moon { display: none; }
+
+.print {
+    display: block;
+    width: min(100%, calc(70svh * var(--ar)));
+    aspect-ratio: var(--ar);
+    padding: 10px;
+    background: #fff;
+    border-radius: 2px;
+    box-shadow: 0 1px 2px rgba(14, 20, 26, 0.1), 0 30px 60px -28px rgba(0, 0, 0, 0.55);
+    cursor: zoom-in;
+}
+.print img { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+
+.stage-time { font-size: 0.9375rem; font-weight: 600; color: var(--accent); }
+.stage-title {
+    margin-top: 6px;
+    font-size: clamp(1.75rem, 3vw, 2.6rem);
+    font-weight: 300;
+    letter-spacing: -0.025em;
+    line-height: 1.08;
+    text-wrap: balance;
+}
+.stage-meta { margin-top: 8px; font-size: 0.9375rem; color: var(--fg-2); }
+.stage-desc { margin-top: 16px; max-width: 40ch; color: var(--fg-2); text-wrap: pretty; }
+
+/* Live: the scene pins for the length of the track and the prints are dealt. */
+.day.is-live .day-track { height: calc(var(--stages) * 100svh + 50svh); }
+.day.is-live .day-scene { position: sticky; top: 0; height: 100svh; overflow: hidden; }
+.day.is-live .day-stages { display: block; padding: 0; }
+.day.is-live .stage { display: block; }
+.day.is-live .print {
+    position: absolute;
+    left: 66%;
+    top: 54%;
+    width: min(calc(60svh * var(--ar)), 44vw);
+    will-change: transform;
+    transform: translate(-50%, -50%) translate(120vw, -40vh) rotate(18deg);
+}
+.day.is-live .stage-caption {
+    position: absolute;
+    left: var(--gutter);
+    bottom: clamp(88px, 15vh, 150px);
+    width: min(38ch, 38vw);
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 500ms ease, transform 700ms var(--ease);
+    pointer-events: none;
+}
+.day.is-live .stage.is-now .stage-caption { opacity: 1; transform: none; pointer-events: auto; }
+
+.day.is-live .day-clock {
+    display: flex;
+    align-items: baseline;
+    position: absolute;
+    left: var(--gutter);
+    top: calc(var(--nav-h) + 3vh);
+    font-size: clamp(4rem, 12vw, 10rem);
+    font-weight: 200;
+    letter-spacing: -0.05em;
+    line-height: 0.9;
+    font-variant-numeric: tabular-nums;
+}
+.day-ap { margin-left: 0.18em; font-size: 0.2em; font-weight: 600; letter-spacing: 0.02em; }
+
+.day.is-live .day-rail {
+    display: block;
+    position: absolute;
+    left: var(--gutter); right: var(--gutter);
+    bottom: clamp(28px, 5vh, 48px);
+    height: 1px;
+    background: var(--rule);
+}
+.day-rail-fill { height: 1px; background: var(--fg); transform-origin: left; transform: scaleX(var(--p, 0)); }
+.day-ticks { display: flex; justify-content: space-between; margin-top: 10px; font-size: 0.75rem; color: var(--fg-3); }
+.day-ticks li { transition: color 300ms ease; }
+.day-ticks li.is-now { color: var(--fg); font-weight: 600; }
+
+/* The light: a low warm sun by day, a small moon after dusk. */
+.day.is-live .day-sun, .day.is-live .day-moon { display: block; position: absolute; pointer-events: none; transform: translate(-50%, -50%); }
+.day-sun {
+    left: var(--sun-x, 50%);
+    top: var(--sun-y, 30%);
+    width: 60vmin; height: 60vmin;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 206, 140, 0.55) 0%, rgba(255, 206, 140, 0.18) 38%, rgba(255, 206, 140, 0) 70%);
+    opacity: var(--sun-o, 1);
+}
+.day-moon {
+    left: var(--moon-x, 47%);
+    top: var(--moon-y, 17%);
+    width: 6vmin; height: 6vmin;
+    border-radius: 50%;
+    background: #f1ece2;
+    box-shadow: 0 0 40px 10px rgba(241, 236, 226, 0.18);
+    opacity: var(--moon-o, 0);
+}
 
 /* ── Photographs ──────────────────────────────────────────────────────── */
 
@@ -377,66 +494,6 @@ code { font-family: var(--mono); font-size: 0.9em; }
     box-shadow: 0 24px 50px -20px rgba(0, 0, 0, 0.55);
     transform-origin: 50% 0;
 }
-
-/* Rooms: one photograph per screen, at its own proportions. */
-.room {
-    min-height: 100svh;
-    display: grid;
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-    column-gap: clamp(16px, 2.4vw, 40px);
-    align-items: center;
-    padding: clamp(56px, 10vh, 120px) var(--gutter);
-}
-.room-photo {
-    display: block;
-    width: min(100%, calc(82svh * var(--ar)));
-    aspect-ratio: var(--ar);
-    overflow: hidden;
-    cursor: zoom-in;
-    background: color-mix(in srgb, var(--fg) 6%, transparent);
-}
-.room-photo img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    transition: transform 1200ms var(--ease);
-}
-@media (hover: hover) { .room-photo:hover img { transform: scale(1.02); } }
-
-.room-caption { display: grid; align-content: end; gap: 6px; max-width: 38ch; }
-.room-title {
-    font-size: clamp(1.75rem, 3vw, 2.6rem);
-    font-weight: 300;
-    letter-spacing: -0.025em;
-    line-height: 1.08;
-    text-wrap: balance;
-}
-.room-meta { margin-top: 6px; font-size: 0.9375rem; color: var(--fg-2); }
-.room-desc { margin-top: 16px; color: var(--fg-2); text-wrap: pretty; }
-
-/* Each photograph gets its own scale: one large, one small in a lot of air,
-   one offset, one at the full height of the screen. Landscapes bleed. */
-/* Large: the photograph meets the left edge and nearly fills the height. */
-.room--large { padding-block: 2svh; padding-left: 0; }
-.room--large .room-photo { grid-column: 1 / span 9; width: min(100%, calc(96svh * var(--ar))); }
-.room--large .room-caption { grid-column: 10 / span 3; align-self: end; padding-bottom: 6svh; }
-
-/* Right: big on the right, the caption high on the left. */
-.room--right .room-photo { grid-column: 5 / -1; width: min(100%, calc(88svh * var(--ar))); justify-self: end; }
-.room--right .room-caption { grid-column: 1 / span 4; grid-row: 1; align-self: start; padding-top: 8svh; }
-
-.room--small .room-photo { grid-column: 8 / span 4; width: min(100%, calc(58svh * var(--ar))); }
-.room--small .room-caption { grid-column: 2 / span 4; grid-row: 1; align-self: start; }
-
-.room--offset .room-photo { grid-column: 4 / span 6; width: min(100%, calc(80svh * var(--ar))); justify-self: center; }
-.room--offset .room-caption { grid-column: 10 / span 3; align-self: center; }
-
-.room--full { padding-block: 0; }
-.room--full .room-photo { grid-column: 3 / span 6; width: min(100%, calc(100svh * var(--ar))); justify-self: center; }
-.room--full .room-caption { grid-column: 9 / span 4; align-self: end; padding-bottom: clamp(48px, 10vh, 120px); }
-
-.room--wide { padding-inline: 0; }
-.room--wide .room-photo { grid-column: 1 / -1; width: 100%; }
-.room--wide .room-caption { grid-column: 8 / span 4; grid-row: 2; margin-top: 32px; }
 
 .pages {
     display: flex;
@@ -579,11 +636,21 @@ code { font-family: var(--mono); font-size: 0.9em; }
     .footer-links a:hover .fl-name { font-weight: 500; letter-spacing: -0.035em; }
     .footer-links a:hover .fl-arrow { color: var(--accent); transform: translate(4px, -4px); }
 }
+.footer-mark {
+    margin: clamp(64px, 10vh, 120px) 0 0 -0.05em;
+    height: 0.74em;
+    overflow: hidden;
+    font-size: 21.5vw;
+    font-weight: 600;
+    line-height: 0.92;
+    letter-spacing: -0.055em;
+    white-space: nowrap;
+}
 .footer-base {
     display: flex;
     flex-wrap: wrap;
     gap: 8px 32px;
-    margin-top: clamp(72px, 12vh, 140px);
+    margin-top: 28px;
     font-size: 0.875rem;
     color: var(--fg-3);
 }
@@ -798,16 +865,21 @@ code { font-family: var(--mono); font-size: 0.9em; }
     .eng-head .section-title, .eng-intro { grid-column: 1 / -1; }
     .photos-intro, .eng-intro { margin-top: 20px; }
 
-    .room { grid-template-columns: minmax(0, 1fr); row-gap: 24px; min-height: 0; padding-block: 64px; }
-    .room .room-photo,
-    .room .room-caption { grid-column: 1; grid-row: auto; justify-self: start; align-self: start; margin-top: 0; }
-    .room .room-photo { width: min(100%, calc(78svh * var(--ar))); }
-    .room--small .room-photo { width: min(64%, calc(50svh * var(--ar))); justify-self: end; }
-    .room--full, .room--large { padding-block: 64px; }
-    .room--large { padding-left: var(--gutter); }
-    .room--large .room-caption, .room--right .room-caption { padding: 0; }
-    .room--wide { padding-inline: 0; }
-    .room--wide .room-caption { padding-inline: var(--gutter); }
+    .hero { grid-template-columns: minmax(0, 1fr); row-gap: 48px; align-content: center; }
+    .hero-text, .deck { grid-column: 1; }
+    .deck { width: min(78%, 340px); }
+
+    .day-intro .section-title, .day-lede { grid-column: 1 / -1; }
+    .day-lede { margin-top: 20px; }
+    .stage { grid-template-columns: minmax(0, 1fr); row-gap: 20px; }
+    .stage .print, .stage .stage-caption { grid-column: 1; }
+    .day.is-live .print { left: 50%; top: 47%; width: min(calc(42svh * var(--ar)), 80vw); }
+    .day.is-live .stage-caption { left: var(--gutter); right: var(--gutter); width: auto; bottom: 64px; }
+    .day.is-live .stage-desc { display: none; }
+    .day.is-live .stage-time { display: none; }
+    .day.is-live .day-clock { font-size: clamp(3.25rem, 17vw, 5rem); top: calc(var(--nav-h) + 2vh); }
+    .day.is-live .day-ticks { display: none; }
+    .day.is-live .day-rail { bottom: 28px; }
 
     .about-grid { grid-template-columns: minmax(0, 1fr); row-gap: 40px; }
     .about-text { grid-column: 1; grid-row: auto; }
@@ -833,14 +905,7 @@ code { font-family: var(--mono); font-size: 0.9em; }
     .nav-links { display: none; }
     .nav-menu { display: inline-flex; align-items: center; }
 
-    .cover-foot { flex-direction: column; align-items: flex-start; gap: 14px; }
-    .cover-img { object-position: 38% 50%; }
-    .cover-lede, .name { text-shadow: 0 1px 14px rgba(11, 17, 26, 0.65); }
-    .cover-shade {
-        background:
-            linear-gradient(180deg, rgba(11, 17, 26, 0.85) 0%, rgba(11, 17, 26, 0.35) 42%, rgba(11, 17, 26, 0) 60%),
-            linear-gradient(0deg, rgba(11, 17, 26, 0.8) 0%, rgba(11, 17, 26, 0) 26%);
-    }
+    .footer-mark { font-size: 23vw; }
 
     .index-row { grid-template-columns: 2.6rem minmax(0, 1fr); row-gap: 2px; }
     .index-place { grid-column: 2; font-size: 0.875rem; }

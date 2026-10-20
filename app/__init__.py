@@ -110,7 +110,9 @@ def create_app(test_config=None):
             'title': station['title'],
             'description': station['description'],
             'place': station['place'],
-            'date': station['date'].strftime('%B %Y') if station['date'] else '',
+            'taken': clock(station.get('taken')),
+            'date': (station['taken'].strftime('%-d %B %Y') if station.get('taken')
+                     else station['date'].strftime('%B %Y') if station['date'] else ''),
             'width': station['width'],
             'height': station['height'],
             'src': cloudinary_transform(station['url'], 'f_auto,q_auto,c_limit,w_1600'),
@@ -124,6 +126,15 @@ def create_app(test_config=None):
         if len(items) < 2:
             return ''.join(items)
         return f"{', '.join(items[:-1])} and {items[-1]}"
+
+    @app.template_filter('clock')
+    def clock(value, part=None):
+        """A capture time as the page's clock shows it: '4:08' / 'PM'."""
+        if not value:
+            return ''
+        hm = f"{value.hour % 12 or 12}:{value.minute:02d}"
+        ap = 'AM' if value.hour < 12 else 'PM'
+        return {'hm': hm, 'ap': ap}.get(part, f'{hm} {ap}')
 
     @app.template_filter('stamp')
     def date_stamp(value):

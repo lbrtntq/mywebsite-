@@ -25,7 +25,7 @@ colors:
 typography:
   display:
     fontFamily: "'Albert Sans', ui-sans-serif, system-ui, sans-serif"
-    fontSize: "clamp(3.25rem, 9vw, 6rem)"
+    fontSize: "clamp(3.5rem, 10.5vw, 8.5rem)"
     fontWeight: 250
     lineHeight: 0.92
     letterSpacing: "-0.04em"
@@ -126,19 +126,19 @@ components:
 
 **Creative North Star: "Borrowed Light"**
 
-The photographs are the site. Every surface is a wall in a room built for one photograph, and the wall takes its colour from that photograph: a deep shade of the picture's dominant hue for night shots, a pale tint for daylight ones. Between the photo rooms sit three fixed tones: night navy for the cover, index and footer, daylight for the personal statement and engineering, and a court green that belongs to PaQueueKa alone. Scrolling is a slow change of light, never a change of chrome.
+The photographs are the site, and the light comes from them. The heart of the home page is "One long day": a pinned scene where a large clock ticks to the real minute each photograph was taken (read from its EXIF) while the wall moves from late-morning white through golden hour to night, and each photograph is dealt onto the table as a print. Around it sit three fixed tones: a pale morning wall for the hero, night navy for the index and footer, daylight for the statement and engineering, and a court green that belongs to PaQueueKa alone. Scrolling is a change of light, never a change of chrome.
 
-Everything else steps back. One typeface, Albert Sans, does all the work in two registers: very light display (250 to 300) against a 600 for the few words that carry emphasis. Structure is hairline rules, never boxes. There are no cards, no badges, no themed signage, and no decorative icons; the only glyphs are thin line arrows and a close mark. Motion exists to arrive (the cover), to follow (the wall colour, the index preview) and to explain (the /tech phone and rotation diagrams), and every effect has a reduced-motion path.
+Everything else steps back. One typeface, Albert Sans, does all the work in two registers: very light display (250 to 300) against a 600 for the few words that carry emphasis. Structure is hairline rules, never boxes. There are no cards, no badges, no themed signage, and no decorative icons; the only glyphs are thin line arrows and a close mark. Motion is tactile and physical (prints dealt and flicked with a damped spring, Lenis smooth scrolling), it follows (the clock, the wall, the index preview) and it explains (the /tech phone and rotation diagrams). Every effect has a reduced-motion path.
 
 Density is low and the air is generous: a photograph gets a whole screen, captions are quiet, and section padding runs to a fifth of the viewport. The rejected direction this replaces was themed chrome (a transit map with line colours, strips and exits); nothing of that vocabulary returns.
 
 **Key Characteristics:**
-- The wall colour follows the photograph in view, on `:root` only, over 900ms.
+- The wall colour follows the time of day each photograph was taken, on `:root` only.
 - Three tones (dark, light, court), each a full set of ink, rule and accent.
 - Albert Sans only; display light 250–300 against 600 for emphasis.
-- Photographs at their own aspect ratio, one per screen, in a four-step composition cycle.
+- Photographs as physical prints (white border, real proportions) dealt in a pinned scene, ordered by capture time.
 - Hairline rules for every list; pill buttons; square photographs.
-- Entrance motion on the cover only; no scroll reveals.
+- Hero entrance only; no scroll reveals. Lenis (lerp 0.11) for scrolling.
 
 ## Colors
 
@@ -162,7 +162,7 @@ A night-to-day palette with one fenced-off green: neutrals carry the page, a tea
 - **Viewer Black** (viewer-black): the full-screen viewer, a fixed near-black independent of the room behind it.
 
 ### Named Rules
-**The Borrowed Light Rule.** Colour is set on `:root` and nowhere else. Sections only carry `data-tone` and `data-room` as data; the section crossing the middle of the viewport sets `html[data-tone]` and `--room`. Photo walls are computed from a 12×12 sample (chroma-weighted hue bins): dark photos get `hsl(hue, 24–48%, 13%)`, light photos `hsl(hue, 26–42%, 87%)`. Hue and saturation vary; lightness never does, so the ink always reads.
+**The Borrowed Light Rule.** Colour is set on `:root` and nowhere else. Sections only carry `data-tone` and `data-room` as data; the section crossing the middle of the viewport sets `html[data-tone]` and `--room`. Inside "One long day" the scene itself sets the wall from the clock: keyframes at 10:00 (cool white), 11:30, 13:00 (warm white), 15:30, 17:00 (gold), 18:10 (amber), then dusk violet at 18:25, deep blue at 19:20 and night navy by 20:30; the tone flips to dark at dusk. Light walls stay pale and dark walls stay deep, so the ink always reads.
 
 **The Fenced Court Rule.** Court green and lime appear only in PaQueueKa rooms. Elsewhere the accent is teal, and buttons are outline only.
 
@@ -177,7 +177,8 @@ A night-to-day palette with one fenced-off green: neutrals carry the page, a tea
 **Character:** One humanist grotesk at two extremes of weight: hairline-light display that lets the photographs stay louder, with a 600 used sparingly where a word must land.
 
 ### Hierarchy
-- **Display** (250 with 600 emphasis, clamp(3.25rem, 9vw, 6rem), 0.92, -0.04em): the name on the cover, "Albert" light over "Antioquia" heavy; PaQueueKa on /tech at 300. The closing "Kumusta?" uses the same scale at 300.
+- **Clock** (200, clamp(4rem, 12vw, 10rem), 0.9, -0.05em, tabular; AM/PM at 0.2em / 600): the day scene's clock only.
+- **Display** (250 with 600 emphasis, clamp(3.5rem, 10.5vw, 8.5rem), 0.92, -0.04em): the name in the hero, "Albert" light over "Antioquia" heavy; PaQueueKa on /tech at 300. The closing "Kumusta?" uses the same scale at 300.
 - **Headline** (300, clamp(2.5rem, 6.4vw, 5.25rem), 0.95, -0.04em): section titles (Photographs, PaQueueKa, Engineering, /tech chapters).
 - **Statement** (300, clamp(1.9rem, 4.4vw, 3.75rem), 1.1, -0.03em, max 22ch, balanced): the personal statement and the /tech close; a small variant (clamp(1.5rem, 2.8vw, 2.25rem), 30ch) opens a chapter body.
 - **Title** (300, clamp(1.75rem, 3vw, 2.6rem), 1.08, -0.025em): photo captions; the index rows use a smaller step (clamp(1.35rem, 2.6vw, 2.1rem)) and footer links a larger one (clamp(1.9rem, 4.4vw, 3.25rem)).
@@ -194,7 +195,7 @@ A night-to-day palette with one fenced-off green: neutrals carry the page, a tea
 
 A 12-column grid (column gap clamp(16px, 2.4vw, 40px)) inside a fluid gutter (clamp(20px, 4.5vw, 72px)). Section heads put the headline on columns 1–6 and the intro on 8–12, bottom-aligned. Sections breathe: top padding runs clamp(96px, 18vh, 200px) to clamp(120px, 22vh, 240px).
 
-Photo rooms are a full viewport tall. The composition cycles large (photo columns 1–8, caption 9–12 at the bottom), small (photo 8–11 in a lot of air, caption 2–5 at the top), offset (photo 4–9 centred, caption 10–12), full-height (photo at 100svh, no vertical padding). Landscapes break the cycle and bleed edge to edge with the caption below. Each photograph's width is capped by its own aspect ratio against the viewport height, so it is never cropped.
+The day scene is a track of (photos × 100svh + 50svh) with a sticky 100svh scene: clock top-left, the current caption bottom-left (38ch), the print stack centred at 66% (50% on phones), a hairline progress rail with capture-time ticks along the bottom. Prints are sized by their own aspect ratio against the viewport height, so they are never cropped.
 
 Below 960px everything collapses to one column; the small room keeps its character by sitting right-aligned at 64% width. Below 720px the nav links fold into a full-screen menu, index and repo rows drop their third column under the title, and the nav height drops to 60px. Safe-area insets are respected on nav, cover foot, footer and viewer.
 
@@ -203,7 +204,7 @@ Below 960px everything collapses to one column; the small room keeps its charact
 
 ## Elevation & Depth
 
-Flat. Depth comes from the change of light between rooms and from the photographs themselves; surfaces never lift. Two objects float, because they are objects: the phone frame and the cursor-following index preview.
+Flat walls. Objects that are objects in life cast shadows: prints (deck and day scene), the phone frame and the cursor-following index preview.
 
 ### Shadow Vocabulary
 - **Device drop** (`box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08), 0 40px 70px -36px rgba(0,0,0,0.6)`): the phone frame only.
@@ -234,14 +235,17 @@ Photographs are square-cornered rectangles at their own proportions. Interactive
 - **States:** transparent with white text over the cover; after the cover, solid in the current room colour with a hairline bottom; slides away when scrolling down past 480px and returns on the way up or on focus.
 - **Mobile:** a "Menu" text button opens a full-screen night dialog with the links at display scale, weight 300.
 
-### Cover
-Full-bleed first landscape at 100svh with a top and bottom navy shade; name top-left, a one-line lede at 30ch, the photo credit bottom-left (opens the viewer) and "N photographs" with a down arrow bottom-right. Entrance: the photo settles from 1.06 scale (1800ms), the name rises in two staggered lines, lede and foot fade up.
+### Hero and Deck
+Name left at display scale, a one-line lede and a drawn-underline link into the day. Right: a deck of up to five prints (4:5 crops with a white border, thicker at the bottom) fanned with small tilts. Tap or "Next print" throws the top print off and tucks it under the pile; dragging it follows the hand and a fast or long flick throws it. Springs: snap k190/d21, throw k120/d15. Entrance: the name rises in two lines, lede and deck fade up.
+
+### One Long Day
+The pinned scene described under Layout. Scroll progress picks the photograph; the clock holds on its capture time for 60% of the stage, then ticks to the next. A soft warm sun crosses an arc by daylight and fades at dusk; a small moon appears after 18:30. The current print is thrown in from the top right (throw spring) onto the pile of earlier prints, each kept at its own small tilt. Clicking a print opens the viewer. Without JS the stages render as a simple sequence; with reduced motion the scene still follows the scroll but places prints instantly.
 
 ### Index
 A numbered list of every photograph by title between hairlines: numeral (ink-3), title (light, title scale), place (ink-2). On hover the other rows dim to 38%, the hovered title slides 14px, and a 260px preview follows the cursor with a lerp and a slight lean from horizontal velocity.
 
-### Room
-One photograph per screen at its own aspect ratio, opening the viewer on click (a 1.02 zoom on hover). The caption is a light title, a meta line (numeral, place, month and year) and an optional description, all at most 38ch.
+### Footer Wordmark
+"Antioquia" at 21.5vw, weight 600, clipped at 0.74em so the descender is cut by the page edge, under the "Kumusta?" links.
 
 ### Viewer
 A full-screen dialog on viewer black: count, title and close along the top; the photograph contained in the stage; meta and description beneath. It grows out of the clicked thumbnail (560ms), swipes on touch, and steps with arrow buttons.
@@ -259,8 +263,8 @@ Six players on a hairline track with a bracket marking the next court. Played pl
 
 ### Do:
 - **Do** set tone and wall colour on `:root` only and let sections carry them as data.
-- **Do** keep computed photo walls at 13% lightness for dark photographs and 87% for light ones.
-- **Do** show every photograph at its own aspect ratio and cycle large, small, offset and full-height; let landscapes bleed.
+- **Do** keep light walls pale and dark walls deep so the ink always reads.
+- **Do** show every photograph at its own aspect ratio, as a print, ordered by the time it was taken.
 - **Do** set display type light (250–300) and reserve 600 for emphasis.
 - **Do** separate list items with 1px rules at 14–16% ink.
 - **Do** give every motion effect a reduced-motion path; the global fallback collapses durations to 1ms.
@@ -268,7 +272,7 @@ Six players on a hairline track with a bracket marking the next court. Played pl
 
 ### Don't:
 - **Don't** use court green or a lime fill outside PaQueueKa rooms.
-- **Don't** add scroll-triggered reveals; the cover entrance is the only entrance.
+- **Don't** add scroll-triggered fade-ins; the hero entrance and the day scene are the motion.
 - **Don't** put photographs in cards, uniform grids or cropped tiles.
 - **Don't** add themed chrome: maps, line colours, badges, signage or decorative icons. Line arrows and the close mark are the whole icon set.
 - **Don't** add a second typeface; monospace is for code names only.

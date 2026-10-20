@@ -22,6 +22,6 @@ STORY: A full-bleed night photograph with the name; an index of photographs by t
 
 FIRST VIEWPORT: Cover photograph full-bleed (first landscape in display order), name top-left in two weights at ≤6rem, one-line lede, credit bottom-left (opens the viewer), "N photographs ↓" bottom-right. Minimal nav (name + four links) in white over the photo.
 
-FORM: owner-pinned reimagining (photo-first, night-to-day). Signature interaction: the wall colour follows the photograph in view; photos open in a full-screen viewer that grows out of the thumbnail.
+FORM: owner-pinned. On 2026-10-20 the owner pointed at kumustahan.app: "i like similar animations and techniques". Adopted its mechanics (Lenis smooth scroll, a pinned scroll-driven scene with a ticking clock and time-of-day sky, objects dealt with spring physics, a flickable stack, giant clipped wordmark footer) and grounded them in his own data: the clock ticks to each photo's EXIF capture time. Signature: "One long day".
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
